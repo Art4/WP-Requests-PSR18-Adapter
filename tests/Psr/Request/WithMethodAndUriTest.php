@@ -1,20 +1,20 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
+use Art4\Requests\Psr\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Exception\InvalidArgument;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithMethodAndUriTest extends TestCase {
 
 	/**
 	 * Tests receiving a Request instance when using withMethodAndUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withMethodAndUri
+	 * @covers \Art4\Requests\Psr\Request::withMethodAndUri
 	 *
 	 * @return void
 	 */
@@ -32,7 +32,7 @@ final class WithMethodAndUriTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withMethodAndUri
+	 * @covers \Art4\Requests\Psr\Request::withMethodAndUri
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -59,7 +59,7 @@ final class WithMethodAndUriTest extends TestCase {
 	/**
 	 * Tests receiving a Request instance when using withMethodAndUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withUri
+	 * @covers \Art4\Requests\Psr\Request::withUri
 	 *
 	 * @return void
 	 */

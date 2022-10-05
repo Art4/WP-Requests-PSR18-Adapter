@@ -1,20 +1,20 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithProtocolVersionTest extends TestCase {
 
 	/**
 	 * Tests changing the protocol version when using withProtocolVersion().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withProtocolVersion
+	 * @covers \Art4\Requests\Psr\Response::withProtocolVersion
 	 *
 	 * @return void
 	 */
@@ -28,7 +28,7 @@ final class WithProtocolVersionTest extends TestCase {
 	/**
 	 * Tests changing the protocol version when using withProtocolVersion().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withProtocolVersion
+	 * @covers \Art4\Requests\Psr\Response::withProtocolVersion
 	 *
 	 * @return void
 	 */
@@ -44,7 +44,7 @@ final class WithProtocolVersionTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withProtocolVersion
+	 * @covers \Art4\Requests\Psr\Response::withProtocolVersion
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -72,7 +72,7 @@ final class WithProtocolVersionTest extends TestCase {
 	/**
 	 * Tests changing the version when using withProtocolVersion().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withProtocolVersion
+	 * @covers \Art4\Requests\Psr\Response::withProtocolVersion
 	 *
 	 * @return void
 	 */

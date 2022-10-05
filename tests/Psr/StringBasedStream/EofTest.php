@@ -1,16 +1,16 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\StringBasedStream;
+namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
-use WpOrg\Requests\Psr\StringBasedStream;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\StringBasedStream;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class EofTest extends TestCase {
 
 	/**
 	 * Tests receiving true when using eof() method.
 	 *
-	 * @covers \WpOrg\Requests\Psr\StringBasedStream::eof
+	 * @covers \Art4\Requests\Psr\StringBasedStream::eof
 	 *
 	 * @return void
 	 */

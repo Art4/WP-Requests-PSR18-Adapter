@@ -1,10 +1,10 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetPortTest extends TestCase {
 
@@ -13,7 +13,7 @@ final class GetPortTest extends TestCase {
 	 *
 	 * @dataProvider dataGetPort
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::getPort
+	 * @covers \Art4\Requests\Psr\Uri::getPort
 	 *
 	 * @return void
 	 */

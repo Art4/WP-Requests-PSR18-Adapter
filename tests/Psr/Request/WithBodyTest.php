@@ -1,19 +1,19 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class WithBodyTest extends TestCase {
 
 	/**
 	 * Tests changing the body when using withBody().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withBody
+	 * @covers \Art4\Requests\Psr\Request::withBody
 	 *
 	 * @return void
 	 */
@@ -28,7 +28,7 @@ final class WithBodyTest extends TestCase {
 	/**
 	 * Tests changing the body when using withBody().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withBody
+	 * @covers \Art4\Requests\Psr\Request::withBody
 	 *
 	 * @return void
 	 */

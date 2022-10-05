@@ -1,16 +1,16 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\StringBasedStream;
+namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
-use WpOrg\Requests\Psr\StringBasedStream;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\StringBasedStream;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class CloseTest extends TestCase {
 
 	/**
 	 * Tests receiving void when using close() method.
 	 *
-	 * @covers \WpOrg\Requests\Psr\StringBasedStream::close
+	 * @covers \Art4\Requests\Psr\StringBasedStream::close
 	 *
 	 * @return void
 	 */

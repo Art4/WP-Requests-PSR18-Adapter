@@ -1,18 +1,18 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetBodyTest extends TestCase {
 
 	/**
 	 * Tests receiving the body when using getBody().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getBody
+	 * @covers \Art4\Requests\Psr\Request::getBody
 	 *
 	 * @return void
 	 */

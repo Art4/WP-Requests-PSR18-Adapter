@@ -1,18 +1,18 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\StringBasedStream;
+namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
 use InvalidArgumentException;
-use WpOrg\Requests\Psr\StringBasedStream;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Art4\Requests\Psr\StringBasedStream;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class GetMetadataTest extends TestCase {
 
 	/**
 	 * Tests receiving an array when using getMetadata().
 	 *
-	 * @covers \WpOrg\Requests\Psr\StringBasedStream::getMetadata
+	 * @covers \Art4\Requests\Psr\StringBasedStream::getMetadata
 	 *
 	 * @return void
 	 */
@@ -25,7 +25,7 @@ final class GetMetadataTest extends TestCase {
 	/**
 	 * Tests receiving null when using getMetadata().
 	 *
-	 * @covers \WpOrg\Requests\Psr\StringBasedStream::getMetadata
+	 * @covers \Art4\Requests\Psr\StringBasedStream::getMetadata
 	 *
 	 * @return void
 	 */
@@ -40,7 +40,7 @@ final class GetMetadataTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withHeader
+	 * @covers \Art4\Requests\Psr\Request::withHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *

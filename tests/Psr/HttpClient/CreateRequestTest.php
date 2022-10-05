@@ -1,25 +1,25 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\HttpClient;
+namespace Art4\Requests\Tests\Psr\HttpClient;
 
+use Art4\Requests\Psr\HttpClient;
+use Art4\Requests\Tests\TypeProviderHelper;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Exception\InvalidArgument;
-use WpOrg\Requests\Psr\HttpClient;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class CreateRequestTest extends TestCase {
 
 	/**
 	 * Tests receiving an Request when using createRequest().
 	 *
-	 * @covers \WpOrg\Requests\Psr\HttpClient::createRequest
+	 * @covers \Art4\Requests\Psr\HttpClient::createRequest
 	 *
 	 * @return void
 	 */
 	public function testCreateRequestWithUriInstanceReturnsRequest() {
-		$httpClient = new HttpClient();
+		$httpClient = new HttpClient([]);
 
 		$uri = $this->createMock(UriInterface::class);
 
@@ -32,12 +32,12 @@ final class CreateRequestTest extends TestCase {
 	/**
 	 * Tests receiving an Request when using createRequest().
 	 *
-	 * @covers \WpOrg\Requests\Psr\HttpClient::createRequest
+	 * @covers \Art4\Requests\Psr\HttpClient::createRequest
 	 *
 	 * @return void
 	 */
 	public function testCreateRequestWithUriStringReturnsRequest() {
-		$httpClient = new HttpClient();
+		$httpClient = new HttpClient([]);
 
 		$uri = 'https://example.org';
 
@@ -52,14 +52,14 @@ final class CreateRequestTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\HttpClient::createRequest
+	 * @covers \Art4\Requests\Psr\HttpClient::createRequest
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
 	 * @return void
 	 */
 	public function testCreateRequestWithoutUriStringThrowsException($input) {
-		$httpClient = new HttpClient();
+		$httpClient = new HttpClient([]);
 
 		$this->expectException(InvalidArgument::class);
 		$this->expectExceptionMessage(sprintf(

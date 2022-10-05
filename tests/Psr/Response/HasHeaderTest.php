@@ -1,24 +1,24 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
 use InvalidArgumentException;
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class HasHeaderTest extends TestCase {
 
 	/**
 	 * Tests receiving boolean when using hasHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::hasHeader
+	 * @covers \Art4\Requests\Psr\Response::hasHeader
 	 *
 	 * @return void
 	 */
 	public function testHasHeaderReturnsFalse() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->assertFalse($response->hasHeader('name'));
 	}
@@ -26,12 +26,12 @@ final class HasHeaderTest extends TestCase {
 	/**
 	 * Tests receiving boolean when using hasHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::hasHeader
+	 * @covers \Art4\Requests\Psr\Response::hasHeader
 	 *
 	 * @return void
 	 */
 	public function testHasHeaderReturnsTrue() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 		$response = $response->withHeader('name', 'value');
 
 		$this->assertTrue($response->hasHeader('name'));
@@ -40,12 +40,12 @@ final class HasHeaderTest extends TestCase {
 	/**
 	 * Tests receiving boolean when using hasHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::hasHeader
+	 * @covers \Art4\Requests\Psr\Response::hasHeader
 	 *
 	 * @return void
 	 */
 	public function testHasHeaderWithCaseInsensitiveNameReturnsTrue() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 		$response = $response->withHeader('NAME', 'value');
 
 		$this->assertTrue($response->hasHeader('name'));
@@ -56,14 +56,14 @@ final class HasHeaderTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::hasHeader
+	 * @covers \Art4\Requests\Psr\Response::hasHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
 	 * @return void
 	 */
 	public function testHasHeaderWithoutStringThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->expectException(InvalidArgumentException::class);
 		$this->expectExceptionMessage(sprintf('%s::hasHeader(): Argument #1 ($name) must be of type string,', Response::class));

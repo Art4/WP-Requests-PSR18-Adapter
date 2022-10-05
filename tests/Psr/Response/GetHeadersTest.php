@@ -1,22 +1,22 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetHeadersTest extends TestCase {
 
 	/**
 	 * Tests receiving the headers when using getHeaders().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::getHeaders
+	 * @covers \Art4\Requests\Psr\Response::getHeaders
 	 *
 	 * @return void
 	 */
 	public function _testGetHeadersReturnsEmptyArray() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->assertSame([], $response->getHeaders());
 	}
@@ -24,14 +24,14 @@ final class GetHeadersTest extends TestCase {
 	/**
 	 * Tests receiving the headers when using getHeaders().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::getHeaders
+	 * @covers \Art4\Requests\Psr\Response::getHeaders
 	 *
 	 * @return void
 	 */
 	public function testGetHeadersReturnsArray() {
 		$requestsResponse = new RequestsResponse();
 		$requestsResponse->headers['name'] = 'value';
-		var_dump($requestsResponse->headers);
+
 		$response = Response::fromResponse($requestsResponse);
 
 		$this->assertSame(['name' => ['value']], $response->getHeaders());

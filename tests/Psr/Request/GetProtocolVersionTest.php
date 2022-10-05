@@ -1,17 +1,17 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetProtocolVersionTest extends TestCase {
 
 	/**
 	 * Tests receiving the protocol version when using getProtocolVersion().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getProtocolVersion
+	 * @covers \Art4\Requests\Psr\Request::getProtocolVersion
 	 *
 	 * @return void
 	 */

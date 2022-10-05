@@ -1,20 +1,20 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use InvalidArgumentException;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithHostTest extends TestCase {
 
 	/**
 	 * Tests changing the host when using withHost().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withHost
+	 * @covers \Art4\Requests\Psr\Uri::withHost
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ final class WithHostTest extends TestCase {
 	/**
 	 * Tests changing the host when using withHost().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withHost
+	 * @covers \Art4\Requests\Psr\Uri::withHost
 	 *
 	 * @return void
 	 */
@@ -42,7 +42,7 @@ final class WithHostTest extends TestCase {
 	/**
 	 * Tests changing the host when using withHost().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withHost
+	 * @covers \Art4\Requests\Psr\Uri::withHost
 	 *
 	 * @return void
 	 */
@@ -57,7 +57,7 @@ final class WithHostTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withHost
+	 * @covers \Art4\Requests\Psr\Uri::withHost
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -84,7 +84,7 @@ final class WithHostTest extends TestCase {
 	/**
 	 * Tests changing the host when using withHost().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withHost
+	 * @covers \Art4\Requests\Psr\Uri::withHost
 	 *
 	 * @return void
 	 */

@@ -1,25 +1,25 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithHeaderTest extends TestCase {
 
 	/**
 	 * Tests changing the header when using withHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withHeader
+	 * @covers \Art4\Requests\Psr\Response::withHeader
 	 *
 	 * @return void
 	 */
 	public function testWithHeaderReturnsResponseInterface() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->assertInstanceOf(ResponseInterface::class, $response->withHeader('name', 'value'));
 	}
@@ -27,12 +27,12 @@ final class WithHeaderTest extends TestCase {
 	/**
 	 * Tests changing the header when using withHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withHeader
+	 * @covers \Art4\Requests\Psr\Response::withHeader
 	 *
 	 * @return void
 	 */
 	public function testWithHeaderReturnsNewInstance() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->assertNotSame($response, $response->withHeader('name', 'value'));
 	}
@@ -42,14 +42,14 @@ final class WithHeaderTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withHeader
+	 * @covers \Art4\Requests\Psr\Response::withHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
 	 * @return void
 	 */
 	public function testWithHeaderWithoutNameAsStringThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->expectException(InvalidArgumentException::class);
 		$this->expectExceptionMessage(sprintf('%s::withHeader(): Argument #1 ($name) must be of type string', Response::class));
@@ -71,14 +71,14 @@ final class WithHeaderTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotStringOrArray
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withHeader
+	 * @covers \Art4\Requests\Psr\Response::withHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
 	 * @return void
 	 */
 	public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->expectException(InvalidArgumentException::class);
 		$this->expectExceptionMessage(sprintf('%s::withHeader(): Argument #2 ($value) must be of type string|array', Response::class));
@@ -100,14 +100,14 @@ final class WithHeaderTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withHeader
+	 * @covers \Art4\Requests\Psr\Response::withHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
 	 * @return void
 	 */
 	public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->expectException(InvalidArgumentException::class);
 		$this->expectExceptionMessage(sprintf('%s::withHeader(): Argument #2 ($value) must be of type string|array containing strings', Response::class));
@@ -118,12 +118,12 @@ final class WithHeaderTest extends TestCase {
 	/**
 	 * Tests changing the header when using withHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withHeader
+	 * @covers \Art4\Requests\Psr\Response::withHeader
 	 *
 	 * @return void
 	 */
 	public function testWithHeaderChangesTheHeaders() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$response = $response->withHeader('Name', 'value');
 
@@ -133,12 +133,12 @@ final class WithHeaderTest extends TestCase {
 	/**
 	 * Tests changing the header when using withHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withHeader
+	 * @covers \Art4\Requests\Psr\Response::withHeader
 	 *
 	 * @return void
 	 */
 	public function testWithHeaderCaseInsensitiveChangesTheHeaders() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$response = $response->withHeader('name', 'value');
 		$response = $response->withHeader('NAME', 'value');

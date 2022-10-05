@@ -1,13 +1,14 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\HttpClient;
+namespace Art4\Requests\Tests\Psr\HttpClient;
 
-use WpOrg\Requests\Exception\Psr\ClientException;
-use WpOrg\Requests\Exception\Psr\NetworkException;
-use WpOrg\Requests\Exception\Psr\RequestException;
+use Art4\Requests\Exception\Psr\ClientException;
+use Art4\Requests\Exception\Psr\NetworkException;
+use Art4\Requests\Exception\Psr\RequestException;
 use WpOrg\Requests\Exception\Transport as ExceptionTransport;
-use WpOrg\Requests\Psr\HttpClient;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\HttpClient;
+use Psr\Http\Message\ResponseInterface;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use WpOrg\Requests\Transport;
 
 final class HttpClientTest extends TestCase {
@@ -15,7 +16,7 @@ final class HttpClientTest extends TestCase {
 	/**
 	 * Tests receiving a response when using sendRequest().
 	 *
-	 * @covers \WpOrg\Requests\Psr\HttpClient::sendRequest
+	 * @covers \Art4\Requests\Psr\HttpClient::sendRequest
 	 *
 	 * @return void
 	 */
@@ -52,7 +53,7 @@ final class HttpClientTest extends TestCase {
 	/**
 	 * Tests receiving a response when using sendRequest().
 	 *
-	 * @covers \WpOrg\Requests\Psr\HttpClient::sendRequest
+	 * @covers \Art4\Requests\Psr\HttpClient::sendRequest
 	 *
 	 * @return void
 	 */
@@ -89,7 +90,7 @@ final class HttpClientTest extends TestCase {
 	/**
 	 * Tests receiving a response when using sendRequest().
 	 *
-	 * @covers \WpOrg\Requests\Psr\HttpClient::sendRequest
+	 * @covers \Art4\Requests\Psr\HttpClient::sendRequest
 	 *
 	 * @return void
 	 */
@@ -116,6 +117,7 @@ final class HttpClientTest extends TestCase {
 
 		$response = $httpClient->sendRequest($request);
 
+		$this->assertInstanceOf(ResponseInterface::class, $response);
 		$this->assertSame(503, $response->getStatusCode());
 		$this->assertSame('Service Unavailable', $response->getReasonPhrase());
 		$this->assertSame('1.1', $response->getProtocolVersion());
@@ -126,7 +128,7 @@ final class HttpClientTest extends TestCase {
 	/**
 	 * Tests receiving an exception when using sendRequest().
 	 *
-	 * @covers \WpOrg\Requests\Psr\HttpClient::sendRequest
+	 * @covers \Art4\Requests\Psr\HttpClient::sendRequest
 	 *
 	 * @return void
 	 */
@@ -149,7 +151,7 @@ final class HttpClientTest extends TestCase {
 	/**
 	 * Tests receiving an exception when using sendRequest().
 	 *
-	 * @covers \WpOrg\Requests\Psr\HttpClient::sendRequest
+	 * @covers \Art4\Requests\Psr\HttpClient::sendRequest
 	 *
 	 * @return void
 	 */

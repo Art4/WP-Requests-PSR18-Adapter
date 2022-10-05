@@ -1,23 +1,23 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
 use Psr\Http\Message\ResponseInterface;
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class FromResponseTest extends TestCase {
 
 	/**
 	 * Tests receiving a Response instance when using fromResponse().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::fromResponse
+	 * @covers \Art4\Requests\Psr\Request::fromResponse
 	 *
 	 * @return void
 	 */
 	public function testFromResponseReturnsResponseInterface() {
-		$requestsResponse = $this->createMock(RequestsResponse::class);
+		$requestsResponse = new RequestsResponse();
 
 		$this->assertInstanceOf(
 			ResponseInterface::class,

@@ -1,20 +1,20 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithRequestTargetTest extends TestCase {
 
 	/**
 	 * Tests changing the request-target when using withRequestTarget().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withRequestTarget
+	 * @covers \Art4\Requests\Psr\Request::withRequestTarget
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ final class WithRequestTargetTest extends TestCase {
 	/**
 	 * Tests changing the request-target when using withRequestTarget().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withRequestTarget
+	 * @covers \Art4\Requests\Psr\Request::withRequestTarget
 	 *
 	 * @return void
 	 */
@@ -42,7 +42,7 @@ final class WithRequestTargetTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withRequestTarget
+	 * @covers \Art4\Requests\Psr\Request::withRequestTarget
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -71,7 +71,7 @@ final class WithRequestTargetTest extends TestCase {
 	 *
 	 * @dataProvider dataValidRequestTarget
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withRequestTarget
+	 * @covers \Art4\Requests\Psr\Request::withRequestTarget
 	 *
 	 * @param string $input
 	 * @param string $expected

@@ -1,17 +1,17 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\StringBasedStream;
+namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
 use RuntimeException;
-use WpOrg\Requests\Psr\StringBasedStream;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\StringBasedStream;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class ReadTest extends TestCase {
 
 	/**
 	 * Tests receiving an exception when using read() method.
 	 *
-	 * @covers \WpOrg\Requests\Psr\StringBasedStream::read
+	 * @covers \Art4\Requests\Psr\StringBasedStream::read
 	 *
 	 * @return void
 	 */

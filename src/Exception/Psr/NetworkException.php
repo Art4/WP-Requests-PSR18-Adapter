@@ -5,7 +5,7 @@
  * @package Requests\Exceptions
  */
 
-namespace WpOrg\Requests\Exception\Psr;
+namespace Art4\Requests\Exception\Psr;
 
 use Psr\Http\Message\RequestInterface;
 use WpOrg\Requests\Exception\Transport;

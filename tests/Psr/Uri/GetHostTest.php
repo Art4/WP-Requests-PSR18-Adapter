@@ -1,17 +1,17 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetHostTest extends TestCase {
 
 	/**
 	 * Tests receiving the host when using getHost().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::getHost
+	 * @covers \Art4\Requests\Psr\Uri::getHost
 	 *
 	 * @return void
 	 */
@@ -24,7 +24,7 @@ final class GetHostTest extends TestCase {
 	/**
 	 * Tests receiving the host when using getHost().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::getHost
+	 * @covers \Art4\Requests\Psr\Uri::getHost
 	 *
 	 * @return void
 	 */
@@ -37,7 +37,7 @@ final class GetHostTest extends TestCase {
 	/**
 	 * Tests receiving the host when using getHost().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::getHost
+	 * @covers \Art4\Requests\Psr\Uri::getHost
 	 *
 	 * @return void
 	 */

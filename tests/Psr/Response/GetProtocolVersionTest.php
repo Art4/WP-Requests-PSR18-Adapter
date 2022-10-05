@@ -1,17 +1,17 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetProtocolVersionTest extends TestCase {
 
 	/**
 	 * Tests receiving the protocol version when using getProtocolVersion().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getProtocolVersion
+	 * @covers \Art4\Requests\Psr\Request::getProtocolVersion
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ final class GetProtocolVersionTest extends TestCase {
 	/**
 	 * Tests receiving the protocol version when using getProtocolVersion().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getProtocolVersion
+	 * @covers \Art4\Requests\Psr\Request::getProtocolVersion
 	 *
 	 * @return void
 	 */

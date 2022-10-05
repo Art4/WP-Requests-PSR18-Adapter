@@ -1,24 +1,24 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
 use InvalidArgumentException;
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class GetHeaderTest extends TestCase {
 
 	/**
 	 * Tests receiving the header when using getHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::getHeader
+	 * @covers \Art4\Requests\Psr\Response::getHeader
 	 *
 	 * @return void
 	 */
 	public function testGetHeaderWithoutHeaderReturnsEmptyArray() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->assertSame([], $response->getHeader('name'));
 	}
@@ -26,12 +26,12 @@ final class GetHeaderTest extends TestCase {
 	/**
 	 * Tests receiving the header when using getHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::getHeader
+	 * @covers \Art4\Requests\Psr\Response::getHeader
 	 *
 	 * @return void
 	 */
 	public function testGetHeaderReturnsArray() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 		$response = $response->withHeader('name', 'value');
 
 		$this->assertSame(['value'], $response->getHeader('name'));
@@ -40,12 +40,12 @@ final class GetHeaderTest extends TestCase {
 	/**
 	 * Tests receiving the header when using getHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::getHeader
+	 * @covers \Art4\Requests\Psr\Response::getHeader
 	 *
 	 * @return void
 	 */
 	public function testGetHeaderWithCaseInsensitiveNameReturnsArray() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 		$response = $response->withHeader('name', 'value');
 
 		$this->assertSame(['value'], $response->getHeader('NAME'));
@@ -56,14 +56,14 @@ final class GetHeaderTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::getHeader
+	 * @covers \Art4\Requests\Psr\Response::getHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
 	 * @return void
 	 */
 	public function testGetHeaderWithoutStringThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->expectException(InvalidArgumentException::class);
 		$this->expectExceptionMessage(sprintf('%s::getHeader(): Argument #1 ($name) must be of type string,', Response::class));

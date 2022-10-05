@@ -1,18 +1,18 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class WithUriTest extends TestCase {
 
 	/**
 	 * Tests changing the uri when using withUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withUri
+	 * @covers \Art4\Requests\Psr\Request::withUri
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ final class WithUriTest extends TestCase {
 	/**
 	 * Tests changing the uri when using withUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withUri
+	 * @covers \Art4\Requests\Psr\Request::withUri
 	 *
 	 * @return void
 	 */
@@ -42,7 +42,7 @@ final class WithUriTest extends TestCase {
 	/**
 	 * Tests changing the uri when using withUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withUri
+	 * @covers \Art4\Requests\Psr\Request::withUri
 	 *
 	 * @return void
 	 */
@@ -60,7 +60,7 @@ final class WithUriTest extends TestCase {
 	/**
 	 * Tests changing the uri when using withUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withUri
+	 * @covers \Art4\Requests\Psr\Request::withUri
 	 *
 	 * @return void
 	 */
@@ -81,7 +81,7 @@ final class WithUriTest extends TestCase {
 	/**
 	 * Tests changing the uri when using withUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withUri
+	 * @covers \Art4\Requests\Psr\Request::withUri
 	 *
 	 * @return void
 	 */
@@ -103,7 +103,7 @@ final class WithUriTest extends TestCase {
 	/**
 	 * Tests changing the uri when using withUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withUri
+	 * @covers \Art4\Requests\Psr\Request::withUri
 	 *
 	 * @return void
 	 */
@@ -126,7 +126,7 @@ final class WithUriTest extends TestCase {
 	 *
 	 * @dataProvider dataPreserveHost
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withUri
+	 * @covers \Art4\Requests\Psr\Request::withUri
 	 *
 	 * @return void
 	 */

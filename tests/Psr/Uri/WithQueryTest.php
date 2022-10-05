@@ -1,20 +1,20 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use InvalidArgumentException;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithQueryTest extends TestCase {
 
 	/**
 	 * Tests changing the query when using withQuery().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withQuery
+	 * @covers \Art4\Requests\Psr\Uri::withQuery
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ final class WithQueryTest extends TestCase {
 	/**
 	 * Tests changing the query when using withQuery().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withQuery
+	 * @covers \Art4\Requests\Psr\Uri::withQuery
 	 *
 	 * @return void
 	 */
@@ -42,7 +42,7 @@ final class WithQueryTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withQuery
+	 * @covers \Art4\Requests\Psr\Uri::withQuery
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -71,7 +71,7 @@ final class WithQueryTest extends TestCase {
 	 *
 	 * @dataProvider dataWithQuery
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withQuery
+	 * @covers \Art4\Requests\Psr\Uri::withQuery
 	 *
 	 * @param string $input
 	 * @param string $expected

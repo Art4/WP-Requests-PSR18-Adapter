@@ -1,18 +1,18 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class FromIriTest extends TestCase {
 
 	/**
 	 * Tests receiving an Uri instance when using fromIri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::fromIri
+	 * @covers \Art4\Requests\Psr\Uri::fromIri
 	 *
 	 * @return void
 	 */
@@ -26,7 +26,7 @@ final class FromIriTest extends TestCase {
 	/**
 	 * Tests Iri instance is immutable when using fromIri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withScheme
+	 * @covers \Art4\Requests\Psr\Uri::withScheme
 	 *
 	 * @return void
 	 */

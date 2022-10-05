@@ -1,20 +1,20 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use InvalidArgumentException;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithPortTest extends TestCase {
 
 	/**
 	 * Tests changing the port when using withPort().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withPort
+	 * @covers \Art4\Requests\Psr\Uri::withPort
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ final class WithPortTest extends TestCase {
 	/**
 	 * Tests changing the port when using withPort().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withPort
+	 * @covers \Art4\Requests\Psr\Uri::withPort
 	 *
 	 * @return void
 	 */
@@ -42,7 +42,7 @@ final class WithPortTest extends TestCase {
 	/**
 	 * Tests changing the port when using withPort().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withPort
+	 * @covers \Art4\Requests\Psr\Uri::withPort
 	 *
 	 * @return void
 	 */
@@ -57,7 +57,7 @@ final class WithPortTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotIntOrNull
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withPort
+	 * @covers \Art4\Requests\Psr\Uri::withPort
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -84,7 +84,7 @@ final class WithPortTest extends TestCase {
 	/**
 	 * Tests changing the port when using withPort().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withPort
+	 * @covers \Art4\Requests\Psr\Uri::withPort
 	 *
 	 * @return void
 	 */
@@ -102,7 +102,7 @@ final class WithPortTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidPorts
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::withPort
+	 * @covers \Art4\Requests\Psr\Uri::withPort
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *

@@ -1,20 +1,20 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithHeaderTest extends TestCase {
 
 	/**
 	 * Tests changing the header when using withHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withHeader
+	 * @covers \Art4\Requests\Psr\Request::withHeader
 	 *
 	 * @return void
 	 */
@@ -27,7 +27,7 @@ final class WithHeaderTest extends TestCase {
 	/**
 	 * Tests changing the header when using withHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withHeader
+	 * @covers \Art4\Requests\Psr\Request::withHeader
 	 *
 	 * @return void
 	 */
@@ -42,7 +42,7 @@ final class WithHeaderTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withHeader
+	 * @covers \Art4\Requests\Psr\Request::withHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -71,7 +71,7 @@ final class WithHeaderTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotStringOrArray
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withHeader
+	 * @covers \Art4\Requests\Psr\Request::withHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -100,7 +100,7 @@ final class WithHeaderTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withHeader
+	 * @covers \Art4\Requests\Psr\Request::withHeader
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
@@ -118,7 +118,7 @@ final class WithHeaderTest extends TestCase {
 	/**
 	 * Tests changing the header when using withHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withHeader
+	 * @covers \Art4\Requests\Psr\Request::withHeader
 	 *
 	 * @return void
 	 */
@@ -135,7 +135,7 @@ final class WithHeaderTest extends TestCase {
 	/**
 	 * Tests changing the header when using withHeader().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::withHeader
+	 * @covers \Art4\Requests\Psr\Request::withHeader
 	 *
 	 * @return void
 	 */

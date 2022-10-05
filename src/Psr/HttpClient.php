@@ -5,7 +5,7 @@
  * @package Requests\Psr
  */
 
-namespace WpOrg\Requests\Psr;
+namespace Art4\Requests\Psr;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -13,8 +13,8 @@ use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Exception;
 use WpOrg\Requests\Exception\InvalidArgument;
-use WpOrg\Requests\Exception\Psr\NetworkException;
-use WpOrg\Requests\Exception\Psr\RequestException;
+use Art4\Requests\Exception\Psr\NetworkException;
+use Art4\Requests\Exception\Psr\RequestException;
 use WpOrg\Requests\Exception\Transport;
 use WpOrg\Requests\Iri;
 use WpOrg\Requests\Requests;
@@ -36,7 +36,7 @@ final class HttpClient/* implements \Psr\Http\Message\RequestFactoryInterface, \
 	 *
 	 * @param array $options
 	 */
-	public function __construct($options) {
+	public function __construct(array $options = []) {
 		$this->options = $options;
 	}
 

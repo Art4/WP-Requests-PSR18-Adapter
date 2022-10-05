@@ -1,17 +1,17 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetHeadersTest extends TestCase {
 
 	/**
 	 * Tests receiving the headers when using getHeaders().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getHeaders
+	 * @covers \Art4\Requests\Psr\Request::getHeaders
 	 *
 	 * @return void
 	 */
@@ -26,7 +26,7 @@ final class GetHeadersTest extends TestCase {
 	/**
 	 * Tests receiving the headers when using getHeaders().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getHeaders
+	 * @covers \Art4\Requests\Psr\Request::getHeaders
 	 *
 	 * @return void
 	 */

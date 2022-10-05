@@ -1,17 +1,17 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class ToStringTest extends TestCase {
 
 	/**
 	 * Tests if a scheme is present, it MUST be suffixed by ":" when using __toString().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::__toString
+	 * @covers \Art4\Requests\Psr\Uri::__toString
 	 *
 	 * @return void
 	 */
@@ -25,7 +25,7 @@ final class ToStringTest extends TestCase {
 	/**
 	 * Tests if an authority is present, it MUST be prefixed by "//" when using __toString().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::__toString
+	 * @covers \Art4\Requests\Psr\Uri::__toString
 	 *
 	 * @return void
 	 */
@@ -39,7 +39,7 @@ final class ToStringTest extends TestCase {
 	/**
 	 * Tests the path can be concatenated without delimiters when using __toString().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::__toString
+	 * @covers \Art4\Requests\Psr\Uri::__toString
 	 *
 	 * @return void
 	 */
@@ -53,7 +53,7 @@ final class ToStringTest extends TestCase {
 	/**
 	 * Tests if the path is rootless and an authority is present when using __toString().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::__toString
+	 * @covers \Art4\Requests\Psr\Uri::__toString
 	 *
 	 * @return void
 	 */
@@ -68,7 +68,7 @@ final class ToStringTest extends TestCase {
 	/**
 	 * Tests if the path is starting with more than one "/" and no authority is present when using __toString().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::__toString
+	 * @covers \Art4\Requests\Psr\Uri::__toString
 	 *
 	 * @return void
 	 */
@@ -82,7 +82,7 @@ final class ToStringTest extends TestCase {
 	/**
 	 * Tests if a query is present, it MUST be prefixed by "?" when using __toString().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::__toString
+	 * @covers \Art4\Requests\Psr\Uri::__toString
 	 *
 	 * @return void
 	 */
@@ -96,7 +96,7 @@ final class ToStringTest extends TestCase {
 	/**
 	 * Tests if a fragment is present, it MUST be prefixed by "#" when using __toString().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::__toString
+	 * @covers \Art4\Requests\Psr\Uri::__toString
 	 *
 	 * @return void
 	 */
@@ -112,7 +112,7 @@ final class ToStringTest extends TestCase {
 	 *
 	 * @dataProvider dataToString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::__toString
+	 * @covers \Art4\Requests\Psr\Uri::__toString
 	 *
 	 * @param string $input
 	 * @param string $expected

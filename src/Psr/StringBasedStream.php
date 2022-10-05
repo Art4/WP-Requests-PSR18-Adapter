@@ -5,7 +5,7 @@
  * @package Requests\Psr
  */
 
-namespace WpOrg\Requests\Psr;
+namespace Art4\Requests\Psr;
 
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;

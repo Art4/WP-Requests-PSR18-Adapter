@@ -1,25 +1,25 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithStatusTest extends TestCase {
 
 	/**
 	 * Tests changing the status code when using withStatus().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withStatus
+	 * @covers \Art4\Requests\Psr\Response::withStatus
 	 *
 	 * @return void
 	 */
 	public function testWithStatusReturnsResponseInstance() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->assertInstanceOf(ResponseInterface::class, $response->withStatus(200));
 	}
@@ -27,12 +27,12 @@ final class WithStatusTest extends TestCase {
 	/**
 	 * Tests changing the status code when using withStatus().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withStatus
+	 * @covers \Art4\Requests\Psr\Response::withStatus
 	 *
 	 * @return void
 	 */
 	public function testWithStatusReturnsNewInstance() {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->assertNotSame($response, $response->withStatus(200));
 	}
@@ -42,14 +42,14 @@ final class WithStatusTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotInteger
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withStatus
+	 * @covers \Art4\Requests\Psr\Response::withStatus
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
 	 * @return void
 	 */
 	public function testWithStatusWithoutIntInCodeThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->expectException(InvalidArgumentException::class);
 		$this->expectExceptionMessage(sprintf('%s::withStatus(): Argument #1 ($code) must be of type int, ', Response::class));
@@ -71,14 +71,14 @@ final class WithStatusTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withStatus
+	 * @covers \Art4\Requests\Psr\Response::withStatus
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *
 	 * @return void
 	 */
 	public function testWithStatusWithoutStringInReasonPhraseThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$this->expectException(InvalidArgumentException::class);
 		$this->expectExceptionMessage(sprintf('%s::withStatus(): Argument #2 ($reasonPhrase) must be of type string, ', Response::class));
@@ -100,7 +100,7 @@ final class WithStatusTest extends TestCase {
 	 *
 	 * @dataProvider dataWithStatus
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withStatus
+	 * @covers \Art4\Requests\Psr\Response::withStatus
 	 *
 	 * @param int $code
 	 * @param string $phrase
@@ -109,7 +109,7 @@ final class WithStatusTest extends TestCase {
 	 * @return void
 	 */
 	public function testWithStatusChangesStatusCode($code, $phrase, $expected) {
-		$response = Response::fromResponse($this->createMock(RequestsResponse::class));
+		$response = Response::fromResponse(new RequestsResponse());
 
 		$response = $response->withStatus($code, $phrase);
 

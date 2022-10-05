@@ -1,10 +1,10 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetPathTest extends TestCase {
 
@@ -13,7 +13,7 @@ final class GetPathTest extends TestCase {
 	 *
 	 * @dataProvider dataGetPath
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::getPath
+	 * @covers \Art4\Requests\Psr\Uri::getPath
 	 *
 	 * @return void
 	 */

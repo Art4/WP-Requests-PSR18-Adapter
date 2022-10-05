@@ -1,19 +1,19 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Response;
+namespace Art4\Requests\Tests\Psr\Response;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use WpOrg\Requests\Psr\Response;
+use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
-use WpOrg\Requests\Tests\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class WithBodyTest extends TestCase {
 
 	/**
 	 * Tests changing the body when using withBody().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withBody
+	 * @covers \Art4\Requests\Psr\Response::withBody
 	 *
 	 * @return void
 	 */
@@ -30,7 +30,7 @@ final class WithBodyTest extends TestCase {
 	/**
 	 * Tests changing the protocol version when using withBody().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Response::withBody
+	 * @covers \Art4\Requests\Psr\Response::withBody
 	 *
 	 * @return void
 	 */

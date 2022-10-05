@@ -1,10 +1,10 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Uri;
+namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
-use WpOrg\Requests\Psr\Uri;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Uri;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetFragmentTest extends TestCase {
 
@@ -13,7 +13,7 @@ final class GetFragmentTest extends TestCase {
 	 *
 	 * @dataProvider dataGetFragment
 	 *
-	 * @covers \WpOrg\Requests\Psr\Uri::getFragment
+	 * @covers \Art4\Requests\Psr\Uri::getFragment
 	 *
 	 * @return void
 	 */

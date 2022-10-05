@@ -1,19 +1,19 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use InvalidArgumentException;
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
-use WpOrg\Requests\Tests\TypeProviderHelper;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Art4\Requests\Tests\TypeProviderHelper;
 
 final class GetHeaderLineTest extends TestCase {
 
 	/**
 	 * Tests receiving the header when using getHeaderLine().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getHeaderLine
+	 * @covers \Art4\Requests\Psr\Request::getHeaderLine
 	 *
 	 * @return void
 	 */
@@ -26,7 +26,7 @@ final class GetHeaderLineTest extends TestCase {
 	/**
 	 * Tests receiving the header when using getHeaderLine().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getHeaderLine
+	 * @covers \Art4\Requests\Psr\Request::getHeaderLine
 	 *
 	 * @return void
 	 */
@@ -40,7 +40,7 @@ final class GetHeaderLineTest extends TestCase {
 	/**
 	 * Tests receiving the header when using getHeaderLine().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getHeaderLine
+	 * @covers \Art4\Requests\Psr\Request::getHeaderLine
 	 *
 	 * @return void
 	 */
@@ -56,7 +56,7 @@ final class GetHeaderLineTest extends TestCase {
 	 *
 	 * @dataProvider dataInvalidTypeNotString
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getHeaderLine
+	 * @covers \Art4\Requests\Psr\Request::getHeaderLine
 	 *
 	 * @param mixed $input Invalid parameter input.
 	 *

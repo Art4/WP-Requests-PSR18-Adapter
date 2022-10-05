@@ -5,7 +5,7 @@
  * @package Requests\Psr
  */
 
-namespace WpOrg\Requests\Psr;
+namespace Art4\Requests\Psr;
 
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Exception as RequestsException;

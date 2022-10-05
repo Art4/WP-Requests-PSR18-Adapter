@@ -1,17 +1,17 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\Request;
+namespace Art4\Requests\Tests\Psr\Request;
 
 use Psr\Http\Message\UriInterface;
-use WpOrg\Requests\Psr\Request;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\Request;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetUriTest extends TestCase {
 
 	/**
 	 * Tests receiving the uri when using getUri().
 	 *
-	 * @covers \WpOrg\Requests\Psr\Request::getUri
+	 * @covers \Art4\Requests\Psr\Request::getUri
 	 *
 	 * @return void
 	 */

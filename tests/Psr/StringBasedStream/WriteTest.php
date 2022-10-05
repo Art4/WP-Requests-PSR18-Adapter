@@ -1,17 +1,17 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\StringBasedStream;
+namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
 use RuntimeException;
-use WpOrg\Requests\Psr\StringBasedStream;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\StringBasedStream;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class WriteTest extends TestCase {
 
 	/**
 	 * Tests receiving an exception when using write() method.
 	 *
-	 * @covers \WpOrg\Requests\Psr\StringBasedStream::write
+	 * @covers \Art4\Requests\Psr\StringBasedStream::write
 	 *
 	 * @return void
 	 */

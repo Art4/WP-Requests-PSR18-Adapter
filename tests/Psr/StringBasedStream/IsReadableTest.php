@@ -1,16 +1,16 @@
 <?php
 
-namespace WpOrg\Requests\Tests\Psr\StringBasedStream;
+namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
-use WpOrg\Requests\Psr\StringBasedStream;
-use WpOrg\Requests\Tests\TestCase;
+use Art4\Requests\Psr\StringBasedStream;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class IsReadableTest extends TestCase {
 
 	/**
 	 * Tests receiving false when using isReadable() method.
 	 *
-	 * @covers \WpOrg\Requests\Psr\StringBasedStream::isReadable
+	 * @covers \Art4\Requests\Psr\StringBasedStream::isReadable
 	 *
 	 * @return void
 	 */
