@@ -7,7 +7,9 @@
 
 namespace Art4\Requests\Exception\Psr;
 
+use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Message\RequestInterface;
+use WpOrg\Requests\Exception;
 use WpOrg\Requests\Exception\Transport;
 
 /**
@@ -21,7 +23,7 @@ use WpOrg\Requests\Exception\Transport;
  *
  * Example: the target host name can not be resolved or the connection failed.
  */
-class NetworkException extends ClientException/* implements \Psr\Http\Client\NetworkExceptionInterface */ {
+class NetworkException extends Exception implements NetworkExceptionInterface {
 
     /**
 	 * @var RequestInterface
@@ -49,10 +51,8 @@ class NetworkException extends ClientException/* implements \Psr\Http\Client\Net
 	 * Returns the request.
 	 *
 	 * The request object MAY be a different object from the one passed to ClientInterface::sendRequest()
-	 *
-	 * @return RequestInterface
 	 */
-	public function getRequest() {
+	public function getRequest(): RequestInterface {
 		return $this->request;
 	}
 }

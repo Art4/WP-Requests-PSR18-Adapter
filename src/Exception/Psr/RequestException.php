@@ -7,6 +7,7 @@
 
 namespace Art4\Requests\Exception\Psr;
 
+use Psr\Http\Client\RequestExceptionInterface;
 use Psr\Http\Message\RequestInterface;
 use WpOrg\Requests\Exception;
 
@@ -19,7 +20,7 @@ use WpOrg\Requests\Exception;
  *      - Request is invalid (e.g. method is missing)
  *      - Runtime request errors (e.g. the body stream is not seekable)
  */
-class RequestException extends ClientException/* implements \Psr\Http\Client\RequestExceptionInterface */ {
+class RequestException extends Exception implements RequestExceptionInterface {
 
 	/**
 	 * @var RequestInterface
@@ -47,10 +48,8 @@ class RequestException extends ClientException/* implements \Psr\Http\Client\Req
 	 * Returns the request.
 	 *
 	 * The request object MAY be a different object from the one passed to ClientInterface::sendRequest()
-	 *
-	 * @return RequestInterface
 	 */
-	public function getRequest() {
+	public function getRequest(): RequestInterface {
 		return $this->request;
 	}
 }
