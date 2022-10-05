@@ -1,0 +1,25 @@
+{
+    "name": "art4/requests-psr18-adapter",
+    "description": "Use WordPress/Requests as a PSR-18 HTTP client",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "homepage": "https://github.com/Art4/wp-requests-psr18-adapter",
+    "keywords": ["wordpress", "requests", "request", "response", "psr", "psr-18", "psr-7", "http", "http-client", "http-message"],
+    "authors": [
+        {
+            "name": "Art4",
+            "email": "art4@wlabs.de",
+            "homepage": "https://wlabs.de"
+        }
+    ],
+    "require": {
+        "psr/http-client": "^1.0",
+        "rmccue/requests": "^2.0"
+    },
+    "require-dev": {
+        "yoast/phpunit-polyfills": "^1.0"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
