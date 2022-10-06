@@ -8,6 +8,10 @@ use stdClass;
 
 /**
  * Helper class to provide an exhaustive list of types to test type safety.
+ *
+ * Based on \WpOrg\Requests\Tests\TypeProviderHelper by WordPress/Requests
+ *
+ * @link https://github.com/WordPress/Requests/commit/1f94fb8aed52ecb7365a732dd587ad33b9c56b13
  */
 final class TypeProviderHelper {
 
