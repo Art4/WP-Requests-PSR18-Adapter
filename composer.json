@@ -31,6 +31,9 @@
             "Art4\\Requests\\Tests\\": "tests"
         }
     },
+    "provide": {
+        "psr/http-client": "^1.0"
+    },
     "config": {
         "sort-packages": true
     }
