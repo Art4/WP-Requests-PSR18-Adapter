@@ -3,8 +3,6 @@
 declare(strict_types=1);
 /**
  * PSR-7 StreamInterface implementation
- *
- * @package Requests\Psr
  */
 
 namespace Art4\Requests\Psr;
@@ -15,8 +13,6 @@ use WpOrg\Requests\Exception\InvalidArgument;
 
 /**
  * PSR-7 StreamInterface implementation
- *
- * @package Requests\Psr
  *
  * Describes a data stream.
  *

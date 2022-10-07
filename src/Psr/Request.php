@@ -3,8 +3,6 @@
 declare(strict_types=1);
 /**
  * PSR-7 RequestInterface implementation
- *
- * @package Requests\Psr
  */
 
 namespace Art4\Requests\Psr;
@@ -16,8 +14,6 @@ use WpOrg\Requests\Exception\InvalidArgument;
 
 /**
  * PSR-7 RequestInterface implementation
- *
- * @package Requests\Psr
  *
  * Representation of an outgoing, client-side request.
  *

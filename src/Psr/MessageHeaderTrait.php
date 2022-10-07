@@ -3,8 +3,6 @@
 declare(strict_types=1);
 /**
  * PSR-7 Message Header implementation
- *
- * @package Requests\Psr
  */
 
 namespace Art4\Requests\Psr;
@@ -14,8 +12,6 @@ use WpOrg\Requests\Exception\InvalidArgument;
 
 /**
  * PPSR-7 Message Header implementation
- *
- * @package Requests\Psr
  */
 trait MessageHeaderTrait
 {

@@ -3,8 +3,6 @@
 declare(strict_types=1);
 /**
  * Value object representing a URI.
- *
- * @package Requests\Psr
  */
 
 namespace Art4\Requests\Psr;
@@ -34,8 +32,6 @@ use WpOrg\Requests\Port;
  * server parameters.
  *
  * @link http://tools.ietf.org/html/rfc3986 (the URI specification)
- *
- * @package Requests\Psr
  */
 final class Uri implements UriInterface
 {

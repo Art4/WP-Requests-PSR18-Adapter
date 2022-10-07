@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 /**
- * HTTP client implementation for PSR-17
- *
- * @package Requests\Psr
+ * Implementation for PSR-18 HTTP client and some PSR-17 factories
  */
 
 namespace Art4\Requests\Psr;
@@ -27,8 +25,6 @@ use WpOrg\Requests\Requests;
 
 /**
  * HTTP implementation for PSR-17 and PSR-18
- *
- * @package Requests\Psr
  */
 final class HttpClient implements RequestFactoryInterface, StreamFactoryInterface, ClientInterface
 {
