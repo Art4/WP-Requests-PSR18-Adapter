@@ -120,7 +120,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      */
     public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface
     {
-        throw new GlobalException(__METHOD__ . ' is not yet implemented.');
+        throw new GlobalException(__METHOD__ . '() is not yet implemented.');
     }
 
     /**
@@ -134,6 +134,6 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      */
     public function createStreamFromResource($resource): StreamInterface
     {
-        throw new GlobalException(__METHOD__ . ' is not yet implemented.');
+        throw new GlobalException(__METHOD__ . '() is not yet implemented.');
     }
 }
