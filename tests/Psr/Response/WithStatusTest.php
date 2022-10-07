@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Art4\Requests\Tests\Psr\Response;
 
 use InvalidArgumentException;
@@ -9,123 +11,131 @@ use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
 
-final class WithStatusTest extends TestCase {
+final class WithStatusTest extends TestCase
+{
+    /**
+     * Tests changing the status code when using withStatus().
+     *
+     * @covers \Art4\Requests\Psr\Response::withStatus
+     *
+     * @return void
+     */
+    public function testWithStatusReturnsResponseInstance()
+    {
+        $response = Response::fromResponse(new RequestsResponse());
 
-	/**
-	 * Tests changing the status code when using withStatus().
-	 *
-	 * @covers \Art4\Requests\Psr\Response::withStatus
-	 *
-	 * @return void
-	 */
-	public function testWithStatusReturnsResponseInstance() {
-		$response = Response::fromResponse(new RequestsResponse());
+        $this->assertInstanceOf(ResponseInterface::class, $response->withStatus(200));
+    }
 
-		$this->assertInstanceOf(ResponseInterface::class, $response->withStatus(200));
-	}
+    /**
+     * Tests changing the status code when using withStatus().
+     *
+     * @covers \Art4\Requests\Psr\Response::withStatus
+     *
+     * @return void
+     */
+    public function testWithStatusReturnsNewInstance()
+    {
+        $response = Response::fromResponse(new RequestsResponse());
 
-	/**
-	 * Tests changing the status code when using withStatus().
-	 *
-	 * @covers \Art4\Requests\Psr\Response::withStatus
-	 *
-	 * @return void
-	 */
-	public function testWithStatusReturnsNewInstance() {
-		$response = Response::fromResponse(new RequestsResponse());
+        $this->assertNotSame($response, $response->withStatus(200));
+    }
 
-		$this->assertNotSame($response, $response->withStatus(200));
-	}
+    /**
+     * Tests receiving an exception when the withStatus() method received an invalid input type as `$code`.
+     *
+     * @dataProvider dataInvalidTypeNotInteger
+     *
+     * @covers \Art4\Requests\Psr\Response::withStatus
+     *
+     * @param mixed $input Invalid parameter input.
+     *
+     * @return void
+     */
+    public function testWithStatusWithoutIntInCodeThrowsInvalidArgumentException($input)
+    {
+        $response = Response::fromResponse(new RequestsResponse());
 
-	/**
-	 * Tests receiving an exception when the withStatus() method received an invalid input type as `$code`.
-	 *
-	 * @dataProvider dataInvalidTypeNotInteger
-	 *
-	 * @covers \Art4\Requests\Psr\Response::withStatus
-	 *
-	 * @param mixed $input Invalid parameter input.
-	 *
-	 * @return void
-	 */
-	public function testWithStatusWithoutIntInCodeThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse(new RequestsResponse());
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(sprintf('%s::withStatus(): Argument #1 ($code) must be of type int, ', Response::class));
 
-		$this->expectException(InvalidArgumentException::class);
-		$this->expectExceptionMessage(sprintf('%s::withStatus(): Argument #1 ($code) must be of type int, ', Response::class));
+        $response = $response->withStatus($input);
+    }
 
-		$response = $response->withStatus($input);
-	}
+    /**
+     * Data Provider.
+     *
+     * @return array
+     */
+    public function dataInvalidTypeNotInteger()
+    {
+        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_INT);
+    }
 
-	/**
-	 * Data Provider.
-	 *
-	 * @return array
-	 */
-	public function dataInvalidTypeNotInteger() {
-		return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_INT);
-	}
+    /**
+     * Tests receiving an exception when the withStatus() method received an invalid input type as `$reasonPhrase`.
+     *
+     * @dataProvider dataInvalidTypeNotString
+     *
+     * @covers \Art4\Requests\Psr\Response::withStatus
+     *
+     * @param mixed $input Invalid parameter input.
+     *
+     * @return void
+     */
+    public function testWithStatusWithoutStringInReasonPhraseThrowsInvalidArgumentException($input)
+    {
+        $response = Response::fromResponse(new RequestsResponse());
 
-	/**
-	 * Tests receiving an exception when the withStatus() method received an invalid input type as `$reasonPhrase`.
-	 *
-	 * @dataProvider dataInvalidTypeNotString
-	 *
-	 * @covers \Art4\Requests\Psr\Response::withStatus
-	 *
-	 * @param mixed $input Invalid parameter input.
-	 *
-	 * @return void
-	 */
-	public function testWithStatusWithoutStringInReasonPhraseThrowsInvalidArgumentException($input) {
-		$response = Response::fromResponse(new RequestsResponse());
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(sprintf('%s::withStatus(): Argument #2 ($reasonPhrase) must be of type string, ', Response::class));
 
-		$this->expectException(InvalidArgumentException::class);
-		$this->expectExceptionMessage(sprintf('%s::withStatus(): Argument #2 ($reasonPhrase) must be of type string, ', Response::class));
+        $response = $response->withStatus(200, $input);
+    }
 
-		$response = $response->withStatus(200, $input);
-	}
+    /**
+     * Data Provider.
+     *
+     * @return array
+     */
+    public function dataInvalidTypeNotString()
+    {
+        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
+    }
 
-	/**
-	 * Data Provider.
-	 *
-	 * @return array
-	 */
-	public function dataInvalidTypeNotString() {
-		return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
-	}
+    /**
+     * Tests receiving an exception when the withStatus() method received an invalid input type as `$reasonPhrase`.
+     *
+     * @dataProvider dataWithStatus
+     *
+     * @covers \Art4\Requests\Psr\Response::withStatus
+     *
+     * @param int $code
+     * @param string $phrase
+     * @param string $expected
+     *
+     * @return void
+     */
+    public function testWithStatusChangesStatusCode($code, $phrase, $expected)
+    {
+        $response = Response::fromResponse(new RequestsResponse());
 
-	/**
-	 * Tests receiving an exception when the withStatus() method received an invalid input type as `$reasonPhrase`.
-	 *
-	 * @dataProvider dataWithStatus
-	 *
-	 * @covers \Art4\Requests\Psr\Response::withStatus
-	 *
-	 * @param int $code
-	 * @param string $phrase
-	 * @param string $expected
-	 *
-	 * @return void
-	 */
-	public function testWithStatusChangesStatusCode($code, $phrase, $expected) {
-		$response = Response::fromResponse(new RequestsResponse());
+        $response = $response->withStatus($code, $phrase);
 
-		$response = $response->withStatus($code, $phrase);
+        $this->assertSame($code, $response->getStatusCode());
+        $this->assertSame($expected, $response->getReasonPhrase());
+    }
 
-		$this->assertSame($code, $response->getStatusCode());
-		$this->assertSame($expected, $response->getReasonPhrase());
-	}
-
-	/**
-	 * Data Provider.
-	 *
-	 * @return array
-	 */
-	public function dataWithStatus() {
-		return [
-			'Return an instance with the specified status code and, optionally, reason phrase.' => [200, 'foobar', 'foobar'],
-			'If no reason phrase is specified, implementations MAY choose to default to the RFC 7231 or IANA recommended reason phrase' => [200, '', 'OK'],
-		];
-	}
+    /**
+     * Data Provider.
+     *
+     * @return array
+     */
+    public function dataWithStatus()
+    {
+        return [
+            'Return an instance with the specified status code and, optionally, reason phrase.' => [200, 'foobar', 'foobar'],
+            'If no reason phrase is specified, implementations MAY choose to default to the RFC 7231 or IANA recommended reason phrase' => [200, '', 'OK'],
+        ];
+    }
 }

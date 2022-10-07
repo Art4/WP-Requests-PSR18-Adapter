@@ -2,7 +2,7 @@
 
 Use [WordPress/Requests](https://github.com/WordPress/Requests) as a [PSR-18](https://www.php-fig.org/psr/psr-18/) HTTP client adapter.
 
-Requires PHP 7.0+
+Requires PHP 7.1+
 
 ## Why?
 
@@ -30,7 +30,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 // Define Requests options
 $options = [
-	'proxy' => '127.0.0.1:8080',
+    'proxy' => '127.0.0.1:8080',
     'transport' => $customTransport,
     // other Requests options
 ];
@@ -50,6 +50,6 @@ try {
     throw $th;
 }
 
-// See the result
+// Use the PSR-7 Response
 var_dump($response);
 ```

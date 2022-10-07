@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types=1);
 /**
- * HTTP client implementation for PSR-17
- *
- * @package Requests\Psr
+ * Implementation for PSR-18 HTTP client and some PSR-17 factories
  */
 
 namespace Art4\Requests\Psr;
@@ -25,83 +25,85 @@ use WpOrg\Requests\Requests;
 
 /**
  * HTTP implementation for PSR-17 and PSR-18
- *
- * @package Requests\Psr
  */
-final class HttpClient implements RequestFactoryInterface, StreamFactoryInterface, ClientInterface {
+final class HttpClient implements RequestFactoryInterface, StreamFactoryInterface, ClientInterface
+{
+    /**
+     * @var array
+     */
+    private $options = [];
 
-	/**
-	 * @var array
-	 */
-	private $options = [];
+    /**
+     * Constructor
+     *
+     * @param array $options
+     */
+    public function __construct(array $options = [])
+    {
+        $this->options = $options;
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param array $options
-	 */
-	public function __construct(array $options = []) {
-		$this->options = $options;
-	}
+    /**
+     * Create a new request.
+     *
+     * @param string $method The HTTP method associated with the request.
+     * @param UriInterface|string $uri The URI associated with the request.
+     */
+    public function createRequest(string $method, $uri): RequestInterface
+    {
+        if (! $uri instanceof UriInterface) {
+            if (!is_string($uri)) {
+                throw InvalidArgument::create(2, '$uri', UriInterface::class.'|string', gettype($uri));
+            }
 
-	/**
-	 * Create a new request.
-	 *
-	 * @param string $method The HTTP method associated with the request.
-	 * @param UriInterface|string $uri The URI associated with the request.
-	 */
-	public function createRequest(string $method, $uri): RequestInterface {
-		if (! $uri instanceof UriInterface) {
-			if (!is_string($uri)) {
-				throw InvalidArgument::create(2, '$uri', UriInterface::class.'|string', gettype($uri));
-			}
+            $uri = Uri::fromIri(new Iri($uri));
+        }
 
-			$uri = Uri::fromIri(new Iri($uri));
-		}
+        return Request::withMethodAndUri($method, $uri);
+    }
 
-		return Request::withMethodAndUri($method, $uri);
-	}
+    /**
+     * Create a new stream from a string.
+     *
+     * The stream SHOULD be created with a temporary resource.
+     *
+     * @param string $content String content with which to populate the stream.
+     * @return StreamInterface
+     */
+    public function createStream(string $content = ''): StreamInterface
+    {
+        if (!is_string($content)) {
+            throw InvalidArgument::create(1, '$content', 'string', gettype($content));
+        }
 
-	/**
-	 * Create a new stream from a string.
-	 *
-	 * The stream SHOULD be created with a temporary resource.
-	 *
-	 * @param string $content String content with which to populate the stream.
-	 * @return StreamInterface
-	 */
-	public function createStream(string $content = ''): StreamInterface {
-		if (!is_string($content)) {
-			throw InvalidArgument::create(1, '$content', 'string', gettype($content));
-		}
+        return StringBasedStream::createFromString($content);
+    }
 
-		return StringBasedStream::createFromString($content);
-	}
+    /**
+     * Sends a PSR-7 request and returns a PSR-7 response.
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface If an error happens while processing the request.
+     */
+    public function sendRequest(RequestInterface $request): ResponseInterface
+    {
+        try {
+            $response = Requests::request(
+                $request->getUri()->__toString(),
+                $request->getHeaders(),
+                $request->getBody()->__toString(),
+                $request->getMethod(),
+                $this->options
+            );
+        } catch (Transport $th) {
+            throw new NetworkException($request, $th);
+        } catch (Exception $th) {
+            throw new RequestException($request, $th);
+        }
 
-	/**
-	 * Sends a PSR-7 request and returns a PSR-7 response.
-	 *
-	 * @throws \Psr\Http\Client\ClientExceptionInterface If an error happens while processing the request.
-	 */
-	public function sendRequest(RequestInterface $request): ResponseInterface {
-		try {
-			$response = Requests::request(
-				$request->getUri()->__toString(),
-				$request->getHeaders(),
-				$request->getBody()->__toString(),
-				$request->getMethod(),
-				$this->options
-			);
-		} catch (Transport $th) {
-			throw new NetworkException($request, $th);
-		} catch (Exception $th) {
-			throw new RequestException($request, $th);
-		}
+        return Response::fromResponse($response);
+    }
 
-		return Response::fromResponse($response);
-	}
-
-	/**
+    /**
      * Create a stream from an existing file.
      *
      * The file MUST be opened using the given mode, which may be any mode
@@ -116,9 +118,10 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      * @throws \RuntimeException If the file cannot be opened.
      * @throws \InvalidArgumentException If the mode is invalid.
      */
-    public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface {
-		throw new GlobalException(__METHOD__ . ' is not yet implemented.');
-	}
+    public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface
+    {
+        throw new GlobalException(__METHOD__ . ' is not yet implemented.');
+    }
 
     /**
      * Create a new stream from an existing resource.
@@ -129,7 +132,8 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      *
      * @return StreamInterface
      */
-    public function createStreamFromResource($resource): StreamInterface {
-		throw new GlobalException(__METHOD__ . ' is not yet implemented.');
-	}
+    public function createStreamFromResource($resource): StreamInterface
+    {
+        throw new GlobalException(__METHOD__ . ' is not yet implemented.');
+    }
 }
