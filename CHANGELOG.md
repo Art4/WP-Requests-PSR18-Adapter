@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add required PHP version in `composer.json`
 
+### Changed
+
+- Change Code Style to PSR-12
+- Drop support for PHP 7.0
+
 ## [1.0.0-beta](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/09aae5d7deac8058c5a25c1d951cd350d066ad6e...1.0.0-beta)
 
 ### Added
