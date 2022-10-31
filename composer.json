@@ -16,13 +16,14 @@
         "php": "^7.1 || ^8.0",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0",
-        "rmccue/requests": "^2.0"
+        "rmccue/requests": "^1.8 || ^2.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
         "yoast/phpunit-polyfills": "^1.0"
     },
     "autoload": {
+        "files": ["v1-compat/autoload.php"],
         "psr-4": {
             "Art4\\Requests\\": "src"
         }
