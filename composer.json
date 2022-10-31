@@ -20,7 +20,8 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
-        "yoast/phpunit-polyfills": "^1.0"
+        "phpunit/phpunit": "^6 || ^7 || ^8 || ^9",
+        "yoast/phpunit-polyfills": "^1.0.3"
     },
     "autoload": {
         "files": ["v1-compat/autoload.php"],
