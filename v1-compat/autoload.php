@@ -5,7 +5,6 @@ if (! class_exists('WpOrg\Requests\Requests') && class_exists('Requests')) {
     class_alias('Requests_Exception',           'WpOrg\Requests\Exception');
     class_alias('Requests_Exception_Transport', 'WpOrg\Requests\Exception\Transport');
     class_alias('Requests_IRI',                 'WpOrg\Requests\Iri');
-    class_alias('Requests_Port',                'WpOrg\Requests\Port');
     class_alias('Requests_Response',            'WpOrg\Requests\Response');
     class_alias('Requests_Transport',           'WpOrg\Requests\Transport');
 
