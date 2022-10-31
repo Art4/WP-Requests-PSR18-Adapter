@@ -20,7 +20,10 @@ WordPress/Requests PSR-18 Adapter is [available on Packagist](https://packagist.
 composer require art4/requests-psr18-adapter
 ```
 
-### Example
+### Examples
+
+Take a look at the [examples directory](examples/) for more examples.
+
 
 ```php
 <?php

@@ -86,10 +86,16 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
+        $headers = [];
+
+        foreach ($request->getHeaders() as $key => $header) {
+            $headers[$key] = $request->getHeaderLine($key);
+        }
+
         try {
             $response = Requests::request(
                 $request->getUri()->__toString(),
-                $request->getHeaders(),
+                $headers,
                 $request->getBody()->__toString(),
                 $request->getMethod(),
                 $this->options
