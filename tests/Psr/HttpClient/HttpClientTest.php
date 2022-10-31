@@ -7,11 +7,11 @@ namespace Art4\Requests\Tests\Psr\HttpClient;
 use Art4\Requests\Exception\Psr\ClientException;
 use Art4\Requests\Exception\Psr\NetworkException;
 use Art4\Requests\Exception\Psr\RequestException;
-use WpOrg\Requests\Exception\Transport as ExceptionTransport;
 use Art4\Requests\Psr\HttpClient;
 use Psr\Http\Message\ResponseInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use WpOrg\Requests\Exception\Transport as ExceptionTransport;
 use WpOrg\Requests\Transport;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class HttpClientTest extends TestCase
 {
