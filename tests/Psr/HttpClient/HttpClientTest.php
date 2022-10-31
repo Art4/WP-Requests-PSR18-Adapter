@@ -27,7 +27,7 @@ final class HttpClientTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) use ($transport) {
             $this->assertSame('https://example.org/', $url);
-            $this->assertSame(['Host' => ['example.org']], $headers);
+            $this->assertSame(['Host' => 'example.org'], $headers);
             $this->assertSame('', $data);
             $this->assertSame('GET', $options['type']);
 
@@ -65,7 +65,7 @@ final class HttpClientTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) use ($transport) {
             $this->assertSame('https://example.org/not-found', $url);
-            $this->assertSame(['Host' => ['example.org']], $headers);
+            $this->assertSame(['Host' => 'example.org'], $headers);
             $this->assertSame('', $data);
             $this->assertSame('GET', $options['type']);
 
@@ -103,7 +103,7 @@ final class HttpClientTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) use ($transport) {
             $this->assertSame('https://example.org/not-available', $url);
-            $this->assertSame(['Host' => ['example.org']], $headers);
+            $this->assertSame(['Host' => 'example.org'], $headers);
             $this->assertSame('', $data);
             $this->assertSame('GET', $options['type']);
 
