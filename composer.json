@@ -15,8 +15,8 @@
     "require": {
         "php": "^7.1 || ^8.0",
         "psr/http-client": "^1.0",
-        "psr/http-message": "^1.0",
         "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.0",
         "rmccue/requests": "^1.8 || ^2.0"
     },
     "require-dev": {
