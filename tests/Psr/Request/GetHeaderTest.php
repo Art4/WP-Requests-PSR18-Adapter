@@ -57,27 +57,6 @@ final class GetHeaderTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the getHeader() method received an invalid input type as `$name`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Request::getHeader
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testGetHeaderWithoutStringThrowsInvalidArgumentException($input)
-    {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::getHeader(): Argument #1 ($name) must be of type string,', Request::class));
-
-        $request->getHeader($input);
-    }
-
-    /**
      * Data Provider.
      *
      * @return array

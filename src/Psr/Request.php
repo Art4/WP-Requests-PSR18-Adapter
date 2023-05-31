@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Psr;
 
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
@@ -112,7 +113,7 @@ final class Request implements RequestInterface
      *
      * @return string
      */
-    public function getRequestTarget()
+    public function getRequestTarget(): string
     {
         if ($this->requestTarget !== '') {
             return $this->requestTarget;
@@ -150,14 +151,8 @@ final class Request implements RequestInterface
      * @param mixed $requestTarget
      * @return static
      */
-    public function withRequestTarget($requestTarget)
+    public function withRequestTarget(string $requestTarget): RequestInterface
     {
-        // $requestTarget accepts only string
-        // @see https://github.com/php-fig/http-message/pull/78
-        if (!is_string($requestTarget)) {
-            throw InvalidArgument::create(1, '$requestTarget', 'string', gettype($requestTarget));
-        }
-
         if ($requestTarget === '') {
             $requestTarget = '/';
         }
@@ -173,7 +168,7 @@ final class Request implements RequestInterface
      *
      * @return string Returns the request method.
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
@@ -193,12 +188,8 @@ final class Request implements RequestInterface
      * @return static
      * @throws \InvalidArgumentException for invalid HTTP methods.
      */
-    public function withMethod($method)
+    public function withMethod(string $method): RequestInterface
     {
-        if (!is_string($method)) {
-            throw InvalidArgument::create(1, '$method', 'string', gettype($method));
-        }
-
         $request = clone($this);
         $request->method = $method;
 
@@ -214,7 +205,7 @@ final class Request implements RequestInterface
      * @return UriInterface Returns a UriInterface instance
      *     representing the URI of the request.
      */
-    public function getUri()
+    public function getUri(): UriInterface
     {
         return $this->uri;
     }
@@ -249,7 +240,7 @@ final class Request implements RequestInterface
      * @param bool $preserveHost Preserve the original state of the Host header.
      * @return static
      */
-    public function withUri(UriInterface $uri, $preserveHost = false)
+    public function withUri(UriInterface $uri, bool $preserveHost = false): RequestInterface
     {
         $request = clone($this);
         $request->setUri($uri, $preserveHost);
@@ -264,7 +255,7 @@ final class Request implements RequestInterface
      *
      * @return string HTTP protocol version.
      */
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->protocolVersion;
     }
@@ -282,12 +273,8 @@ final class Request implements RequestInterface
      * @param string $version HTTP protocol version
      * @return static
      */
-    public function withProtocolVersion($version)
+    public function withProtocolVersion(string $version): MessageInterface
     {
-        if (!is_string($version)) {
-            throw InvalidArgument::create(1, '$version', 'string', gettype($version));
-        }
-
         $request = clone($this);
         $request->protocolVersion = $version;
 
@@ -299,7 +286,7 @@ final class Request implements RequestInterface
      *
      * @return StreamInterface Returns the body as a stream.
      */
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->body;
     }
@@ -317,7 +304,7 @@ final class Request implements RequestInterface
      * @return static
      * @throws \InvalidArgumentException When the body is not valid.
      */
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): MessageInterface
     {
         $request = clone($this);
         $request->body = $body;

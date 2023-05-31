@@ -42,27 +42,6 @@ final class WithAddedHeaderTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the withAddedHeader() method received an invalid input type as `$name`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Response::withAddedHeader
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testWithAddedHeaderWithoutNameAsStringThrowsInvalidArgumentException($input)
-    {
-        $response = Response::fromResponse(new RequestsResponse());
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::withAddedHeader(): Argument #1 ($name) must be of type string', Response::class));
-
-        $response->withAddedHeader($input, 'value');
-    }
-
-    /**
      * Data Provider.
      *
      * @return array

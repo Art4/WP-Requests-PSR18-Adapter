@@ -42,27 +42,6 @@ final class WithHeaderTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the withHeader() method received an invalid input type as `$name`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Request::withHeader
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testWithHeaderWithoutNameAsStringThrowsInvalidArgumentException($input)
-    {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::withHeader(): Argument #1 ($name) must be of type string', Request::class));
-
-        $request->withHeader($input, 'value');
-    }
-
-    /**
      * Data Provider.
      *
      * @return array

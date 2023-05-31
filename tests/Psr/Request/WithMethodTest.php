@@ -42,27 +42,6 @@ final class WithMethodTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the withMethod() method received an invalid input type as `$method`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Request::withMethod
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testWithMethodWithoutStringThrowsInvalidArgumentException($input)
-    {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::withMethod(): Argument #1 ($method) must be of type string', Request::class));
-
-        $request->withMethod($input);
-    }
-
-    /**
      * Data Provider.
      *
      * @return array
