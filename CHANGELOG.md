@@ -7,13 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.1...HEAD)
 
+## [1.0.1 - 2023-05-31](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.0...1.0.1)
+
 ### Fixed
 
 - Fix compatability with psr/http-client 1.0.2 and psr/http-factory 1.0.2
 
-## [1.0.0](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.0...1.0.1)
-
-## [1.0.0](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.0-beta.1...1.0.0)
+## [1.0.0 - 2022-11-01](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.0-beta.1...1.0.0)
 
 ### Added
 
@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed a bug with providing the headers from the PSR-7 request to Requests.
 
-## [1.0.0-beta.1](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.0-beta...1.0.0-beta.1)
+## [1.0.0-beta.1 - 2022-10-07](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.0-beta...1.0.0-beta.1)
 
 ### Added
 
@@ -35,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change Code Style to PSR-12
 - Drop support for PHP 7.0
 
-## [1.0.0-beta](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/09aae5d7deac8058c5a25c1d951cd350d066ad6e...1.0.0-beta)
+## [1.0.0-beta - 2022-10-06](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/09aae5d7deac8058c5a25c1d951cd350d066ad6e...1.0.0-beta)
 
 ### Added
 
