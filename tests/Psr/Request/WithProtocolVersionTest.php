@@ -42,27 +42,6 @@ final class WithProtocolVersionTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the withProtocolVersion() method received an invalid input type as `$method`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Request::withProtocolVersion
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testWithProtocolVersionWithoutStringThrowsInvalidArgumentException($input)
-    {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::withProtocolVersion(): Argument #1 ($version) must be of type string', Request::class));
-
-        $request->withProtocolVersion($input);
-    }
-
-    /**
      * Data Provider.
      *
      * @return array

@@ -72,10 +72,6 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      */
     public function createStream(string $content = ''): StreamInterface
     {
-        if (!is_string($content)) {
-            throw InvalidArgument::create(1, '$content', 'string', gettype($content));
-        }
-
         return StringBasedStream::createFromString($content);
     }
 

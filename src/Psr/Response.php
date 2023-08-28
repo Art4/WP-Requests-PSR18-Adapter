@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Psr;
 
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use WpOrg\Requests\Exception\InvalidArgument;
@@ -176,7 +177,7 @@ final class Response implements ResponseInterface
      *
      * @return int Status code.
      */
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->status_code;
     }
@@ -201,16 +202,8 @@ final class Response implements ResponseInterface
      * @return static
      * @throws \InvalidArgumentException For invalid status code arguments.
      */
-    public function withStatus($code, $reasonPhrase = '')
+	public function withStatus(int $code, string $reasonPhrase = ''): ResponseInterface
     {
-        if (!is_int($code)) {
-            throw InvalidArgument::create(1, '$code', 'int', gettype($code));
-        }
-
-        if (!is_string($reasonPhrase)) {
-            throw InvalidArgument::create(2, '$reasonPhrase', 'string', gettype($reasonPhrase));
-        }
-
         $response = clone($this);
         $response->status_code = $code;
 
@@ -236,7 +229,7 @@ final class Response implements ResponseInterface
      * @link http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
      * @return string Reason phrase; must return an empty string if none present.
      */
-    public function getReasonPhrase()
+    public function getReasonPhrase(): string
     {
         if ($this->reasonPhrase !== null) {
             return $this->reasonPhrase;
@@ -256,7 +249,7 @@ final class Response implements ResponseInterface
      *
      * @return string HTTP protocol version.
      */
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->protocol_version;
     }
@@ -274,12 +267,8 @@ final class Response implements ResponseInterface
      * @param string $version HTTP protocol version
      * @return static
      */
-    public function withProtocolVersion($version)
+    public function withProtocolVersion(string $version): MessageInterface
     {
-        if (!is_string($version)) {
-            throw InvalidArgument::create(1, '$version', 'string', gettype($version));
-        }
-
         $response = clone($this);
         $response->protocol_version = $version;
 
@@ -291,7 +280,7 @@ final class Response implements ResponseInterface
      *
      * @return StreamInterface Returns the body as a stream.
      */
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->body;
     }
@@ -309,7 +298,7 @@ final class Response implements ResponseInterface
      * @return static
      * @throws \InvalidArgumentException When the body is not valid.
      */
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): MessageInterface
     {
         $response = clone($this);
         $response->body = $body;

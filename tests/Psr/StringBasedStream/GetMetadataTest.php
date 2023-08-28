@@ -40,27 +40,6 @@ final class GetMetadataTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the withHeader() method received an invalid input type as `$value`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Request::withHeader
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testGetMetadataWithoutStringThrowsInvalidArgumentException($input)
-    {
-        $stream = StringBasedStream::createFromString('');
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::getMetadata(): Argument #1 ($key) must be of type string', StringBasedStream::class));
-
-        $stream->getMetadata($input);
-    }
-
-    /**
      * Data Provider.
      *
      * @return array

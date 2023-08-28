@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Psr;
 
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use WpOrg\Requests\Exception\InvalidArgument;
 
@@ -50,7 +51,7 @@ trait MessageHeaderTrait
      *     Each key MUST be a header name, and each value MUST be an array of
      *     strings for that header.
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }
@@ -63,12 +64,8 @@ trait MessageHeaderTrait
      *     name using a case-insensitive string comparison. Returns false if
      *     no matching header name is found in the message.
      */
-    public function hasHeader($name)
+    public function hasHeader(string $name): bool
     {
-        if (!is_string($name)) {
-            throw InvalidArgument::create(1, '$name', 'string', gettype($name));
-        }
-
         return array_key_exists(strtolower($name), $this->headerNames);
     }
 
@@ -86,12 +83,8 @@ trait MessageHeaderTrait
      *    header. If the header does not appear in the message, this method MUST
      *    return an empty array.
      */
-    public function getHeader($name)
+    public function getHeader(string $name): array
     {
-        if (!is_string($name)) {
-            throw InvalidArgument::create(1, '$name', 'string', gettype($name));
-        }
-
         if (!array_key_exists(strtolower($name), $this->headers)) {
             return [];
         }
@@ -118,12 +111,8 @@ trait MessageHeaderTrait
      *    concatenated together using a comma. If the header does not appear in
      *    the message, this method MUST return an empty string.
      */
-    public function getHeaderLine($name)
+    public function getHeaderLine(string $name): string
     {
-        if (!is_string($name)) {
-            throw InvalidArgument::create(1, '$name', 'string', gettype($name));
-        }
-
         if (!array_key_exists(strtolower($name), $this->headerNames)) {
             return '';
         }
@@ -146,12 +135,8 @@ trait MessageHeaderTrait
      * @return static
      * @throws \InvalidArgumentException for invalid header names or values.
      */
-    public function withHeader($name, $value)
+    public function withHeader(string $name, $value): MessageInterface
     {
-        if (!is_string($name)) {
-            throw InvalidArgument::create(1, '$name', 'string', gettype($name));
-        }
-
         if (!is_string($value) && !is_array($value)) {
             throw InvalidArgument::create(2, '$value', 'string|array containing strings', gettype($value));
         }
@@ -189,12 +174,8 @@ trait MessageHeaderTrait
      * @throws \InvalidArgumentException for invalid header names.
      * @throws \InvalidArgumentException for invalid header values.
      */
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader(string $name, $value): MessageInterface
     {
-        if (!is_string($name)) {
-            throw InvalidArgument::create(1, '$name', 'string', gettype($name));
-        }
-
         if (!is_string($value) && !is_array($value)) {
             throw InvalidArgument::create(2, '$value', 'string|array containing strings', gettype($value));
         }
@@ -228,12 +209,8 @@ trait MessageHeaderTrait
      * @param string $name Case-insensitive header field name to remove.
      * @return static
      */
-    public function withoutHeader($name)
+    public function withoutHeader(string $name): MessageInterface
     {
-        if (!is_string($name)) {
-            throw InvalidArgument::create(1, '$name', 'string', gettype($name));
-        }
-
         $return = clone($this);
         $return->updateHeader($name, []);
 

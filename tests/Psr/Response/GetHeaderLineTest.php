@@ -57,27 +57,6 @@ final class GetHeaderLineTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the getHeaderLine() method received an invalid input type as `$name`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Response::getHeaderLine
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testGetHeaderLineWithoutStringThrowsInvalidArgumentException($input)
-    {
-        $response = Response::fromResponse(new RequestsResponse());
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::getHeaderLine(): Argument #1 ($name) must be of type string,', Response::class));
-
-        $response->getHeaderLine($input);
-    }
-
-    /**
      * Data Provider.
      *
      * @return array

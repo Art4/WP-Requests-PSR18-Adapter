@@ -42,27 +42,6 @@ final class WithStatusTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the withStatus() method received an invalid input type as `$code`.
-     *
-     * @dataProvider dataInvalidTypeNotInteger
-     *
-     * @covers \Art4\Requests\Psr\Response::withStatus
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testWithStatusWithoutIntInCodeThrowsInvalidArgumentException($input)
-    {
-        $response = Response::fromResponse(new RequestsResponse());
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::withStatus(): Argument #1 ($code) must be of type int, ', Response::class));
-
-        $response = $response->withStatus($input);
-    }
-
-    /**
      * Data Provider.
      *
      * @return array
@@ -70,27 +49,6 @@ final class WithStatusTest extends TestCase
     public function dataInvalidTypeNotInteger()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_INT);
-    }
-
-    /**
-     * Tests receiving an exception when the withStatus() method received an invalid input type as `$reasonPhrase`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Response::withStatus
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testWithStatusWithoutStringInReasonPhraseThrowsInvalidArgumentException($input)
-    {
-        $response = Response::fromResponse(new RequestsResponse());
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(sprintf('%s::withStatus(): Argument #2 ($reasonPhrase) must be of type string, ', Response::class));
-
-        $response = $response->withStatus(200, $input);
     }
 
     /**
