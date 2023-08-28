@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.1...HEAD)
 
+### Added
+
+- Add support for PHP 8.2
+
+### Changed
+
+- Drop support for PHP 7.1
+
 ## [1.0.1 - 2023-05-31](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.0.0...1.0.1)
 
 ### Fixed
