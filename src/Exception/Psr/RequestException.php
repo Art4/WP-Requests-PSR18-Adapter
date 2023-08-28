@@ -33,7 +33,7 @@ class RequestException extends Exception implements RequestExceptionInterface
      * Create a new exception
      *
      * @param RequestInterface $request
-     * @param Transport        $previous
+     * @param Exception        $previous
      */
     public function __construct(RequestInterface $request, Exception $previous)
     {

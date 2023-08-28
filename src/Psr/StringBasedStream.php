@@ -45,7 +45,7 @@ final class StringBasedStream implements StreamInterface
     /**
      * Constructor
      *
-     * @param content $content
+     * @param string $content
      */
     private function __construct($content)
     {
