@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^6 || ^7 || ^8 || ^9",
         "yoast/phpunit-polyfills": "^1.0.3"
     },
@@ -34,6 +35,10 @@
         "psr-4": {
             "Art4\\Requests\\Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "phpstan": "phpstan analyze --memory-limit 512M --configuration .phpstan.neon",
+        "phpunit": "phpunit"
     },
     "provide": {
         "psr/http-client-implementation": "^1.0"

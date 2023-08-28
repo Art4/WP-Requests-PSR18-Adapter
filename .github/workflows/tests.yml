@@ -51,5 +51,8 @@ jobs:
         with:
           composer-options: --ignore-platform-reqs
 
-      - name: Run tests
-        run: vendor/bin/phpunit --coverage-text
+      - name: Run phpunit tests
+        run: composer run phpunit --coverage-text
+
+      - name: Run static code analysis
+        run: composer run phpstan -- --error-format=github

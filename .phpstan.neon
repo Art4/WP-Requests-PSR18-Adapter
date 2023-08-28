@@ -1,0 +1,11 @@
+parameters:
+    level: 0
+
+    paths:
+        - src/
+        - tests/
+        - v1-compat/
+
+    scanDirectories:
+        - vendor
+

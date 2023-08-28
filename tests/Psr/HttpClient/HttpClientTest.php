@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\HttpClient;
 
-use Art4\Requests\Exception\Psr\ClientException;
 use Art4\Requests\Exception\Psr\NetworkException;
 use Art4\Requests\Exception\Psr\RequestException;
 use Art4\Requests\Psr\HttpClient;
@@ -147,7 +146,6 @@ final class HttpClientTest extends TestCase
 
         $request = $httpClient->createRequest('GET', '');
 
-        $this->expectException(ClientException::class);
         $this->expectException(RequestException::class);
         $this->expectExceptionMessage('Only HTTP(S) requests are handled.');
 
@@ -174,7 +172,6 @@ final class HttpClientTest extends TestCase
 
         $request = $httpClient->createRequest('GET', 'https://example.org');
 
-        $this->expectException(ClientException::class);
         $this->expectException(NetworkException::class);
         $this->expectExceptionMessage('error message');
 

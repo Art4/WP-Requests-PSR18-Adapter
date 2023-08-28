@@ -110,8 +110,6 @@ final class WithUserInfoTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Uri::withUserInfo
      *
-     * @param mixed $input Invalid parameter input.
-     *
      * @return void
      */
     public function testWithUserInfoChangesUserInfo($user, $password, $expected)
