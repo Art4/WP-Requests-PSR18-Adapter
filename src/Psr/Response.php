@@ -68,7 +68,7 @@ final class Response implements ResponseInterface
     private $status_code;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $reasonPhrase = null;
 

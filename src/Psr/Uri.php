@@ -170,6 +170,8 @@ final class Uri implements UriInterface
             }
         }
 
+        $port = intval($port);
+
         try {
             if ($port === Port::get($scheme)) {
                 return null;
@@ -377,7 +379,7 @@ final class Uri implements UriInterface
 
         $iri = clone($this->iri);
 
-        $iri->port = $port;
+        $iri->port = ($port !== null) ? strval($port) : $port;
 
         return new self($iri);
     }
