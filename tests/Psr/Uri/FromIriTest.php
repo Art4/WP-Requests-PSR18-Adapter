@@ -15,6 +15,7 @@ final class FromIriTest extends TestCase
      * Tests receiving an Uri instance when using fromIri().
      *
      * @covers \Art4\Requests\Psr\Uri::fromIri
+     * @covers \Art4\Requests\Psr\Uri::__construct
      *
      * @return void
      */
