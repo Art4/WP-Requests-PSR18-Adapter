@@ -42,15 +42,25 @@ final class Response implements ResponseInterface
      */
     public static function fromResponse(RequestsResponse $response)
     {
-        if ($response->protocol_version === false) {
+        if (is_bool($response->protocol_version)) {
             $protocol_version = '1.1';
         } else {
             $protocol_version = number_format($response->protocol_version, 1, '.', '');
         }
 
+        $headers = [];
+
+        foreach ($response->headers->getAll() as $name => $value) {
+            if (!is_array($value)) {
+                $value = [$value];
+            }
+
+            $headers[$name] = $value;
+        }
+
         return new self(
             StringBasedStream::createFromString($response->body),
-            $response->headers->getAll(),
+            $headers,
             intval($response->status_code),
             $protocol_version
         );
@@ -153,7 +163,7 @@ final class Response implements ResponseInterface
      * Constructor
      *
      * @param StreamInterface $body
-     * @param array<string,string|string[]> $headers
+     * @param array<string,string[]> $headers
      * @param int $status_code
      * @param string $protocol_version
      */
@@ -164,6 +174,7 @@ final class Response implements ResponseInterface
         foreach ($headers as $name => $value) {
             $this->updateHeader($name, $value);
         }
+
         $this->status_code = $status_code;
         $this->protocol_version = $protocol_version;
     }

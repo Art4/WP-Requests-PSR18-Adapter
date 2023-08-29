@@ -80,7 +80,7 @@ final class HttpClientTest extends TestCase
         ]);
 
         $request = $httpClient->createRequest('POST', 'https://example.org/posts');
-        $request = $request->withBody($httpClient->createStream(json_encode(['title' => 'Post title'])));
+        $request = $request->withBody($httpClient->createStream('{"title":"Post title"}'));
 
         $response = $httpClient->sendRequest($request);
 

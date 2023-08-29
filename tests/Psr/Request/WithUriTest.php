@@ -136,9 +136,11 @@ final class WithUriTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withUri
      *
+     * @param array<string,string[]> $expectedHeaders
+     *
      * @return void
      */
-    public function testWithUriAndPreserveHost(string $initHost, string $newHost, string $expectedHeaders)
+    public function testWithUriAndPreserveHost(string $initHost, string $newHost, array $expectedHeaders)
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn($initHost);
@@ -154,7 +156,7 @@ final class WithUriTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array<string,array<string|string[]>>
+     * @return array<string,array<string|array<string,string[]>>>
      */
     public function dataPreserveHost(): array
     {

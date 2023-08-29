@@ -21,9 +21,15 @@ final class CreateStreamFromResourceTest extends TestCase
     {
         $httpClient = new HttpClient();
 
+        $resource = fopen('php://temp', 'r+');
+
+        if ($resource === false) {
+            throw new Exception('could not create resource');
+        }
+
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Art4\Requests\Psr\HttpClient::createStreamFromResource() is not yet implemented.');
 
-        $httpClient->createStreamFromResource(fopen('php://temp', 'r+'));
+        $httpClient->createStreamFromResource($resource);
     }
 }
