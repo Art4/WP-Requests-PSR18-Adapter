@@ -79,7 +79,7 @@ final class CreateRequestTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotString()
     {

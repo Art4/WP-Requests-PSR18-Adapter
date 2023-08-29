@@ -1,0 +1,26 @@
+parameters:
+    level: 8
+
+    paths:
+        - examples/
+        - src/
+        - tests/
+        - v1-compat/
+
+    scanDirectories:
+        - vendor
+
+    treatPhpDocTypesAsCertain: false
+
+    ignoreErrors:
+        # $data must be array|null, but underlying transport classes accept array|string
+        -
+            message: "#^Parameter \\#3 \\$data of static method WpOrg\\\\Requests\\\\Requests\\:\\:request\\(\\) expects array\\|null, string given\\.$#"
+            count: 1
+            path: src/Psr/HttpClient.php
+
+        # Fix false positive: WpOrg\Requests\Iri::$port DOES accept string|null
+        -
+            message: "#^Property WpOrg\\\\Requests\\\\Iri\\:\\:\\$port \\(string\\) does not accept string\\|null\\.$#"
+            count: 1
+            path: src/Psr/Uri.php

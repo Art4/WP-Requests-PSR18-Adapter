@@ -29,14 +29,14 @@ use WpOrg\Requests\Requests;
 final class HttpClient implements RequestFactoryInterface, StreamFactoryInterface, ClientInterface
 {
     /**
-     * @var array
+     * @var array<string,mixed>
      */
     private $options = [];
 
     /**
      * Constructor
      *
-     * @param array $options
+     * @param array<string,mixed> $options
      */
     public function __construct(array $options = [])
     {

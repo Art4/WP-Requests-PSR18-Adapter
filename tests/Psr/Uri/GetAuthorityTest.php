@@ -19,7 +19,7 @@ final class GetAuthorityTest extends TestCase
      *
      * @return void
      */
-    public function testGetAuthority($input, $expected)
+    public function testGetAuthority(string $input, string $expected)
     {
         $uri = Uri::fromIri(new Iri($input));
 
@@ -29,9 +29,9 @@ final class GetAuthorityTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
-    public function dataGetAuthority()
+    public function dataGetAuthority(): array
     {
         return [
             'empty' => ['', ''],

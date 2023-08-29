@@ -65,7 +65,7 @@ final class WithUserInfoTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotString()
     {
@@ -96,7 +96,7 @@ final class WithUserInfoTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotStringOrNull()
     {
@@ -110,7 +110,9 @@ final class WithUserInfoTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Uri::withUserInfo
      *
-     * @param mixed $input Invalid parameter input.
+     * @param string $user
+     * @param null|string $password
+     * @param string $expected
      *
      * @return void
      */
@@ -126,7 +128,7 @@ final class WithUserInfoTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,array<int,null|string>>
      */
     public function dataWithUserInfo()
     {

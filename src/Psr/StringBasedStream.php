@@ -28,12 +28,8 @@ final class StringBasedStream implements StreamInterface
      * @param string $content
      * @return static
      */
-    public static function createFromString($content)
+    public static function createFromString(string $content)
     {
-        if (!is_string($content)) {
-            throw InvalidArgument::create(1, '$content', 'string', gettype($content));
-        }
-
         return new self($content);
     }
 
@@ -45,14 +41,10 @@ final class StringBasedStream implements StreamInterface
     /**
      * Constructor
      *
-     * @param content $content
+     * @param string $content
      */
-    private function __construct($content)
+    private function __construct(string $content)
     {
-        if (!is_string($content)) {
-            throw InvalidArgument::create(1, '$content', 'content', gettype($content));
-        }
-
         $this->content = $content;
     }
 

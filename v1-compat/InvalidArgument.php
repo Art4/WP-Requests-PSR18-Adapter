@@ -32,7 +32,7 @@ final class InvalidArgument extends InvalidArgumentException {
 		return new self(
 			sprintf(
 				'%s::%s(): Argument #%d (%s) must be of type %s, %s given',
-				$stack[1]['class'],
+				isset($stack[1]['class']) ? $stack[1]['class'] : '',
 				$stack[1]['function'],
 				$position,
 				$name,

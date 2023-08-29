@@ -123,12 +123,9 @@ final class ToStringTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Uri::__toString
      *
-     * @param string $input
-     * @param string $expected
-     *
      * @return void
      */
-    public function testToStringReturnsCorrectString($input, $expected)
+    public function testToStringReturnsCorrectString(string $input, string $expected)
     {
         $uri = Uri::fromIri(new Iri($input));
 
@@ -138,9 +135,9 @@ final class ToStringTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
-    public function dataToString()
+    public function dataToString(): array
     {
         return [
             'empty' => ['', ''],

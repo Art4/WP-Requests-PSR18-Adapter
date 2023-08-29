@@ -17,12 +17,9 @@ final class GetRequestTargetTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::getRequestTarget
      *
-     * @param string $path
-     * @param string $query
-     *
      * @return void
      */
-    public function testGetRequestTargetReturnsString($path, $query, $expected)
+    public function testGetRequestTargetReturnsString(string $path, string $query, string $expected)
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getPath')->willReturn($path);
@@ -36,9 +33,9 @@ final class GetRequestTargetTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
-    public function dataGetRequestTarget()
+    public function dataGetRequestTarget(): array
     {
         return [
             'Retrieves the message request target' => ['path', '', 'path'],

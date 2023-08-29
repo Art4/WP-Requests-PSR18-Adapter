@@ -19,7 +19,7 @@ final class GetFragmentTest extends TestCase
      *
      * @return void
      */
-    public function testGetFragment($input, $expected)
+    public function testGetFragment(string $input, string $expected)
     {
         $uri = Uri::fromIri(new Iri($input));
 
@@ -29,9 +29,9 @@ final class GetFragmentTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
-    public function dataGetFragment()
+    public function dataGetFragment(): array
     {
         return [
             'empty' => ['', ''],

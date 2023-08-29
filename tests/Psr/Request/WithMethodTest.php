@@ -44,9 +44,9 @@ final class WithMethodTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotString()
+    public function dataInvalidTypeNotString(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
@@ -75,9 +75,9 @@ final class WithMethodTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
-    public function dataValidMethod()
+    public function dataValidMethod(): array
     {
         return [
             'Return an instance with the provided HTTP method' => ['POST', 'POST'],

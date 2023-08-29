@@ -170,6 +170,8 @@ final class Uri implements UriInterface
             }
         }
 
+        $port = intval($port);
+
         try {
             if ($port === Port::get($scheme)) {
                 return null;
@@ -366,18 +368,18 @@ final class Uri implements UriInterface
     public function withPort($port): UriInterface
     {
         if (!is_int($port) && $port !== null) {
-            throw InvalidArgument::create(1, '$port', 'null|int in the range of 0 - 65535', is_int($port) ? $port : gettype($port));
+            throw InvalidArgument::create(1, '$port', 'null|int in the range of 0 - 65535', gettype($port));
         }
 
         // Port must be in range 0 - 65535 according to RFC  6335 section 6
         // @see https://datatracker.ietf.org/doc/html/rfc6335#section-6
         if ($port !== null && ($port < 0 || $port > 65535)) {
-            throw InvalidArgument::create(1, '$port', 'null|int in the range of 0 - 65535', $port);
+            throw InvalidArgument::create(1, '$port', 'null|int in the range of 0 - 65535', strval($port));
         }
 
         $iri = clone($this->iri);
 
-        $iri->port = $port;
+        $iri->port = ($port !== null) ? strval($port) : null;
 
         return new self($iri);
     }

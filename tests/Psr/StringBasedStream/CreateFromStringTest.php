@@ -28,28 +28,9 @@ final class CreateFromStringTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the createFromString() method received an invalid input type as `$method`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\StringBasedStream::createFromString
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testCreateFromStringWithoutStringThrowsException($input)
-    {
-        $this->expectException(InvalidArgument::class);
-        $this->expectExceptionMessage(sprintf('%s::createFromString(): Argument #1 ($content) must be of type string, ', StringBasedStream::class));
-
-        StringBasedStream::createFromString($input);
-    }
-
-    /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotString()
     {

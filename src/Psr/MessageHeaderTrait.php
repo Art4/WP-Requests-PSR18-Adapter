@@ -17,12 +17,12 @@ use WpOrg\Requests\Exception\InvalidArgument;
 trait MessageHeaderTrait
 {
     /**
-     * @var array
+     * @var array<string,string[]>
      */
     private $headers = [];
 
     /**
-     * @var array
+     * @var array<string,string>
      */
     private $headerNames = [];
 
@@ -176,12 +176,12 @@ trait MessageHeaderTrait
      */
     public function withAddedHeader(string $name, $value): MessageInterface
     {
-        if (!is_string($value) && !is_array($value)) {
-            throw InvalidArgument::create(2, '$value', 'string|array containing strings', gettype($value));
+        if (is_string($value)) {
+            $value = [$value];
         }
 
         if (!is_array($value)) {
-            $value = [$value];
+            throw InvalidArgument::create(2, '$value', 'string|array containing strings', gettype($value));
         }
 
         foreach ($value as $line) {

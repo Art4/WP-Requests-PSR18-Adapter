@@ -44,7 +44,7 @@ final class WithRequestTargetTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotString()
     {
@@ -75,9 +75,9 @@ final class WithRequestTargetTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
-    public function dataValidRequestTarget()
+    public function dataValidRequestTarget(): array
     {
         return [
             'Return an instance with the specific request-target' => ['path', 'path'],

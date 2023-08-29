@@ -41,18 +41,14 @@ final class Request implements RequestInterface
     /**
      * create Request with method and uri
      *
-     * @param string|Stringable $method
+     * @param string $method
      * @param UriInterface $uri
      *
      * @return Request
      */
-    public static function withMethodAndUri($method, UriInterface $uri)
+    public static function withMethodAndUri(string $method, UriInterface $uri)
     {
-        if (!is_string($method)) {
-            throw InvalidArgument::create(1, '$method', 'string', gettype($method));
-        }
-
-        $request = new self((string) $method, $uri);
+        $request = new self($method, $uri);
         $request->body = StringBasedStream::createFromString('');
 
         return $request;
@@ -148,7 +144,7 @@ final class Request implements RequestInterface
      *
      * @see http://tools.ietf.org/html/rfc7230#section-5.3 (for the various
      *     request-target forms allowed in request messages)
-     * @param mixed $requestTarget
+     * @param string $requestTarget
      * @return static
      */
     public function withRequestTarget(string $requestTarget): RequestInterface

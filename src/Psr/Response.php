@@ -10,7 +10,6 @@ namespace Art4\Requests\Psr;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use WpOrg\Requests\Exception\InvalidArgument;
 use WpOrg\Requests\Response as RequestsResponse;
 
 /**
@@ -43,16 +42,26 @@ final class Response implements ResponseInterface
      */
     public static function fromResponse(RequestsResponse $response)
     {
-        if ($response->protocol_version === false) {
+        if (is_bool($response->protocol_version)) {
             $protocol_version = '1.1';
         } else {
             $protocol_version = number_format($response->protocol_version, 1, '.', '');
         }
 
+        $headers = [];
+
+        foreach ($response->headers->getAll() as $name => $value) {
+            if (!is_array($value)) {
+                $value = [$value];
+            }
+
+            $headers[$name] = $value;
+        }
+
         return new self(
             StringBasedStream::createFromString($response->body),
-            $response->headers->getAll(),
-            $response->status_code,
+            $headers,
+            intval($response->status_code),
             $protocol_version
         );
     }
@@ -68,7 +77,7 @@ final class Response implements ResponseInterface
     private $status_code;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $reasonPhrase = null;
 
@@ -83,7 +92,7 @@ final class Response implements ResponseInterface
      * @see https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
      * Last Updated 2022-06-08
      *
-     * @var array
+     * @var array<int,string>
      */
     private $reasonPhrases = [
         100 => 'Continue',                        // RFC9110, Section 15.2.1
@@ -154,17 +163,18 @@ final class Response implements ResponseInterface
      * Constructor
      *
      * @param StreamInterface $body
-     * @param array           $headers
-     * @param int             $status_code
-     * @param string          $protocol_version
+     * @param array<string,string[]> $headers
+     * @param int $status_code
+     * @param string $protocol_version
      */
-    private function __construct(StreamInterface $body, $headers, $status_code, $protocol_version)
+    private function __construct(StreamInterface $body, array $headers, int $status_code, string $protocol_version)
     {
         $this->body = $body;
 
         foreach ($headers as $name => $value) {
             $this->updateHeader($name, $value);
         }
+
         $this->status_code = $status_code;
         $this->protocol_version = $protocol_version;
     }
