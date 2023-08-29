@@ -56,5 +56,5 @@ jobs:
 
       - name: Run static code analysis
         # Do not run phpstan on lowest php version
-        if: ${{ matrix.php >= '7.2' }}
+        if: ${{ matrix.php == '7.2' ||  matrix.php >= '7.3' }}
         run: composer run phpstan -- --error-format=github
