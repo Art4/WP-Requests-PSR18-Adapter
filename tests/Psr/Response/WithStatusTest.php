@@ -85,7 +85,7 @@ final class WithStatusTest extends TestCase
      *
      * @return array<string,array<int|string>>
      */
-    public function dataWithStatus(): array
+    public static function dataWithStatus(): array
     {
         return [
             'Return an instance with the specified status code and, optionally, reason phrase.' => [200, 'foobar', 'foobar'],

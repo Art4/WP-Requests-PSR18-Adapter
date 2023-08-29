@@ -67,7 +67,7 @@ final class WithUserInfoTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
@@ -98,7 +98,7 @@ final class WithUserInfoTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotStringOrNull()
+    public static function dataInvalidTypeNotStringOrNull()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING, TypeProviderHelper::GROUP_NULL);
     }
@@ -130,7 +130,7 @@ final class WithUserInfoTest extends TestCase
      *
      * @return array<string,array<int,null|string>>
      */
-    public function dataWithUserInfo()
+    public static function dataWithUserInfo(): array
     {
         return [
             'empty' => ['', null, ''],

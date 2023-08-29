@@ -158,7 +158,7 @@ final class WithUriTest extends TestCase
      *
      * @return array<string,array<string|array<string,string[]>>>
      */
-    public function dataPreserveHost(): array
+    public static function dataPreserveHost(): array
     {
         return [
             // 'Host header is missing or empty, and the new URI contains a host component, this method MUST update the Host header' => ['', 'example.org', ['Host' => ['example.org']]],

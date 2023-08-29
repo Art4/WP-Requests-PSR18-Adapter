@@ -83,7 +83,7 @@ final class WithPortTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotIntOrNull()
+    public static function dataInvalidTypeNotIntOrNull()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_INT, TypeProviderHelper::GROUP_NULL);
     }
@@ -131,7 +131,7 @@ final class WithPortTest extends TestCase
      *
      * @return array<string,array<int>>
      */
-    public function dataInvalidPorts(): array
+    public static function dataInvalidPorts(): array
     {
         return [
             'negative integer' => [-1],

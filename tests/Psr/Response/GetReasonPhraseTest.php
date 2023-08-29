@@ -49,7 +49,7 @@ final class GetReasonPhraseTest extends TestCase
      *
      * @return array<array<int|string>>
      */
-    public function dataValidReasonPhrase()
+    public static function dataValidReasonPhrase()
     {
         return [
             [100, 'Continue'],

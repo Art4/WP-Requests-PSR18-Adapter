@@ -137,7 +137,7 @@ final class ToStringTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataToString(): array
+    public static function dataToString(): array
     {
         return [
             'empty' => ['', ''],

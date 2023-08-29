@@ -77,7 +77,7 @@ final class WithMethodTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataValidMethod(): array
+    public static function dataValidMethod(): array
     {
         return [
             'Return an instance with the provided HTTP method' => ['POST', 'POST'],

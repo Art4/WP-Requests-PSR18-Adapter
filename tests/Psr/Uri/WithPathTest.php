@@ -67,7 +67,7 @@ final class WithPathTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotString(): array
+    public static function dataInvalidTypeNotString(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
@@ -98,7 +98,7 @@ final class WithPathTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataWithPath(): array
+    public static function dataWithPath(): array
     {
         return [
             'The path can be empty' => ['', '/'],

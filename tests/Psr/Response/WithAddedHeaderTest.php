@@ -46,7 +46,7 @@ final class WithAddedHeaderTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
@@ -77,7 +77,7 @@ final class WithAddedHeaderTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotStringOrArray()
+    public static function dataInvalidTypeNotStringOrArray()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING, TypeProviderHelper::GROUP_ARRAY);
     }

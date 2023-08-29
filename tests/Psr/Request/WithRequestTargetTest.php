@@ -77,7 +77,7 @@ final class WithRequestTargetTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataValidRequestTarget(): array
+    public static function dataValidRequestTarget(): array
     {
         return [
             'Return an instance with the specific request-target' => ['path', 'path'],

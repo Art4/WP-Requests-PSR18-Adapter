@@ -35,7 +35,7 @@ final class GetRequestTargetTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataGetRequestTarget(): array
+    public static function dataGetRequestTarget(): array
     {
         return [
             'Retrieves the message request target' => ['path', '', 'path'],
