@@ -21,7 +21,7 @@ final class HttpClientTest extends TestCase
      *
      * @return void
      */
-    public function testSendRequestSendsCorrectDataAndReturnsCorrectResponseData()
+    public function testSendRequestWithGetSendsCorrectDataAndReturnsCorrectResponseData()
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -50,6 +50,45 @@ final class HttpClientTest extends TestCase
         $this->assertSame('1.1', $response->getProtocolVersion());
         $this->assertSame(['content-type' => ['text/plain']], $response->getHeaders());
         $this->assertSame('foobar', $response->getBody()->__toString());
+    }
+
+    /**
+     * Tests receiving a response when using sendRequest().
+     *
+     * @covers \Art4\Requests\Psr\HttpClient::sendRequest
+     *
+     * @return void
+     */
+    public function testSendRequestWithPostSendsCorrectDataAndReturnsCorrectResponseData()
+    {
+        $transport = $this->createMock(Transport::class);
+        $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+            $this->assertSame('https://example.org/posts', $url);
+            $this->assertSame(['Host' => 'example.org'], $headers);
+            $this->assertSame('{"title":"Post title"}', $data);
+            $this->assertSame('POST', $options['type']);
+
+            return
+                'HTTP/1.1 201 Created' . "\r\n".
+                'Content-Type:application/json'. "\r\n".
+                "\r\n".
+                '{"id":1,"title":"Post title"}';
+        });
+
+        $httpClient = new HttpClient([
+            'transport' => $transport,
+        ]);
+
+        $request = $httpClient->createRequest('POST', 'https://example.org/posts');
+        $request = $request->withBody($httpClient->createStream(json_encode(['title' => 'Post title'])));
+
+        $response = $httpClient->sendRequest($request);
+
+        $this->assertSame(201, $response->getStatusCode());
+        $this->assertSame('Created', $response->getReasonPhrase());
+        $this->assertSame('1.1', $response->getProtocolVersion());
+        $this->assertSame(['content-type' => ['application/json']], $response->getHeaders());
+        $this->assertSame('{"id":1,"title":"Post title"}', $response->getBody()->__toString());
     }
 
     /**

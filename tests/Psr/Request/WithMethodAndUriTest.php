@@ -31,27 +31,6 @@ final class WithMethodAndUriTest extends TestCase
     }
 
     /**
-     * Tests receiving an exception when the withMethodAndUri() method received an invalid input type as `$method`.
-     *
-     * @dataProvider dataInvalidTypeNotString
-     *
-     * @covers \Art4\Requests\Psr\Request::withMethodAndUri
-     *
-     * @param mixed $input Invalid parameter input.
-     *
-     * @return void
-     */
-    public function testWithMethodAndUriWithoutMethodStringThrowsException($input)
-    {
-        $uri = $this->createMock(UriInterface::class);
-
-        $this->expectException(InvalidArgument::class);
-        $this->expectExceptionMessage(sprintf('%s::withMethodAndUri(): Argument #1 ($method) must be of type string', Request::class));
-
-        Request::withMethodAndUri($input, $uri);
-    }
-
-    /**
      * Data Provider.
      *
      * @return array

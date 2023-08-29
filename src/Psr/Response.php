@@ -10,7 +10,6 @@ namespace Art4\Requests\Psr;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use WpOrg\Requests\Exception\InvalidArgument;
 use WpOrg\Requests\Response as RequestsResponse;
 
 /**
@@ -52,7 +51,7 @@ final class Response implements ResponseInterface
         return new self(
             StringBasedStream::createFromString($response->body),
             $response->headers->getAll(),
-            $response->status_code,
+            intval($response->status_code),
             $protocol_version
         );
     }
@@ -158,7 +157,7 @@ final class Response implements ResponseInterface
      * @param int             $status_code
      * @param string          $protocol_version
      */
-    private function __construct(StreamInterface $body, $headers, $status_code, $protocol_version)
+    private function __construct(StreamInterface $body, array $headers, int $status_code, string $protocol_version)
     {
         $this->body = $body;
 

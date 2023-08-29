@@ -46,13 +46,9 @@ final class Request implements RequestInterface
      *
      * @return Request
      */
-    public static function withMethodAndUri($method, UriInterface $uri)
+    public static function withMethodAndUri(string $method, UriInterface $uri)
     {
-        if (!is_string($method)) {
-            throw InvalidArgument::create(1, '$method', 'string', gettype($method));
-        }
-
-        $request = new self((string) $method, $uri);
+        $request = new self($method, $uri);
         $request->body = StringBasedStream::createFromString('');
 
         return $request;
