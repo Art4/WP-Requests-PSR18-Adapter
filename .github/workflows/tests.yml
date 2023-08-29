@@ -17,7 +17,11 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: ['ubuntu-latest']
-        php: ['7.2.0', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        prefer-versions: ['latest']
+        include:
+          - php: '7.2'
+            prefer-versions: 'lowest'
 
     steps:
       - name: Checkout
@@ -36,13 +40,13 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: "Install lowest Composer dependencies (PHP 7.2)"
-        if: ${{ matrix.php == '7.2.0' }}
+        if: ${{ matrix.prefer-versions == 'lowest' }}
         uses: "ramsey/composer-install@v2"
         with:
           composer-options: --prefer-lowest
 
       - name: "Install Composer dependencies (PHP < 8.3)"
-        if: ${{ matrix.php >= '7.2' && matrix.php < '8.3' }}
+        if: ${{ matrix.prefer-versions == 'latest' && matrix.php < '8.3' }}
         uses: "ramsey/composer-install@v2"
 
       - name: "Install Composer dependencies (PHP 8.3)"
@@ -56,5 +60,5 @@ jobs:
 
       - name: Run static code analysis
         # Do not run phpstan on lowest php version
-        if: ${{ matrix.php == '7.2' ||  matrix.php >= '7.3' }}
+        if: ${{ matrix.prefer-versions == 'latest' }}
         run: composer run phpstan -- --error-format=github
