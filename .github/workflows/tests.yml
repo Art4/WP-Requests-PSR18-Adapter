@@ -9,19 +9,20 @@ on:
 jobs:
 
   tests:
-    name: Tests (PHP ${{ matrix.php }} on ${{ matrix.operating-system }})
+    name: Tests (PHP ${{ matrix.php }} with ${{ matrix.prefer-versions }} lib versions)
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.php == '8.3' }}
 
     strategy:
       fail-fast: false
       matrix:
-        operating-system: ['ubuntu-latest']
-        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
-        prefer-versions: ['latest']
         include:
           - php: '7.2'
             prefer-versions: 'lowest'
+            operating-system: 'ubuntu-latest'
+        operating-system: ['ubuntu-latest']
+        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        prefer-versions: ['latest']
 
     steps:
       - name: Checkout
@@ -60,5 +61,5 @@ jobs:
 
       - name: Run static code analysis
         # Do not run phpstan on lowest php version
-        if: ${{ matrix.prefer-versions == 'latest' }}
+        # if: ${{ matrix.prefer-versions == 'latest' }}
         run: composer run phpstan -- --error-format=github
