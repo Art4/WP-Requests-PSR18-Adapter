@@ -50,11 +50,11 @@ final class Response implements ResponseInterface
 
         $headers = [];
 
+        /**
+         * @var string $name
+         * @var string[] $value
+         */
         foreach ($response->headers->getAll() as $name => $value) {
-            if (!is_array($value)) {
-                $value = [$value];
-            }
-
             $headers[$name] = $value;
         }
 

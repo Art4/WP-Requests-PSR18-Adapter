@@ -162,21 +162,20 @@ final class Uri implements UriInterface
         $port = $this->iri->port;
         $scheme = $this->getScheme();
 
+        try {
+            $portFromScheme = Port::get($scheme);
+        } catch (RequestsException $th) {
+            $portFromScheme = null;
+        }
+
         if ($port === null) {
-            try {
-                return Port::get($scheme);
-            } catch (RequestsException $th) {
-                return null;
-            }
+            return $portFromScheme;
         }
 
         $port = intval($port);
 
-        try {
-            if ($port === Port::get($scheme)) {
-                return null;
-            }
-        } catch (RequestsException $th) {
+        if ($port === $portFromScheme) {
+            return null;
         }
 
         return $port;

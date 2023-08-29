@@ -37,6 +37,7 @@
         }
     },
     "scripts": {
+        "coverage": "phpunit --coverage-html=.code-coverage",
         "phpstan": "phpstan analyze --memory-limit 512M --configuration .phpstan.neon",
         "phpunit": "phpunit"
     },

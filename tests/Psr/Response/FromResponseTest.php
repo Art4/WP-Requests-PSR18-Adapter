@@ -15,6 +15,7 @@ final class FromResponseTest extends TestCase
      * Tests receiving a Response instance when using fromResponse().
      *
      * @covers \Art4\Requests\Psr\Response::fromResponse
+     * @covers \Art4\Requests\Psr\Response::__construct
      *
      * @return void
      */

@@ -67,6 +67,7 @@ final class WithStatusTest extends TestCase
      * @dataProvider dataWithStatus
      *
      * @covers \Art4\Requests\Psr\Response::withStatus
+     * @covers \Art4\Requests\Psr\Response::getReasonPhrase
      *
      * @return void
      */

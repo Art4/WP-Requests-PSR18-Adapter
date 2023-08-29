@@ -13,6 +13,7 @@ final class GetHeadersTest extends TestCase
     /**
      * Tests receiving the headers when using getHeaders().
      *
+     * @covers \Art4\Requests\Psr\Response::fromResponse
      * @covers \Art4\Requests\Psr\Response::getHeaders
      *
      * @return void
@@ -27,6 +28,7 @@ final class GetHeadersTest extends TestCase
     /**
      * Tests receiving the headers when using getHeaders().
      *
+     * @covers \Art4\Requests\Psr\Response::fromResponse
      * @covers \Art4\Requests\Psr\Response::getHeaders
      *
      * @return void

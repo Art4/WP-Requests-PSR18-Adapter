@@ -14,7 +14,7 @@ final class GetBodyTest extends TestCase
     /**
      * Tests receiving the stream when using getBody().
      *
-     * @covers \Art4\Requests\Psr\Request::getBody
+     * @covers \Art4\Requests\Psr\Response::getBody
      *
      * @return void
      */
@@ -30,7 +30,7 @@ final class GetBodyTest extends TestCase
     /**
      * Tests receiving the stream when using getBody().
      *
-     * @covers \Art4\Requests\Psr\Request::getBody
+     * @covers \Art4\Requests\Psr\Response::getBody
      *
      * @return void
      */
