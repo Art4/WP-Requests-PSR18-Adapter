@@ -13,7 +13,7 @@ final class GetStatusCodeTest extends TestCase
     /**
      * Tests receiving the status code when using getStatusCode().
      *
-     * @covers \Art4\Requests\Psr\Request::getStatusCode
+     * @covers \Art4\Requests\Psr\Response::getStatusCode
      *
      * @return void
      */

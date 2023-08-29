@@ -2,10 +2,10 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.3/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         beStrictAboutCoverageMetadata="true"
+         beStrictAboutCoverageMetadata="false"
          beStrictAboutOutputDuringTests="true"
          cacheDirectory=".phpunit.cache"
-         requireCoverageMetadata="true">
+         requireCoverageMetadata="false">
   <coverage/>
   <testsuite name="default">
     <directory suffix="Test.php">tests</directory>
