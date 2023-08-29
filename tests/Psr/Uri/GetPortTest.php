@@ -17,9 +17,11 @@ final class GetPortTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Uri::getPort
      *
+     * @param null|int $expected
+     *
      * @return void
      */
-    public function testGetPort($input, $expected)
+    public function testGetPort(string $input, $expected)
     {
         $uri = Uri::fromIri(new Iri($input));
 
@@ -29,7 +31,7 @@ final class GetPortTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,array<string|int|null>>
      */
     public function dataGetPort()
     {

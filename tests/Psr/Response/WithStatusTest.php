@@ -44,7 +44,7 @@ final class WithStatusTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotInteger()
     {
@@ -54,7 +54,7 @@ final class WithStatusTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotString()
     {
@@ -68,13 +68,9 @@ final class WithStatusTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Response::withStatus
      *
-     * @param int $code
-     * @param string $phrase
-     * @param string $expected
-     *
      * @return void
      */
-    public function testWithStatusChangesStatusCode($code, $phrase, $expected)
+    public function testWithStatusChangesStatusCode(int $code, string $phrase, string $expected)
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -87,9 +83,9 @@ final class WithStatusTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,array<int|string>>
      */
-    public function dataWithStatus()
+    public function dataWithStatus(): array
     {
         return [
             'Return an instance with the specified status code and, optionally, reason phrase.' => [200, 'foobar', 'foobar'],

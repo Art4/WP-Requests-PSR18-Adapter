@@ -138,7 +138,7 @@ final class WithUriTest extends TestCase
      *
      * @return void
      */
-    public function testWithUriAndPreserveHost($initHost, $newHost, $expectedHeaders)
+    public function testWithUriAndPreserveHost(string $initHost, string $newHost, string $expectedHeaders)
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn($initHost);
@@ -154,9 +154,9 @@ final class WithUriTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,array<string|string[]>>
      */
-    public function dataPreserveHost()
+    public function dataPreserveHost(): array
     {
         return [
             // 'Host header is missing or empty, and the new URI contains a host component, this method MUST update the Host header' => ['', 'example.org', ['Host' => ['example.org']]],

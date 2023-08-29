@@ -65,7 +65,7 @@ final class WithFragmentTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotString()
     {
@@ -96,7 +96,7 @@ final class WithFragmentTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
     public function dataWithFragment()
     {

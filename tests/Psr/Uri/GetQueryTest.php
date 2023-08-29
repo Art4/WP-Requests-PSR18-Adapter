@@ -19,7 +19,7 @@ final class GetQueryTest extends TestCase
      *
      * @return void
      */
-    public function testGetQuery($input, $expected)
+    public function testGetQuery(string $input, string $expected)
     {
         $uri = Uri::fromIri(new Iri($input));
 
@@ -29,9 +29,9 @@ final class GetQueryTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
-    public function dataGetQuery()
+    public function dataGetQuery(): array
     {
         return [
             'empty' => ['', ''],

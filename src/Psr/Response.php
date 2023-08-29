@@ -82,7 +82,7 @@ final class Response implements ResponseInterface
      * @see https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
      * Last Updated 2022-06-08
      *
-     * @var array
+     * @var array<int,string>
      */
     private $reasonPhrases = [
         100 => 'Continue',                        // RFC9110, Section 15.2.1
@@ -153,9 +153,9 @@ final class Response implements ResponseInterface
      * Constructor
      *
      * @param StreamInterface $body
-     * @param array           $headers
-     * @param int             $status_code
-     * @param string          $protocol_version
+     * @param array<string,string|string[]> $headers
+     * @param int $status_code
+     * @param string $protocol_version
      */
     private function __construct(StreamInterface $body, array $headers, int $status_code, string $protocol_version)
     {

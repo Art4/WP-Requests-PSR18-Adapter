@@ -19,7 +19,7 @@ final class GetReasonPhraseTest extends TestCase
      *
      * @return void
      */
-    public function testGetReasonPhraseReturnsString($code, $phrase)
+    public function testGetReasonPhraseReturnsString(int $code, string $phrase)
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = $code;
@@ -47,7 +47,7 @@ final class GetReasonPhraseTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public function dataValidReasonPhrase()
     {

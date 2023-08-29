@@ -81,7 +81,7 @@ final class WithPortTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function dataInvalidTypeNotIntOrNull()
     {
@@ -129,9 +129,9 @@ final class WithPortTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,array<int>>
      */
-    public function dataInvalidPorts()
+    public function dataInvalidPorts(): array
     {
         return [
             'negative integer' => [-1],

@@ -17,12 +17,12 @@ use WpOrg\Requests\Exception\InvalidArgument;
 trait MessageHeaderTrait
 {
     /**
-     * @var array
+     * @var array<string,string[]>
      */
     private $headers = [];
 
     /**
-     * @var array
+     * @var array<string,string>
      */
     private $headerNames = [];
 

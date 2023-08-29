@@ -1,5 +1,5 @@
 parameters:
-    level: 5
+    level: 6
 
     paths:
         - examples/
@@ -14,7 +14,7 @@ parameters:
 
     ignoreErrors:
         # $data must be array|null, but underlying transport classes accept array|string
-		-
-			message: "#^Parameter \\#3 \\$data of static method WpOrg\\\\Requests\\\\Requests\\:\\:request\\(\\) expects array\\|null, string given\\.$#"
-			count: 1
-			path: src/Psr/HttpClient.php
+        -
+            message: "#^Parameter \\#3 \\$data of static method WpOrg\\\\Requests\\\\Requests\\:\\:request\\(\\) expects array\\|null, string given\\.$#"
+            count: 1
+            path: src/Psr/HttpClient.php

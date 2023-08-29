@@ -19,7 +19,7 @@ final class GetUserInfoTest extends TestCase
      *
      * @return void
      */
-    public function testGetUserInfo($input, $expected)
+    public function testGetUserInfo(string $input, string $expected)
     {
         $uri = Uri::fromIri(new Iri($input));
 
@@ -29,7 +29,7 @@ final class GetUserInfoTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
     public function dataGetUserInfo()
     {

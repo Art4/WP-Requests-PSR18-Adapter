@@ -17,6 +17,9 @@ final class GetPathTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Uri::getPath
      *
+     * @param string $input
+     * @param string $expected
+     *
      * @return void
      */
     public function testGetPath($input, $expected)
@@ -29,9 +32,9 @@ final class GetPathTest extends TestCase
     /**
      * Data Provider.
      *
-     * @return array
+     * @return array<string,string[]>
      */
-    public function dataGetPath()
+    public function dataGetPath(): array
     {
         return [
             'Retrieve the path component of the URI' => ['https://example.org/path', '/path'],
