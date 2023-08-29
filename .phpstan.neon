@@ -1,7 +1,8 @@
 parameters:
-    level: 4
+    level: 5
 
     paths:
+        - examples/
         - src/
         - tests/
         - v1-compat/
@@ -10,3 +11,10 @@ parameters:
         - vendor
 
     treatPhpDocTypesAsCertain: false
+
+    ignoreErrors:
+        # $data must be array|null, but underlying transport classes accept array|string
+		-
+			message: "#^Parameter \\#3 \\$data of static method WpOrg\\\\Requests\\\\Requests\\:\\:request\\(\\) expects array\\|null, string given\\.$#"
+			count: 1
+			path: src/Psr/HttpClient.php
