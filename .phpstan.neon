@@ -21,6 +21,6 @@ parameters:
 
         # Fix false positive: WpOrg\Requests\Iri::$port DOES accept string|null
         -
-			message: "#^Property WpOrg\\\\Requests\\\\Iri\\:\\:\\$port \\(string\\) does not accept string\\|null\\.$#"
-			count: 1
-			path: src/Psr/Uri.php
+            message: "#^Property WpOrg\\\\Requests\\\\Iri\\:\\:\\$port \\(string\\) does not accept string\\|null\\.$#"
+            count: 1
+            path: src/Psr/Uri.php
