@@ -172,16 +172,16 @@ final class TypeProviderHelper
     /**
      * File handle to local memory (open resource).
      *
-     * @var resource
+     * @var null|resource
      */
-    private static $memory_handle_open;
+    private static $memory_handle_open = null;
 
     /**
      * File handle to local memory (closed resource).
      *
-     * @var resource
+     * @var null|resource
      */
-    private static $memory_handle_closed;
+    private static $memory_handle_closed = null;
 
     /**
      * Clean up after the tests.
@@ -193,7 +193,7 @@ final class TypeProviderHelper
      */
     public static function cleanUp()
     {
-        if (isset(self::$memory_handle_open)) {
+        if (self::$memory_handle_open !== null) {
             fclose(self::$memory_handle_open);
             unset(self::$memory_handle_open);
         }
@@ -239,11 +239,11 @@ final class TypeProviderHelper
      */
     public static function getAll()
     {
-        if (isset(self::$memory_handle_open) === false) {
+        if (self::$memory_handle_open === null) {
             self::$memory_handle_open = fopen('php://memory', 'r+');
         }
 
-        if (isset(self::$memory_handle_closed) === false) {
+        if (self::$memory_handle_closed === null) {
             self::$memory_handle_closed = fopen('php://memory', 'r+');
             fclose(self::$memory_handle_closed);
         }

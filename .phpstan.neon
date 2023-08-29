@@ -1,5 +1,5 @@
 parameters:
-    level: 3
+    level: 4
 
     paths:
         - src/
@@ -9,3 +9,4 @@ parameters:
     scanDirectories:
         - vendor
 
+    treatPhpDocTypesAsCertain: false

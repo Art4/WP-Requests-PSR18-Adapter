@@ -368,7 +368,7 @@ final class Uri implements UriInterface
     public function withPort($port): UriInterface
     {
         if (!is_int($port) && $port !== null) {
-            throw InvalidArgument::create(1, '$port', 'null|int in the range of 0 - 65535', is_int($port) ? $port : gettype($port));
+            throw InvalidArgument::create(1, '$port', 'null|int in the range of 0 - 65535', gettype($port));
         }
 
         // Port must be in range 0 - 65535 according to RFC  6335 section 6
