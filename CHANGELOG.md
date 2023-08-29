@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add support for PHP 8.2
+- Add tests with PHPStan level 8
 
 ### Changed
 
@@ -43,8 +44,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change Code Style to PSR-12
 - Drop support for PHP 7.0
 
-## [1.0.0-beta - 2022-10-06](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/09aae5d7deac8058c5a25c1d951cd350d066ad6e...1.0.0-beta)
+## [1.0.0-beta - 2022-10-06](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/f2ab377f89c42ed364f0324a99ff164ae929d22a...1.0.0-beta)
 
 ### Added
 
-- Library created from pull request
+- Library created from pull request: https://github.com/WordPress/Requests/pull/768

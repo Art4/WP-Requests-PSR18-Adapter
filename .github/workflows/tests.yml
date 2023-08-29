@@ -35,7 +35,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           ini-values: error_reporting=-1, display_errors=On, log_errors_max_len=0
-          coverage: none
+          coverage: xdebug
           tools: none
 
       # Install dependencies and handle caching in one go.
