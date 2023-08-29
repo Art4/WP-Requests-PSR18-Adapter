@@ -235,10 +235,6 @@ final class StringBasedStream implements StreamInterface
      */
     public function getMetadata(?string $key = null)
     {
-        if (func_num_args() > 0 && !is_string($key)) {
-            throw InvalidArgument::create(1, '$key', 'string', gettype($key));
-        }
-
         if (is_string($key)) {
             return null;
         }

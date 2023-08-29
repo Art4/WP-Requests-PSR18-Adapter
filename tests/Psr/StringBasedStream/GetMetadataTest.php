@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
-use InvalidArgumentException;
 use Art4\Requests\Psr\StringBasedStream;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class GetMetadataTest extends TestCase
 {
@@ -37,15 +35,5 @@ final class GetMetadataTest extends TestCase
         $stream = StringBasedStream::createFromString('');
 
         $this->assertNull($stream->getMetadata('key'));
-    }
-
-    /**
-     * Data Provider.
-     *
-     * @return array<string, mixed>
-     */
-    public function dataInvalidTypeNotString()
-    {
-        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
 }

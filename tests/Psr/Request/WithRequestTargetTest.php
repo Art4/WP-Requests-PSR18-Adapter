@@ -42,21 +42,12 @@ final class WithRequestTargetTest extends TestCase
     }
 
     /**
-     * Data Provider.
-     *
-     * @return array<string, mixed>
-     */
-    public function dataInvalidTypeNotString()
-    {
-        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
-    }
-
-    /**
      * Tests changing the request-target when using withRequestTarget().
      *
      * @dataProvider dataValidRequestTarget
      *
      * @covers \Art4\Requests\Psr\Request::withRequestTarget
+     * @covers \Art4\Requests\Psr\Request::getRequestTarget
      *
      * @param string $input
      * @param string $expected

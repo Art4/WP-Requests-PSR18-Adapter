@@ -17,6 +17,7 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -107,6 +108,7 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -125,6 +127,7 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */

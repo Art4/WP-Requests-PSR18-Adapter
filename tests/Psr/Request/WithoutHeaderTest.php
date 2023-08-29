@@ -55,6 +55,7 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withoutHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -74,6 +75,7 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withoutHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
