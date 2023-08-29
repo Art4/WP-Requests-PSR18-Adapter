@@ -379,7 +379,7 @@ final class Uri implements UriInterface
 
         $iri = clone($this->iri);
 
-        $iri->port = ($port !== null) ? strval($port) : $port;
+        $iri->port = ($port !== null) ? strval($port) : null;
 
         return new self($iri);
     }

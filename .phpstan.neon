@@ -1,5 +1,5 @@
 parameters:
-    level: 7
+    level: 8
 
     paths:
         - examples/
@@ -18,3 +18,9 @@ parameters:
             message: "#^Parameter \\#3 \\$data of static method WpOrg\\\\Requests\\\\Requests\\:\\:request\\(\\) expects array\\|null, string given\\.$#"
             count: 1
             path: src/Psr/HttpClient.php
+
+        # Fix false positive: WpOrg\Requests\Iri::$port DOES accept string|null
+        -
+			message: "#^Property WpOrg\\\\Requests\\\\Iri\\:\\:\\$port \\(string\\) does not accept string\\|null\\.$#"
+			count: 1
+			path: src/Psr/Uri.php
