@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Response;
 
-use InvalidArgumentException;
-use Psr\Http\Message\ResponseInterface;
 use Art4\Requests\Psr\Response;
+use Psr\Http\Message\ResponseInterface;
 use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithStatusTest extends TestCase
 {
@@ -39,26 +37,6 @@ final class WithStatusTest extends TestCase
         $response = Response::fromResponse(new RequestsResponse());
 
         $this->assertNotSame($response, $response->withStatus(200));
-    }
-
-    /**
-     * Data Provider.
-     *
-     * @return array<string, mixed>
-     */
-    public function dataInvalidTypeNotInteger()
-    {
-        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_INT);
-    }
-
-    /**
-     * Data Provider.
-     *
-     * @return array<string, mixed>
-     */
-    public function dataInvalidTypeNotString()
-    {
-        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
 
     /**
