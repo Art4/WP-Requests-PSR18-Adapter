@@ -22,6 +22,7 @@ final class FromResponseTest extends TestCase
     public function testFromResponseReturnsResponseInterface()
     {
         $requestsResponse = new RequestsResponse();
+        $requestsResponse->headers['name'] = 'value';
 
         $this->assertInstanceOf(
             ResponseInterface::class,
