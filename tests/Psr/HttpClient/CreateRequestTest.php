@@ -81,7 +81,7 @@ final class CreateRequestTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }

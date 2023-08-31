@@ -31,7 +31,7 @@ final class GetQueryTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataGetQuery(): array
+    public static function dataGetQuery(): array
     {
         return [
             'empty' => ['', ''],

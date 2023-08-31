@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Request;
 
-use InvalidArgumentException;
+use Art4\Requests\Psr\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use Art4\Requests\Psr\Request;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithMethodTest extends TestCase
 {
@@ -42,16 +40,6 @@ final class WithMethodTest extends TestCase
     }
 
     /**
-     * Data Provider.
-     *
-     * @return array<string, mixed>
-     */
-    public function dataInvalidTypeNotString(): array
-    {
-        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
-    }
-
-    /**
      * Tests changing the method when using withMethod().
      *
      * @dataProvider dataValidMethod
@@ -77,7 +65,7 @@ final class WithMethodTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataValidMethod(): array
+    public static function dataValidMethod(): array
     {
         return [
             'Return an instance with the provided HTTP method' => ['POST', 'POST'],

@@ -34,7 +34,7 @@ final class GetPathTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataGetPath(): array
+    public static function dataGetPath(): array
     {
         return [
             'Retrieve the path component of the URI' => ['https://example.org/path', '/path'],

@@ -17,6 +17,7 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -46,7 +47,7 @@ final class WithHeaderTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
@@ -77,7 +78,7 @@ final class WithHeaderTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotStringOrArray()
+    public static function dataInvalidTypeNotStringOrArray()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING, TypeProviderHelper::GROUP_ARRAY);
     }
@@ -107,6 +108,7 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -125,6 +127,7 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */

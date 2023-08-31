@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Request;
 
-use InvalidArgumentException;
+use Art4\Requests\Psr\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use Art4\Requests\Psr\Request;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithoutHeaderTest extends TestCase
 {
@@ -42,19 +40,10 @@ final class WithoutHeaderTest extends TestCase
     }
 
     /**
-     * Data Provider.
-     *
-     * @return array<string, mixed>
-     */
-    public function dataInvalidTypeNotString()
-    {
-        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
-    }
-
-    /**
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withoutHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -74,6 +63,7 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withoutHeader
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */

@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Request;
 
-use InvalidArgumentException;
-use Psr\Http\Message\UriInterface;
 use Art4\Requests\Psr\Request;
+use Psr\Http\Message\UriInterface;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class GetHeaderLineTest extends TestCase
 {
@@ -54,15 +52,5 @@ final class GetHeaderLineTest extends TestCase
         $request = $request->withHeader('name', 'value');
 
         $this->assertSame('value', $request->getHeaderLine('NAME'));
-    }
-
-    /**
-     * Data Provider.
-     *
-     * @return array<string, mixed>
-     */
-    public function dataInvalidTypeNotString()
-    {
-        return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
 }

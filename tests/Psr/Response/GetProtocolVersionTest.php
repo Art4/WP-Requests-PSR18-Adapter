@@ -13,7 +13,8 @@ final class GetProtocolVersionTest extends TestCase
     /**
      * Tests receiving the protocol version when using getProtocolVersion().
      *
-     * @covers \Art4\Requests\Psr\Request::getProtocolVersion
+     * @covers \Art4\Requests\Psr\Response::fromResponse
+     * @covers \Art4\Requests\Psr\Response::getProtocolVersion
      *
      * @return void
      */
@@ -30,7 +31,7 @@ final class GetProtocolVersionTest extends TestCase
     /**
      * Tests receiving the protocol version when using getProtocolVersion().
      *
-     * @covers \Art4\Requests\Psr\Request::getProtocolVersion
+     * @covers \Art4\Requests\Psr\Response::getProtocolVersion
      *
      * @return void
      */

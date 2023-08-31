@@ -31,7 +31,7 @@ final class GetAuthorityTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataGetAuthority(): array
+    public static function dataGetAuthority(): array
     {
         return [
             'empty' => ['', ''],

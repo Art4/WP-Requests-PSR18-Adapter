@@ -14,13 +14,15 @@ final class FromResponseTest extends TestCase
     /**
      * Tests receiving a Response instance when using fromResponse().
      *
-     * @covers \Art4\Requests\Psr\Request::fromResponse
+     * @covers \Art4\Requests\Psr\Response::fromResponse
+     * @covers \Art4\Requests\Psr\Response::__construct
      *
      * @return void
      */
     public function testFromResponseReturnsResponseInterface()
     {
         $requestsResponse = new RequestsResponse();
+        $requestsResponse->headers['name'] = 'value';
 
         $this->assertInstanceOf(
             ResponseInterface::class,

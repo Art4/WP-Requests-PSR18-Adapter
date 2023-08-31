@@ -15,7 +15,7 @@ final class GetReasonPhraseTest extends TestCase
      *
      * @dataProvider dataValidReasonPhrase
      *
-     * @covers \Art4\Requests\Psr\Request::getReasonPhrase
+     * @covers \Art4\Requests\Psr\Response::getReasonPhrase
      *
      * @return void
      */
@@ -31,7 +31,7 @@ final class GetReasonPhraseTest extends TestCase
     /**
      * Tests receiving the reason phrase when using getReasonPhrase().
      *
-     * @covers \Art4\Requests\Psr\Request::getReasonPhrase
+     * @covers \Art4\Requests\Psr\Response::getReasonPhrase
      *
      * @return void
      */
@@ -49,7 +49,7 @@ final class GetReasonPhraseTest extends TestCase
      *
      * @return array<array<int|string>>
      */
-    public function dataValidReasonPhrase()
+    public static function dataValidReasonPhrase()
     {
         return [
             [100, 'Continue'],

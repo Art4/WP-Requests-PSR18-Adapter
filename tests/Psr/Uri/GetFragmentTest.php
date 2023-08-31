@@ -31,7 +31,7 @@ final class GetFragmentTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataGetFragment(): array
+    public static function dataGetFragment(): array
     {
         return [
             'empty' => ['', ''],

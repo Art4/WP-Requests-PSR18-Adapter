@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.5/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.3/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         forceCoversAnnotation="true"
-         beStrictAboutCoversAnnotation="true"
+         beStrictAboutCoverageMetadata="false"
          beStrictAboutOutputDuringTests="true"
-         beStrictAboutTodoAnnotatedTests="true"
-         verbose="true">
-    <testsuite name="default">
-        <directory suffix="Test.php">tests</directory>
-    </testsuite>
-
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
+         cacheDirectory=".phpunit.cache"
+         requireCoverageMetadata="false">
+  <coverage/>
+  <testsuite name="default">
+    <directory suffix="Test.php">tests</directory>
+  </testsuite>
+  <source>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+  </source>
 </phpunit>

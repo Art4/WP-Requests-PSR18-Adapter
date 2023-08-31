@@ -22,8 +22,8 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
         "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^8 || ^9",
-        "yoast/phpunit-polyfills": "^1.0.3"
+        "phpunit/phpunit": "^8 || ^9 || ^10",
+        "yoast/phpunit-polyfills": "^2"
     },
     "autoload": {
         "files": ["v1-compat/autoload.php"],
@@ -37,6 +37,7 @@
         }
     },
     "scripts": {
+        "coverage": "phpunit --coverage-html=.code-coverage",
         "phpstan": "phpstan analyze --memory-limit 512M --configuration .phpstan.neon",
         "phpunit": "phpunit"
     },

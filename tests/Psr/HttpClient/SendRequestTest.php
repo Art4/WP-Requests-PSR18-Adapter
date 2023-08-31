@@ -12,11 +12,12 @@ use WpOrg\Requests\Exception\Transport as ExceptionTransport;
 use WpOrg\Requests\Transport;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
-final class HttpClientTest extends TestCase
+final class SendRequestTest extends TestCase
 {
     /**
      * Tests receiving a response when using sendRequest().
      *
+     * @covers \Art4\Requests\Psr\HttpClient::__construct
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
      *
      * @return void

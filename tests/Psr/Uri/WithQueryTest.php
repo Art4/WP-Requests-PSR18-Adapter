@@ -67,7 +67,7 @@ final class WithQueryTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString()
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
@@ -98,7 +98,7 @@ final class WithQueryTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public function dataWithQuery()
+    public static function dataWithQuery()
     {
         return [
             'Return an instance with the specified query string' => ['query', 'query'],

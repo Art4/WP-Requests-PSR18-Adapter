@@ -47,6 +47,8 @@ final class WithUriTest extends TestCase
      * Tests changing the uri when using withUri().
      *
      * @covers \Art4\Requests\Psr\Request::withUri
+     * @covers \Art4\Requests\Psr\Request::setUri
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -66,6 +68,8 @@ final class WithUriTest extends TestCase
      * Tests changing the uri when using withUri().
      *
      * @covers \Art4\Requests\Psr\Request::withUri
+     * @covers \Art4\Requests\Psr\Request::setUri
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -88,6 +92,8 @@ final class WithUriTest extends TestCase
      * Tests changing the uri when using withUri().
      *
      * @covers \Art4\Requests\Psr\Request::withUri
+     * @covers \Art4\Requests\Psr\Request::setUri
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -111,6 +117,8 @@ final class WithUriTest extends TestCase
      * Tests changing the uri when using withUri().
      *
      * @covers \Art4\Requests\Psr\Request::withUri
+     * @covers \Art4\Requests\Psr\Request::setUri
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @return void
      */
@@ -135,6 +143,8 @@ final class WithUriTest extends TestCase
      * @dataProvider dataPreserveHost
      *
      * @covers \Art4\Requests\Psr\Request::withUri
+     * @covers \Art4\Requests\Psr\Request::setUri
+     * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @param array<string,string[]> $expectedHeaders
      *
@@ -158,7 +168,7 @@ final class WithUriTest extends TestCase
      *
      * @return array<string,array<string|array<string,string[]>>>
      */
-    public function dataPreserveHost(): array
+    public static function dataPreserveHost(): array
     {
         return [
             // 'Host header is missing or empty, and the new URI contains a host component, this method MUST update the Host header' => ['', 'example.org', ['Host' => ['example.org']]],
