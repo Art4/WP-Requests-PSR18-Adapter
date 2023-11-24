@@ -11,13 +11,13 @@ jobs:
   tests:
     name: Tests (PHP ${{ matrix.php }} with ${{ matrix.prefer-versions }} lib versions)
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.php == '8.3' }}
+    continue-on-error: ${{ matrix.php == '8.4' }}
 
     strategy:
       fail-fast: false
       matrix:
         operating-system: ['ubuntu-latest']
-        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
         prefer-versions: ['latest']
         include:
           - php: '7.2'
@@ -46,12 +46,12 @@ jobs:
         with:
           composer-options: --prefer-lowest
 
-      - name: "Install Composer dependencies (PHP < 8.3)"
-        if: ${{ matrix.prefer-versions == 'latest' && matrix.php < '8.3' }}
+      - name: "Install Composer dependencies (PHP <= 8.3)"
+        if: ${{ matrix.prefer-versions == 'latest' && matrix.php <= '8.3' }}
         uses: "ramsey/composer-install@v2"
 
-      - name: "Install Composer dependencies (PHP 8.3)"
-        if: ${{ matrix.php >= '8.3' }}
+      - name: "Install Composer dependencies (PHP 8.4)"
+        if: ${{ matrix.php >= '8.4' }}
         uses: "ramsey/composer-install@v2"
         with:
           composer-options: --ignore-platform-reqs
@@ -65,7 +65,7 @@ jobs:
         run: composer run phpstan -- --error-format=github
 
       - name: Send coverage report to Codecov
-        if: ${{ success() && matrix.php == '8.2' }}
+        if: ${{ success() && matrix.php == '8.3' }}
         uses: codecov/codecov-action@v3
         with:
           files: ./.code-coverage/clover.xml
