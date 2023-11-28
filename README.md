@@ -27,6 +27,21 @@ WordPress/Requests PSR-18 Adapter is [available on Packagist](https://packagist.
 composer require art4/requests-psr18-adapter
 ```
 
+If you want to use WordPress/Requests PSR-18 Adapter in context of a WordPress instance (e.g. in a plugin or theme) you should add `"rmccue/requests": "*"` as a `replace` package link. This will prevent composer from installing `rmccue/requests` two times, leading to fatal errors.
+
+Example `composer.json`:
+
+```json
+{
+    "require": {
+        "art4/requests-psr18-adapter": "^1.1"
+    },
+    "replace": {
+        "rmccue/requests": "*"
+    }
+}
+```
+
 ### Examples
 
 Take a look at the [examples directory](examples/) for more examples.
