@@ -20,7 +20,7 @@
         "rmccue/requests": "^1.8 || ^2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.0",
+        "friendsofphp/php-cs-fixer": "^3.4",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^8 || ^9 || ^10",
         "yoast/phpunit-polyfills": "^2"
@@ -37,9 +37,15 @@
         }
     },
     "scripts": {
+        "codestyle": "php-cs-fixer fix",
         "coverage": "phpunit --coverage-html=.code-coverage",
         "phpstan": "phpstan analyze --memory-limit 512M --configuration .phpstan.neon",
-        "phpunit": "phpunit"
+        "phpunit": "phpunit",
+        "test": [
+            "@phpstan",
+            "@phpunit",
+            "@codestyle --dry-run --diff"
+        ]
     },
     "provide": {
         "psr/http-client-implementation": "^1.0"

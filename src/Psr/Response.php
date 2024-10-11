@@ -212,7 +212,7 @@ final class Response implements ResponseInterface
      * @return static
      * @throws \InvalidArgumentException For invalid status code arguments.
      */
-	public function withStatus(int $code, string $reasonPhrase = ''): ResponseInterface
+    public function withStatus(int $code, string $reasonPhrase = ''): ResponseInterface
     {
         $response = clone($this);
         $response->status_code = $code;

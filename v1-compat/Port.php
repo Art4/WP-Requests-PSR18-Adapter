@@ -4,7 +4,7 @@
  *
  * @package Requests\Utilities
  * @since   2.0.0
- * @source https://github.com/WordPress/Requests/blob/v2.0.0/src/Port.php
+ * @source https://github.com/WordPress/Requests/blob/v2.0.12/src/Port.php
  */
 
 namespace WpOrg\Requests;

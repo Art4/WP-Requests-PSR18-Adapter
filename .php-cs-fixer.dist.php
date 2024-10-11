@@ -14,4 +14,5 @@ return (new PhpCsFixer\Config())
         '@PHPUnit84Migration:risky' => true,
     ])
     ->setFinder($finder)
+    ->setRiskyAllowed(true)
 ;

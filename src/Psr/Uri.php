@@ -514,16 +514,16 @@ final class Uri implements UriInterface
 
         $path = $this->getPath();
 
-        // If the path is rootless and an authority is present, the path MUST
-        // be prefixed by "/".
         if (strncmp($path, '/', 1) !== 0 && $authority !== '') {
+            // If the path is rootless and an authority is present, the path MUST
+            // be prefixed by "/".
             $string .= '/' . $path;
-        // If the path is starting with more than one "/" and no authority is
-        // present, the starting slashes MUST be reduced to one.
         } elseif (strncmp($path, '//', 2) === 0 && $authority === '') {
+            // If the path is starting with more than one "/" and no authority is
+            // present, the starting slashes MUST be reduced to one.
             $string .= '/' . ltrim($path, '/');
-        // The path can be concatenated without delimiters
         } else {
+            // The path can be concatenated without delimiters
             $string .= $path;
         }
 
