@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  tests:
+  unit-tests:
     name: Tests (PHP ${{ matrix.php }} with ${{ matrix.prefer-versions }} lib versions)
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.php == '8.4' }}
@@ -17,7 +17,15 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: ['ubuntu-latest']
-        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+        php:
+          - '8.4'
+          - '8.3'
+          - '8.2'
+          - '8.1'
+          - '8.0'
+          - '7.4'
+          - '7.3'
+          - '7.2'
         prefer-versions: ['latest']
         include:
           - php: '7.2'
@@ -26,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
@@ -59,11 +67,6 @@ jobs:
       - name: Run phpunit tests
         run: composer run phpunit -- --coverage-clover ./.code-coverage/clover.xml
 
-      - name: Run static code analysis
-        # Do not run phpstan on lowest php version
-        if: ${{ matrix.prefer-versions == 'latest' }}
-        run: composer run phpstan -- --error-format=github
-
       - name: Send coverage report to Codecov
         if: ${{ success() && matrix.php == '8.3' }}
         uses: codecov/codecov-action@v3
@@ -71,3 +74,35 @@ jobs:
           files: ./.code-coverage/clover.xml
           fail_ci_if_error: true
           verbose: true
+
+  static-code-analysis:
+    name: PHPStan (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: ["ubuntu-latest"]
+        php: ["8.3"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        with:
+          php-version: ${{ matrix.php }}
+          tools: phpunit
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+          coverage: xdebug
+
+      # Install composer dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: "Install Composer dependencies"
+        uses: "ramsey/composer-install@v2"
+
+      - name: Run static code analysis
+        run: composer run phpstan -- --error-format=github

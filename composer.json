@@ -37,9 +37,15 @@
         }
     },
     "scripts": {
+        "codestyle": "php-cs-fixer fix",
         "coverage": "phpunit --coverage-html=.code-coverage",
         "phpstan": "phpstan analyze --memory-limit 512M --configuration .phpstan.neon",
-        "phpunit": "phpunit"
+        "phpunit": "phpunit",
+        "test": [
+            "@phpstan",
+            "@phpunit",
+            "@codestyle --dry-run --diff"
+        ]
     },
     "provide": {
         "psr/http-client-implementation": "^1.0"
