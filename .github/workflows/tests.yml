@@ -1,7 +1,6 @@
-name: PHPUnit
+name: Check
 
 on:
-  push:
   pull_request:
   # Allow manually triggering the workflow.
   workflow_dispatch:
@@ -9,7 +8,7 @@ on:
 jobs:
 
   unit-tests:
-    name: Tests (PHP ${{ matrix.php }} with ${{ matrix.prefer-versions }} lib versions)
+    name: PHPUnit (PHP ${{ matrix.php }} with ${{ matrix.prefer-versions }} lib versions)
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.php == '8.4' }}
 
@@ -98,7 +97,7 @@ jobs:
         run: composer run phpstan -- --error-format=github
 
   code-coverage:
-    name: PHPStan (PHP ${{ matrix.php }})
+    name: Code Coverage (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
 
     strategy:
@@ -136,3 +135,34 @@ jobs:
           files: ./.code-coverage/clover.xml
           fail_ci_if_error: true
           verbose: true
+
+  code-style:
+    name: Code Style (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: ["ubuntu-latest"]
+        php: ["8.3"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        with:
+          php-version: ${{ matrix.php }}
+          tools: none
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+
+      # Install composer dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: "Install Composer dependencies"
+        uses: "ramsey/composer-install@v2"
+
+      - name: Check code-style
+        run: composer run codestyle -- --dry-run --diff
