@@ -1,7 +1,4 @@
 <?php
-/**
- * @source https://github.com/WordPress/Requests/blob/v2.0.0/src/Exception/InvalidArgument.php
- */
 
 namespace WpOrg\Requests\Exception;
 
@@ -12,6 +9,7 @@ use InvalidArgumentException;
  *
  * @package Requests\Exceptions
  * @since   2.0.0
+ * @source https://github.com/WordPress/Requests/blob/v2.0.12/src/Exception/InvalidArgument.php
  */
 final class InvalidArgument extends InvalidArgumentException {
 
@@ -32,7 +30,7 @@ final class InvalidArgument extends InvalidArgumentException {
 		return new self(
 			sprintf(
 				'%s::%s(): Argument #%d (%s) must be of type %s, %s given',
-				isset($stack[1]['class']) ? $stack[1]['class'] : '',
+				$stack[1]['class'],
 				$stack[1]['function'],
 				$position,
 				$name,
