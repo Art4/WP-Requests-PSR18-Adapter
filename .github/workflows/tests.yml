@@ -146,7 +146,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: ["ubuntu-latest"]
-        php: ["8.4"]
+        php: ["8.3"]
 
     steps:
       - name: Checkout
