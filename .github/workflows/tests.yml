@@ -10,7 +10,7 @@ jobs:
   unit-tests:
     name: PHPUnit (PHP ${{ matrix.php }} with ${{ matrix.prefer-versions }} lib versions)
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.php == '8.4' }}
+    continue-on-error: ${{ matrix.php == '8.5' }}
 
     strategy:
       fail-fast: false
@@ -57,8 +57,8 @@ jobs:
         if: ${{ matrix.prefer-versions == 'latest' && matrix.php <= '8.4' }}
         uses: "ramsey/composer-install@v2"
 
-      - name: "Install Composer dependencies (PHP 8.4)"
-        if: ${{ matrix.php >= '8.4' }}
+      - name: "Install Composer dependencies (PHP 8.5)"
+        if: ${{ matrix.php == '8.5' }}
         uses: "ramsey/composer-install@v2"
         with:
           composer-options: --ignore-platform-reqs
