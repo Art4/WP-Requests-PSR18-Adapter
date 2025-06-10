@@ -21,7 +21,7 @@ final class GetHeaderTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
-        $this->assertSame([], $request->getHeader('name'));
+        TestCase::assertSame([], $request->getHeader('name'));
     }
 
     /**
@@ -36,7 +36,7 @@ final class GetHeaderTest extends TestCase
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $request = $request->withHeader('name', 'value');
 
-        $this->assertSame(['value'], $request->getHeader('name'));
+        TestCase::assertSame(['value'], $request->getHeader('name'));
     }
 
     /**
@@ -51,6 +51,6 @@ final class GetHeaderTest extends TestCase
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $request = $request->withHeader('name', 'value');
 
-        $this->assertSame(['value'], $request->getHeader('NAME'));
+        TestCase::assertSame(['value'], $request->getHeader('NAME'));
     }
 }

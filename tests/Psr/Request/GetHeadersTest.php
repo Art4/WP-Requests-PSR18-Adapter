@@ -23,7 +23,7 @@ final class GetHeadersTest extends TestCase
         $uri->method('getHost')->willReturn('');
         $request = Request::withMethodAndUri('GET', $uri);
 
-        $this->assertSame([], $request->getHeaders());
+        TestCase::assertSame([], $request->getHeaders());
     }
 
     /**
@@ -39,6 +39,6 @@ final class GetHeadersTest extends TestCase
         $uri->method('getHost')->willReturn('example.org');
         $request = Request::withMethodAndUri('GET', $uri);
 
-        $this->assertSame(['Host' => ['example.org']], $request->getHeaders());
+        TestCase::assertSame(['Host' => ['example.org']], $request->getHeaders());
     }
 }

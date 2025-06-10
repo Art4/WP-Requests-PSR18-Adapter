@@ -21,7 +21,7 @@ final class HasHeaderTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
-        $this->assertFalse($request->hasHeader('name'));
+        TestCase::assertFalse($request->hasHeader('name'));
     }
 
     /**
@@ -36,7 +36,7 @@ final class HasHeaderTest extends TestCase
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $request = $request->withHeader('name', 'value');
 
-        $this->assertTrue($request->hasHeader('name'));
+        TestCase::assertTrue($request->hasHeader('name'));
     }
 
     /**
@@ -51,6 +51,6 @@ final class HasHeaderTest extends TestCase
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $request = $request->withHeader('NAME', 'value');
 
-        $this->assertTrue($request->hasHeader('name'));
+        TestCase::assertTrue($request->hasHeader('name'));
     }
 }

@@ -20,6 +20,6 @@ final class GetSizeTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('full content');
 
-        $this->assertSame(12, $stream->getSize());
+        TestCase::assertSame(12, $stream->getSize());
     }
 }

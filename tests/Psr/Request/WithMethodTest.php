@@ -22,7 +22,7 @@ final class WithMethodTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
-        $this->assertInstanceOf(RequestInterface::class, $request->withMethod('GET'));
+        TestCase::assertInstanceOf(RequestInterface::class, $request->withMethod('GET'));
     }
 
     /**
@@ -36,7 +36,7 @@ final class WithMethodTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
-        $this->assertNotSame($request, $request->withMethod('GET'));
+        TestCase::assertNotSame($request, $request->withMethod('GET'));
     }
 
     /**
@@ -57,7 +57,7 @@ final class WithMethodTest extends TestCase
 
         $request = $request->withMethod($input);
 
-        $this->assertSame($expected, $request->getMethod());
+        TestCase::assertSame($expected, $request->getMethod());
     }
 
     /**

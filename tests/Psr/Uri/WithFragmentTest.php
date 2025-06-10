@@ -24,7 +24,7 @@ final class WithFragmentTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertInstanceOf(UriInterface::class, $uri->withFragment('fragment'));
+        TestCase::assertInstanceOf(UriInterface::class, $uri->withFragment('fragment'));
     }
 
     /**
@@ -38,7 +38,7 @@ final class WithFragmentTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertNotSame($uri, $uri->withFragment('fragment'));
+        TestCase::assertNotSame($uri, $uri->withFragment('fragment'));
     }
 
     /**
@@ -90,7 +90,7 @@ final class WithFragmentTest extends TestCase
 
         $uri = $uri->withFragment($input);
 
-        $this->assertSame($expected, $uri->getFragment());
+        TestCase::assertSame($expected, $uri->getFragment());
     }
 
     /**

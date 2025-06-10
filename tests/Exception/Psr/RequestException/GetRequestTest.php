@@ -26,6 +26,6 @@ final class GetRequestTest extends TestCase
 
         $exception = new RequestException($request, $previous);
 
-        $this->assertSame($request, $exception->getRequest());
+        TestCase::assertSame($request, $exception->getRequest());
     }
 }

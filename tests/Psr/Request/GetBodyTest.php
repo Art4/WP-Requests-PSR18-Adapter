@@ -22,6 +22,6 @@ final class GetBodyTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
-        $this->assertInstanceOf(StreamInterface::class, $request->getBody());
+        TestCase::assertInstanceOf(StreamInterface::class, $request->getBody());
     }
 }

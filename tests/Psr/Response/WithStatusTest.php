@@ -22,7 +22,7 @@ final class WithStatusTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        $this->assertInstanceOf(ResponseInterface::class, $response->withStatus(200));
+        TestCase::assertInstanceOf(ResponseInterface::class, $response->withStatus(200));
     }
 
     /**
@@ -36,7 +36,7 @@ final class WithStatusTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        $this->assertNotSame($response, $response->withStatus(200));
+        TestCase::assertNotSame($response, $response->withStatus(200));
     }
 
     /**
@@ -55,8 +55,8 @@ final class WithStatusTest extends TestCase
 
         $response = $response->withStatus($code, $phrase);
 
-        $this->assertSame($code, $response->getStatusCode());
-        $this->assertSame($expected, $response->getReasonPhrase());
+        TestCase::assertSame($code, $response->getStatusCode());
+        TestCase::assertSame($expected, $response->getReasonPhrase());
     }
 
     /**

@@ -20,6 +20,6 @@ final class EofTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        $this->assertTrue($stream->eof());
+        TestCase::assertTrue($stream->eof());
     }
 }

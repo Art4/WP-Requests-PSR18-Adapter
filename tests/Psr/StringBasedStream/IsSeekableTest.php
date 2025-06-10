@@ -20,6 +20,6 @@ final class IsSeekableTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        $this->assertFalse($stream->isSeekable());
+        TestCase::assertFalse($stream->isSeekable());
     }
 }

@@ -27,7 +27,7 @@ final class GetRequestTargetTest extends TestCase
 
         $request = Request::withMethodAndUri('GET', $uri);
 
-        $this->assertSame($expected, $request->getRequestTarget());
+        TestCase::assertSame($expected, $request->getRequestTarget());
     }
 
     /**

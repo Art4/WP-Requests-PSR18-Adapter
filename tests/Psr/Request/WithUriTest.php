@@ -24,7 +24,7 @@ final class WithUriTest extends TestCase
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');
 
-        $this->assertInstanceOf(RequestInterface::class, $request->withUri($uri));
+        TestCase::assertInstanceOf(RequestInterface::class, $request->withUri($uri));
     }
 
     /**
@@ -40,7 +40,7 @@ final class WithUriTest extends TestCase
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');
 
-        $this->assertNotSame($request, $request->withUri($uri));
+        TestCase::assertNotSame($request, $request->withUri($uri));
     }
 
     /**
@@ -61,7 +61,7 @@ final class WithUriTest extends TestCase
         $uri2->method('getHost')->willReturn('');
         $request = $request->withUri($uri2);
 
-        $this->assertSame($uri2, $request->getUri());
+        TestCase::assertSame($uri2, $request->getUri());
     }
 
     /**
@@ -79,13 +79,13 @@ final class WithUriTest extends TestCase
         $uri->method('getHost')->willReturn('example.org');
         $request = Request::withMethodAndUri('GET', $uri);
 
-        $this->assertSame(['Host' => ['example.org']], $request->getHeaders());
+        TestCase::assertSame(['Host' => ['example.org']], $request->getHeaders());
 
         $uri2 = $this->createMock(UriInterface::class);
         $uri2->method('getHost')->willReturn('example.com');
         $request = $request->withUri($uri2);
 
-        $this->assertSame(['Host' => ['example.com']], $request->getHeaders());
+        TestCase::assertSame(['Host' => ['example.com']], $request->getHeaders());
     }
 
     /**
@@ -104,13 +104,13 @@ final class WithUriTest extends TestCase
         $request = Request::withMethodAndUri('GET', $uri);
         $request = $request->withHeader('name', 'value');
 
-        $this->assertSame(['name' => ['value']], $request->getHeaders());
+        TestCase::assertSame(['name' => ['value']], $request->getHeaders());
 
         $uri2 = $this->createMock(UriInterface::class);
         $uri2->method('getHost')->willReturn('example.com');
         $request = $request->withUri($uri2);
 
-        $this->assertSame(['Host' => ['example.com'], 'name' => ['value']], $request->getHeaders());
+        TestCase::assertSame(['Host' => ['example.com'], 'name' => ['value']], $request->getHeaders());
     }
 
     /**
@@ -128,13 +128,13 @@ final class WithUriTest extends TestCase
         $uri->method('getHost')->willReturn('example.org');
         $request = Request::withMethodAndUri('GET', $uri);
 
-        $this->assertSame(['Host' => ['example.org']], $request->getHeaders());
+        TestCase::assertSame(['Host' => ['example.org']], $request->getHeaders());
 
         $uri2 = $this->createMock(UriInterface::class);
         $uri2->method('getHost')->willReturn('');
         $request = $request->withUri($uri2);
 
-        $this->assertSame(['Host' => ['example.org']], $request->getHeaders());
+        TestCase::assertSame(['Host' => ['example.org']], $request->getHeaders());
     }
 
     /**
@@ -160,7 +160,7 @@ final class WithUriTest extends TestCase
         $uri2->method('getHost')->willReturn($newHost);
         $request = $request->withUri($uri2, true);
 
-        $this->assertSame($expectedHeaders, $request->getHeaders());
+        TestCase::assertSame($expectedHeaders, $request->getHeaders());
     }
 
     /**

@@ -25,7 +25,7 @@ final class GetReasonPhraseTest extends TestCase
         $requestsResponse->status_code = $code;
         $response = Response::fromResponse($requestsResponse);
 
-        $this->assertSame($phrase, $response->getReasonPhrase());
+        TestCase::assertSame($phrase, $response->getReasonPhrase());
     }
 
     /**
@@ -41,7 +41,7 @@ final class GetReasonPhraseTest extends TestCase
         $requestsResponse->status_code = 0;
         $response = Response::fromResponse($requestsResponse);
 
-        $this->assertSame('', $response->getReasonPhrase());
+        TestCase::assertSame('', $response->getReasonPhrase());
     }
 
     /**

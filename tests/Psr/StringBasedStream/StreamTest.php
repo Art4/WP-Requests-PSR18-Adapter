@@ -20,7 +20,7 @@ final class StreamTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('foobar');
 
-        $this->assertSame(6, $stream->getSize());
-        $this->assertSame('foobar', $stream->__toString());
+        TestCase::assertSame(6, $stream->getSize());
+        TestCase::assertSame('foobar', $stream->__toString());
     }
 }

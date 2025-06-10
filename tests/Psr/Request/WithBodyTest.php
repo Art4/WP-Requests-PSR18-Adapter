@@ -25,7 +25,7 @@ final class WithBodyTest extends TestCase
 
         $body = $this->createMock(StreamInterface::class);
 
-        $this->assertInstanceOf(RequestInterface::class, $request->withBody($body));
+        TestCase::assertInstanceOf(RequestInterface::class, $request->withBody($body));
     }
 
     /**
@@ -41,6 +41,6 @@ final class WithBodyTest extends TestCase
 
         $body = $this->createMock(StreamInterface::class);
 
-        $this->assertNotSame($request, $request->withBody($body));
+        TestCase::assertNotSame($request, $request->withBody($body));
     }
 }
