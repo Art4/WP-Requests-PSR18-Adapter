@@ -17,11 +17,9 @@ final class GetRequestTargetTest extends TestCase
      * @dataProvider dataGetRequestTarget
      *
      * @covers \Art4\Requests\Psr\Request::getRequestTarget
-     *
-     * @return void
      */
     #[DataProvider('dataGetRequestTarget')]
-    public function testGetRequestTargetReturnsString(string $path, string $query, string $expected)
+    public function testGetRequestTargetReturnsString(string $path, string $query, string $expected): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getPath')->willReturn($path);

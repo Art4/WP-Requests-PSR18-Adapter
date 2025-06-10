@@ -14,10 +14,8 @@ final class CreateStreamTest extends TestCase
      * Tests receiving a Stream when using createStream().
      *
      * @covers \Art4\Requests\Psr\HttpClient::createStream
-     *
-     * @return void
      */
-    public function testCreateStreamReturnsStream()
+    public function testCreateStreamReturnsStream(): void
     {
         $httpClient = new HttpClient();
 

@@ -16,10 +16,8 @@ final class GetRequestTest extends TestCase
      *
      * @covers \Art4\Requests\Exception\Psr\RequestException::__construct
      * @covers \Art4\Requests\Exception\Psr\RequestException::getRequest
-     *
-     * @return void
      */
-    public function testGetRequestReturnsRequest()
+    public function testGetRequestReturnsRequest(): void
     {
         $request = $this->createMock(RequestInterface::class);
         $previous = $this->createMock(Transport::class);

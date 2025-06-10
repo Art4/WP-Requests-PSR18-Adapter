@@ -18,10 +18,8 @@ final class WithHostTest extends TestCase
      * Tests changing the host when using withHost().
      *
      * @covers \Art4\Requests\Psr\Uri::withHost
-     *
-     * @return void
      */
-    public function testWithHostReturnsUri()
+    public function testWithHostReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -32,10 +30,8 @@ final class WithHostTest extends TestCase
      * Tests changing the host when using withHost().
      *
      * @covers \Art4\Requests\Psr\Uri::withHost
-     *
-     * @return void
      */
-    public function testWithHostWithEmptyStringRemovesTheHost()
+    public function testWithHostWithEmptyStringRemovesTheHost(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -48,10 +44,8 @@ final class WithHostTest extends TestCase
      * Tests changing the host when using withHost().
      *
      * @covers \Art4\Requests\Psr\Uri::withHost
-     *
-     * @return void
      */
-    public function testWithHostReturnsNewInstance()
+    public function testWithHostReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -66,11 +60,9 @@ final class WithHostTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withHost
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotString')]
-    public function testWithHostWithoutStringThrowsInvalidArgumentException($input)
+    public function testWithHostWithoutStringThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -94,10 +86,8 @@ final class WithHostTest extends TestCase
      * Tests changing the host when using withHost().
      *
      * @covers \Art4\Requests\Psr\Uri::withHost
-     *
-     * @return void
      */
-    public function testWithHostChangesTheHost()
+    public function testWithHostChangesTheHost(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 

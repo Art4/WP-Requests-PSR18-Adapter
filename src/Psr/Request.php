@@ -321,9 +321,8 @@ final class Request implements RequestInterface
      * @see http://tools.ietf.org/html/rfc3986#section-4.3
      * @param UriInterface $uri New request URI to use.
      * @param bool $preserveHost Preserve the original state of the Host header.
-     * @return void
      */
-    private function setUri(UriInterface $uri, $preserveHost)
+    private function setUri(UriInterface $uri, $preserveHost): void
     {
         $this->uri = $uri;
 

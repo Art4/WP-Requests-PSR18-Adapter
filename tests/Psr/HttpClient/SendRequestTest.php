@@ -19,10 +19,8 @@ final class SendRequestTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\HttpClient::__construct
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestWithGetSendsCorrectDataAndReturnsCorrectResponseData()
+    public function testSendRequestWithGetSendsCorrectDataAndReturnsCorrectResponseData(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -57,10 +55,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving a response when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestWithPostSendsCorrectDataAndReturnsCorrectResponseData()
+    public function testSendRequestWithPostSendsCorrectDataAndReturnsCorrectResponseData(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -96,10 +92,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving a response when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestReturnsResponseOn404Error()
+    public function testSendRequestReturnsResponseOn404Error(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -134,10 +128,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving a response when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestReturnsResponseOn503Error()
+    public function testSendRequestReturnsResponseOn503Error(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -173,10 +165,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving an exception when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestThrowsRequestException()
+    public function testSendRequestThrowsRequestException(): void
     {
         $transport = $this->createMock(Transport::class);
 
@@ -196,10 +186,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving an exception when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestThrowsNetworkException()
+    public function testSendRequestThrowsNetworkException(): void
     {
         $e = new ExceptionTransport('error message', 'Unknown');
 

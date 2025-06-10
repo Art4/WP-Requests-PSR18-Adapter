@@ -14,10 +14,8 @@ final class GetHeaderTest extends TestCase
      * Tests receiving the header when using getHeader().
      *
      * @covers \Art4\Requests\Psr\Response::getHeader
-     *
-     * @return void
      */
-    public function testGetHeaderWithoutHeaderReturnsEmptyArray()
+    public function testGetHeaderWithoutHeaderReturnsEmptyArray(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -28,10 +26,8 @@ final class GetHeaderTest extends TestCase
      * Tests receiving the header when using getHeader().
      *
      * @covers \Art4\Requests\Psr\Response::getHeader
-     *
-     * @return void
      */
-    public function testGetHeaderReturnsArray()
+    public function testGetHeaderReturnsArray(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
         $response = $response->withHeader('name', 'value');
@@ -43,10 +39,8 @@ final class GetHeaderTest extends TestCase
      * Tests receiving the header when using getHeader().
      *
      * @covers \Art4\Requests\Psr\Response::getHeader
-     *
-     * @return void
      */
-    public function testGetHeaderWithCaseInsensitiveNameReturnsArray()
+    public function testGetHeaderWithCaseInsensitiveNameReturnsArray(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
         $response = $response->withHeader('name', 'value');

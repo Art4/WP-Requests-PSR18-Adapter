@@ -16,10 +16,8 @@ final class WithStatusTest extends TestCase
      * Tests changing the status code when using withStatus().
      *
      * @covers \Art4\Requests\Psr\Response::withStatus
-     *
-     * @return void
      */
-    public function testWithStatusReturnsResponseInstance()
+    public function testWithStatusReturnsResponseInstance(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -30,10 +28,8 @@ final class WithStatusTest extends TestCase
      * Tests changing the status code when using withStatus().
      *
      * @covers \Art4\Requests\Psr\Response::withStatus
-     *
-     * @return void
      */
-    public function testWithStatusReturnsNewInstance()
+    public function testWithStatusReturnsNewInstance(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -44,10 +40,8 @@ final class WithStatusTest extends TestCase
      * Tests receiving an exception when the withStatus() method received an invalid input type as `$reasonPhrase`.
      *
      * @covers \Art4\Requests\Psr\Response::withStatus
-     *
-     * @return void
      */
-    public function testWithStatusWithInvalidCodeThrowsException()
+    public function testWithStatusWithInvalidCodeThrowsException(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -77,11 +71,9 @@ final class WithStatusTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Response::withStatus
      * @covers \Art4\Requests\Psr\Response::getReasonPhrase
-     *
-     * @return void
      */
     #[DataProvider('dataWithStatus')]
-    public function testWithStatusChangesStatusCode(int $code, string $phrase, string $expected)
+    public function testWithStatusChangesStatusCode(int $code, string $phrase, string $expected): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 

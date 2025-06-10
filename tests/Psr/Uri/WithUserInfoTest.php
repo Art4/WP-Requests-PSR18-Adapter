@@ -18,10 +18,8 @@ final class WithUserInfoTest extends TestCase
      * Tests changing the user-info when using withUserInfo().
      *
      * @covers \Art4\Requests\Psr\Uri::withUserInfo
-     *
-     * @return void
      */
-    public function testWithUserInfoReturnsUriInstance()
+    public function testWithUserInfoReturnsUriInstance(): void
     {
         $uri = Uri::fromIri(new Iri(''));
 
@@ -32,10 +30,8 @@ final class WithUserInfoTest extends TestCase
      * Tests changing the user-info when using withUserInfo().
      *
      * @covers \Art4\Requests\Psr\Uri::withUserInfo
-     *
-     * @return void
      */
-    public function testWithUserInfoReturnsNewInstance()
+    public function testWithUserInfoReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri(''));
 
@@ -50,11 +46,9 @@ final class WithUserInfoTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withUserInfo
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotString')]
-    public function testWithUserInfoWithoutStringInUserThrowsInvalidArgumentException($input)
+    public function testWithUserInfoWithoutStringInUserThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri(''));
 
@@ -82,11 +76,9 @@ final class WithUserInfoTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withUserInfo
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotStringOrNull')]
-    public function testWithUserInfoWithoutStringInPasswordThrowsInvalidArgumentException($input)
+    public function testWithUserInfoWithoutStringInPasswordThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri(''));
 
@@ -116,11 +108,9 @@ final class WithUserInfoTest extends TestCase
      * @param string $user
      * @param null|string $password
      * @param string $expected
-     *
-     * @return void
      */
     #[DataProvider('dataWithUserInfo')]
-    public function testWithUserInfoChangesUserInfo($user, $password, $expected)
+    public function testWithUserInfoChangesUserInfo($user, $password, $expected): void
     {
         $uri = Uri::fromIri(new Iri(''));
 

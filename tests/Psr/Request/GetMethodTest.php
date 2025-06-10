@@ -14,10 +14,8 @@ final class GetMethodTest extends TestCase
      * Tests receiving the method when using getMethod().
      *
      * @covers \Art4\Requests\Psr\Request::getMethod
-     *
-     * @return void
      */
-    public function testGetMethodReturnsString()
+    public function testGetMethodReturnsString(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 

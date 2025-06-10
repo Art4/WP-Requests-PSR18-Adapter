@@ -16,10 +16,8 @@ final class CreateFromStringTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::createFromString
      * @covers \Art4\Requests\Psr\StringBasedStream::__construct
-     *
-     * @return void
      */
-    public function testCreateFromStringReturnsStream()
+    public function testCreateFromStringReturnsStream(): void
     {
         TestCase::assertInstanceOf(
             StreamInterface::class,

@@ -14,10 +14,8 @@ final class TellTest extends TestCase
      * Tests receiving an exception when using tell() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::tell
-     *
-     * @return void
      */
-    public function testTellThrowsRuntimeException()
+    public function testTellThrowsRuntimeException(): void
     {
         $stream = StringBasedStream::createFromString('');
 

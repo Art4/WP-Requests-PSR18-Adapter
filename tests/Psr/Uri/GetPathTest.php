@@ -20,11 +20,9 @@ final class GetPathTest extends TestCase
      *
      * @param string $input
      * @param string $expected
-     *
-     * @return void
      */
     #[DataProvider('dataGetPath')]
-    public function testGetPath($input, $expected)
+    public function testGetPath($input, $expected): void
     {
         $uri = Uri::fromIri(new Iri($input));
 

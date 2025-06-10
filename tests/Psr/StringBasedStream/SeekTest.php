@@ -14,10 +14,8 @@ final class SeekTest extends TestCase
      * Tests receiving an exception when using seek() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::seek
-     *
-     * @return void
      */
-    public function testSeekThrowsRuntimeException()
+    public function testSeekThrowsRuntimeException(): void
     {
         $stream = StringBasedStream::createFromString('');
 

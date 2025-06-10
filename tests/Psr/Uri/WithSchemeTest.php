@@ -18,10 +18,8 @@ final class WithSchemeTest extends TestCase
      * Tests changing the scheme when using withScheme().
      *
      * @covers \Art4\Requests\Psr\Uri::withScheme
-     *
-     * @return void
      */
-    public function testWithSchemeReturnsUri()
+    public function testWithSchemeReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -32,10 +30,8 @@ final class WithSchemeTest extends TestCase
      * Tests changing the scheme when using withScheme().
      *
      * @covers \Art4\Requests\Psr\Uri::withScheme
-     *
-     * @return void
      */
-    public function testWithSchemeWithEmptyStringRemovesTheScheme()
+    public function testWithSchemeWithEmptyStringRemovesTheScheme(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -48,10 +44,8 @@ final class WithSchemeTest extends TestCase
      * Tests changing the scheme when using withScheme().
      *
      * @covers \Art4\Requests\Psr\Uri::withScheme
-     *
-     * @return void
      */
-    public function testWithSchemeReturnsNewInstance()
+    public function testWithSchemeReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -66,11 +60,9 @@ final class WithSchemeTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withScheme
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotString')]
-    public function testWithSchemeWithoutStringThrowsInvalidArgumentException($input)
+    public function testWithSchemeWithoutStringThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -94,10 +86,8 @@ final class WithSchemeTest extends TestCase
      * Tests changing the scheme when using withScheme().
      *
      * @covers \Art4\Requests\Psr\Uri::withScheme
-     *
-     * @return void
      */
-    public function testWithSchemeChangesTheScheme()
+    public function testWithSchemeChangesTheScheme(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 

@@ -16,10 +16,8 @@ final class FromResponseTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Response::fromResponse
      * @covers \Art4\Requests\Psr\Response::__construct
-     *
-     * @return void
      */
-    public function testFromResponseReturnsResponseInterface()
+    public function testFromResponseReturnsResponseInterface(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->headers['name'] = 'value';

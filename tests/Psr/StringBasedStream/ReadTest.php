@@ -14,10 +14,8 @@ final class ReadTest extends TestCase
      * Tests receiving an exception when using read() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::read
-     *
-     * @return void
      */
-    public function testReadThrowsRuntimeException()
+    public function testReadThrowsRuntimeException(): void
     {
         $stream = StringBasedStream::createFromString('');
 

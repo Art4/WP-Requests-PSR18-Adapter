@@ -13,10 +13,8 @@ final class IsWritableTest extends TestCase
      * Tests receiving false when using isWritable() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::isWritable
-     *
-     * @return void
      */
-    public function testIsWritableReturnsFalse()
+    public function testIsWritableReturnsFalse(): void
     {
         $stream = StringBasedStream::createFromString('');
 

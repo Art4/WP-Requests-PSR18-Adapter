@@ -18,10 +18,8 @@ final class WithAddedHeaderTest extends TestCase
      * Tests changing the header when using withAddedHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderReturnsRequest()
+    public function testWithAddedHeaderReturnsRequest(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -32,10 +30,8 @@ final class WithAddedHeaderTest extends TestCase
      * Tests changing the header when using withAddedHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderReturnsNewInstance()
+    public function testWithAddedHeaderReturnsNewInstance(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -60,11 +56,9 @@ final class WithAddedHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotStringOrArray')]
-    public function testWithAddedHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input)
+    public function testWithAddedHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -92,11 +86,9 @@ final class WithAddedHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotString')]
-    public function testWithAddedHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input)
+    public function testWithAddedHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -111,10 +103,8 @@ final class WithAddedHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderChangesTheHeaders()
+    public function testWithAddedHeaderChangesTheHeaders(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');
@@ -130,10 +120,8 @@ final class WithAddedHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderCaseInsensitiveChangesTheHeaders()
+    public function testWithAddedHeaderCaseInsensitiveChangesTheHeaders(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');

@@ -15,10 +15,8 @@ final class WithProtocolVersionTest extends TestCase
      * Tests changing the protocol version when using withProtocolVersion().
      *
      * @covers \Art4\Requests\Psr\Response::withProtocolVersion
-     *
-     * @return void
      */
-    public function testWithProtocolVersionReturnsResponse()
+    public function testWithProtocolVersionReturnsResponse(): void
     {
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);
@@ -30,10 +28,8 @@ final class WithProtocolVersionTest extends TestCase
      * Tests changing the protocol version when using withProtocolVersion().
      *
      * @covers \Art4\Requests\Psr\Response::withProtocolVersion
-     *
-     * @return void
      */
-    public function testWithProtocolVersionReturnsNewInstance()
+    public function testWithProtocolVersionReturnsNewInstance(): void
     {
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);
@@ -45,10 +41,8 @@ final class WithProtocolVersionTest extends TestCase
      * Tests changing the version when using withProtocolVersion().
      *
      * @covers \Art4\Requests\Psr\Response::withProtocolVersion
-     *
-     * @return void
      */
-    public function testWithProtocolVersionChangesTheProtocolVersion()
+    public function testWithProtocolVersionChangesTheProtocolVersion(): void
     {
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);

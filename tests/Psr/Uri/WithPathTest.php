@@ -18,10 +18,8 @@ final class WithPathTest extends TestCase
      * Tests changing the path when using withPath().
      *
      * @covers \Art4\Requests\Psr\Uri::withPath
-     *
-     * @return void
      */
-    public function testWithPathReturnsUri()
+    public function testWithPathReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -32,10 +30,8 @@ final class WithPathTest extends TestCase
      * Tests changing the path when using withPath().
      *
      * @covers \Art4\Requests\Psr\Uri::withPath
-     *
-     * @return void
      */
-    public function testWithPathReturnsNewInstance()
+    public function testWithPathReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -50,11 +46,9 @@ final class WithPathTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withPath
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotString')]
-    public function testWithPathWithoutStringThrowsInvalidArgumentException($input)
+    public function testWithPathWithoutStringThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -83,11 +77,9 @@ final class WithPathTest extends TestCase
      *
      * @param string $input
      * @param string $expected
-     *
-     * @return void
      */
     #[DataProvider('dataWithPath')]
-    public function testWithPathChangesThePath($input, $expected)
+    public function testWithPathChangesThePath($input, $expected): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 

@@ -13,10 +13,8 @@ final class GetSizeTest extends TestCase
      * Tests returns content size when using getSize() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::getSize
-     *
-     * @return void
      */
-    public function testGetSizeReturnsContentSize()
+    public function testGetSizeReturnsContentSize(): void
     {
         $stream = StringBasedStream::createFromString('full content');
 

@@ -14,10 +14,8 @@ final class CreateStreamFromFileTest extends TestCase
      * Tests receiving an exception when using createStreamFromFile().
      *
      * @covers \Art4\Requests\Psr\HttpClient::createStreamFromFile
-     *
-     * @return void
      */
-    public function testCreateStreamFromFileThrowsException()
+    public function testCreateStreamFromFileThrowsException(): void
     {
         $httpClient = new HttpClient();
 

@@ -17,11 +17,9 @@ final class GetUserInfoTest extends TestCase
      * @dataProvider dataGetUserInfo
      *
      * @covers \Art4\Requests\Psr\Uri::getUserInfo
-     *
-     * @return void
      */
     #[DataProvider('dataGetUserInfo')]
-    public function testGetUserInfo(string $input, string $expected)
+    public function testGetUserInfo(string $input, string $expected): void
     {
         $uri = Uri::fromIri(new Iri($input));
 

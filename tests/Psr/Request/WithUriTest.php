@@ -16,10 +16,8 @@ final class WithUriTest extends TestCase
      * Tests changing the uri when using withUri().
      *
      * @covers \Art4\Requests\Psr\Request::withUri
-     *
-     * @return void
      */
-    public function testWithUriReturnsRequest()
+    public function testWithUriReturnsRequest(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $uri = $this->createMock(UriInterface::class);
@@ -32,10 +30,8 @@ final class WithUriTest extends TestCase
      * Tests changing the uri when using withUri().
      *
      * @covers \Art4\Requests\Psr\Request::withUri
-     *
-     * @return void
      */
-    public function testWithUriReturnsNewInstance()
+    public function testWithUriReturnsNewInstance(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $uri = $this->createMock(UriInterface::class);
@@ -50,10 +46,8 @@ final class WithUriTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withUri
      * @covers \Art4\Requests\Psr\Request::setUri
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithUriChangesTheUri()
+    public function testWithUriChangesTheUri(): void
     {
         $uri1 = $this->createMock(UriInterface::class);
         $request = Request::withMethodAndUri('GET', $uri1);
@@ -71,10 +65,8 @@ final class WithUriTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withUri
      * @covers \Art4\Requests\Psr\Request::setUri
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithUriChangesTheHostHeader()
+    public function testWithUriChangesTheHostHeader(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('example.org');
@@ -95,10 +87,8 @@ final class WithUriTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withUri
      * @covers \Art4\Requests\Psr\Request::setUri
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithUriChangesTheHostHeaderToFirstPlace()
+    public function testWithUriChangesTheHostHeaderToFirstPlace(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');
@@ -120,10 +110,8 @@ final class WithUriTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withUri
      * @covers \Art4\Requests\Psr\Request::setUri
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithUriWithoutHostDoNotChangeTheHostHeader()
+    public function testWithUriWithoutHostDoNotChangeTheHostHeader(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('example.org');
@@ -148,11 +136,9 @@ final class WithUriTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::updateHeader
      *
      * @param array<string,string[]> $expectedHeaders
-     *
-     * @return void
      */
     #[DataProvider('dataPreserveHost')]
-    public function testWithUriAndPreserveHost(string $initHost, string $newHost, array $expectedHeaders)
+    public function testWithUriAndPreserveHost(string $initHost, string $newHost, array $expectedHeaders): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn($initHost);

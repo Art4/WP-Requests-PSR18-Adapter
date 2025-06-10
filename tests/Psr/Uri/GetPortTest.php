@@ -19,11 +19,9 @@ final class GetPortTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::getPort
      *
      * @param null|int $expected
-     *
-     * @return void
      */
     #[DataProvider('dataGetPort')]
-    public function testGetPort(string $input, $expected)
+    public function testGetPort(string $input, $expected): void
     {
         $uri = Uri::fromIri(new Iri($input));
 

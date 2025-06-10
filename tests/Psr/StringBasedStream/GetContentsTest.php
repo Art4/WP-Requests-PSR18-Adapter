@@ -14,10 +14,8 @@ final class GetContentsTest extends TestCase
      * Tests receiving an exception when using getContents() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::getContents
-     *
-     * @return void
      */
-    public function testGetContentsThrowsRuntimeException()
+    public function testGetContentsThrowsRuntimeException(): void
     {
         $stream = StringBasedStream::createFromString('');
 

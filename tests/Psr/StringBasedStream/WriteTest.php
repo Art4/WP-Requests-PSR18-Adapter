@@ -14,10 +14,8 @@ final class WriteTest extends TestCase
      * Tests receiving an exception when using write() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::write
-     *
-     * @return void
      */
-    public function testWriteThrowsRuntimeException()
+    public function testWriteThrowsRuntimeException(): void
     {
         $stream = StringBasedStream::createFromString('');
 

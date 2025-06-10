@@ -14,10 +14,8 @@ final class GetProtocolVersionTest extends TestCase
      * Tests receiving the protocol version when using getProtocolVersion().
      *
      * @covers \Art4\Requests\Psr\Request::getProtocolVersion
-     *
-     * @return void
      */
-    public function testGetProtocolVersionReturnsString()
+    public function testGetProtocolVersionReturnsString(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 

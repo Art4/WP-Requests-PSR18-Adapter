@@ -16,10 +16,8 @@ final class WithMethodAndUriTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withMethodAndUri
      * @covers \Art4\Requests\Psr\Request::__construct
-     *
-     * @return void
      */
-    public function testWithMethodAndUriReturnsRequest()
+    public function testWithMethodAndUriReturnsRequest(): void
     {
         $uri = $this->createMock(UriInterface::class);
 
@@ -34,10 +32,8 @@ final class WithMethodAndUriTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withMethodAndUri
      * @covers \Art4\Requests\Psr\Request::__construct
-     *
-     * @return void
      */
-    public function testWithMethodAndUriWithEmptyMethodThrowsException()
+    public function testWithMethodAndUriWithEmptyMethodThrowsException(): void
     {
         $uri = $this->createMock(UriInterface::class);
 
@@ -51,10 +47,8 @@ final class WithMethodAndUriTest extends TestCase
      * Tests receiving a Request instance when using withMethodAndUri().
      *
      * @covers \Art4\Requests\Psr\Request::withUri
-     *
-     * @return void
      */
-    public function testWithMethodAndUriChangesTheHostHeader()
+    public function testWithMethodAndUriChangesTheHostHeader(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('example.org');

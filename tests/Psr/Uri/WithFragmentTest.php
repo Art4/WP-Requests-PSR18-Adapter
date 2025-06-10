@@ -18,10 +18,8 @@ final class WithFragmentTest extends TestCase
      * Tests changing the fragment when using withFragment().
      *
      * @covers \Art4\Requests\Psr\Uri::withFragment
-     *
-     * @return void
      */
-    public function testWithFragmentReturnsUri()
+    public function testWithFragmentReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -32,10 +30,8 @@ final class WithFragmentTest extends TestCase
      * Tests changing the fragment when using withFragment().
      *
      * @covers \Art4\Requests\Psr\Uri::withFragment
-     *
-     * @return void
      */
-    public function testWithFragmentReturnsNewInstance()
+    public function testWithFragmentReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -50,11 +46,9 @@ final class WithFragmentTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withFragment
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotString')]
-    public function testWithFragmentWithoutStringThrowsInvalidArgumentException($input)
+    public function testWithFragmentWithoutStringThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -83,11 +77,9 @@ final class WithFragmentTest extends TestCase
      *
      * @param string $input
      * @param string $expected
-     *
-     * @return void
      */
     #[DataProvider('dataWithFragment')]
-    public function testWithFragmentChangesTheFragment($input, $expected)
+    public function testWithFragmentChangesTheFragment($input, $expected): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 

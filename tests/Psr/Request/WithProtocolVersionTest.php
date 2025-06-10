@@ -15,10 +15,8 @@ final class WithProtocolVersionTest extends TestCase
      * Tests changing the version when using withProtocolVersion().
      *
      * @covers \Art4\Requests\Psr\Request::withProtocolVersion
-     *
-     * @return void
      */
-    public function testWithProtocolVersionReturnsRequest()
+    public function testWithProtocolVersionReturnsRequest(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -29,10 +27,8 @@ final class WithProtocolVersionTest extends TestCase
      * Tests changing the version when using withProtocolVersion().
      *
      * @covers \Art4\Requests\Psr\Request::withProtocolVersion
-     *
-     * @return void
      */
-    public function testWithProtocolVersionReturnsNewInstance()
+    public function testWithProtocolVersionReturnsNewInstance(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -43,10 +39,8 @@ final class WithProtocolVersionTest extends TestCase
      * Tests changing the version when using withProtocolVersion().
      *
      * @covers \Art4\Requests\Psr\Request::withProtocolVersion
-     *
-     * @return void
      */
-    public function testWithProtocolVersionChangesTheProtocolVersion()
+    public function testWithProtocolVersionChangesTheProtocolVersion(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 

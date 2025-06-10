@@ -13,10 +13,8 @@ final class IsSeekableTest extends TestCase
      * Tests receiving false when using isSeekable() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::isSeekable
-     *
-     * @return void
      */
-    public function testIsSeekableReturnsFalse()
+    public function testIsSeekableReturnsFalse(): void
     {
         $stream = StringBasedStream::createFromString('');
 

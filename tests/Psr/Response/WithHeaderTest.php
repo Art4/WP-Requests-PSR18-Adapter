@@ -18,10 +18,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderReturnsResponseInterface()
+    public function testWithHeaderReturnsResponseInterface(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -32,10 +30,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderReturnsNewInstance()
+    public function testWithHeaderReturnsNewInstance(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -60,11 +56,9 @@ final class WithHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Response::withHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotStringOrArray')]
-    public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input)
+    public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -92,11 +86,9 @@ final class WithHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Response::withHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
     #[DataProvider('dataInvalidTypeNotString')]
-    public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input)
+    public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -110,10 +102,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderChangesTheHeaders()
+    public function testWithHeaderChangesTheHeaders(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -126,10 +116,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderCaseInsensitiveChangesTheHeaders()
+    public function testWithHeaderCaseInsensitiveChangesTheHeaders(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 

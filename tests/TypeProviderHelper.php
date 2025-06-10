@@ -188,10 +188,8 @@ final class TypeProviderHelper
      *
      * This method should be called in the `tear_down_after_class()` of any test class
      * using these helper functions.
-     *
-     * @return void
      */
-    public static function cleanUp()
+    public static function cleanUp(): void
     {
         if (is_resource(self::$memory_handle_open)) {
             fclose(self::$memory_handle_open);

@@ -17,11 +17,9 @@ final class GetFragmentTest extends TestCase
      * @dataProvider dataGetFragment
      *
      * @covers \Art4\Requests\Psr\Uri::getFragment
-     *
-     * @return void
      */
     #[DataProvider('dataGetFragment')]
-    public function testGetFragment(string $input, string $expected)
+    public function testGetFragment(string $input, string $expected): void
     {
         $uri = Uri::fromIri(new Iri($input));
 

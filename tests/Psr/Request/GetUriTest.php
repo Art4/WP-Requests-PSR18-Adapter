@@ -14,10 +14,8 @@ final class GetUriTest extends TestCase
      * Tests receiving the uri when using getUri().
      *
      * @covers \Art4\Requests\Psr\Request::getUri
-     *
-     * @return void
      */
-    public function testGetUriReturnsUriInterface()
+    public function testGetUriReturnsUriInterface(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 

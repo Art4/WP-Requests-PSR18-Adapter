@@ -15,10 +15,8 @@ final class GetBodyTest extends TestCase
      * Tests receiving the body when using getBody().
      *
      * @covers \Art4\Requests\Psr\Request::getBody
-     *
-     * @return void
      */
-    public function testGetBodyReturnsString()
+    public function testGetBodyReturnsString(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 

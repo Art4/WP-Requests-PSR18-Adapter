@@ -14,10 +14,8 @@ final class GetHeaderLineTest extends TestCase
      * Tests receiving the header when using getHeaderLine().
      *
      * @covers \Art4\Requests\Psr\Request::getHeaderLine
-     *
-     * @return void
      */
-    public function testGetHeaderLineWithoutHeaderReturnsEmptyString()
+    public function testGetHeaderLineWithoutHeaderReturnsEmptyString(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -28,10 +26,8 @@ final class GetHeaderLineTest extends TestCase
      * Tests receiving the header when using getHeaderLine().
      *
      * @covers \Art4\Requests\Psr\Request::getHeaderLine
-     *
-     * @return void
      */
-    public function testGetHeaderLineReturnsString()
+    public function testGetHeaderLineReturnsString(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $request = $request->withHeader('name', ['value1', 'value2']);
@@ -43,10 +39,8 @@ final class GetHeaderLineTest extends TestCase
      * Tests receiving the header when using getHeaderLine().
      *
      * @covers \Art4\Requests\Psr\Request::getHeaderLine
-     *
-     * @return void
      */
-    public function testGetHeaderLineWithCaseInsensitiveNameReturnsString()
+    public function testGetHeaderLineWithCaseInsensitiveNameReturnsString(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $request = $request->withHeader('name', 'value');

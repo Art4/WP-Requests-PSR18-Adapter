@@ -13,10 +13,8 @@ final class DetachTest extends TestCase
      * Tests receiving null when using detach() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::detach
-     *
-     * @return void
      */
-    public function testDetachReturnsNull()
+    public function testDetachReturnsNull(): void
     {
         $stream = StringBasedStream::createFromString('');
 

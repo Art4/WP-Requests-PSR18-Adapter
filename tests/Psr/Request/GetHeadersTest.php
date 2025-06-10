@@ -14,10 +14,8 @@ final class GetHeadersTest extends TestCase
      * Tests receiving the headers when using getHeaders().
      *
      * @covers \Art4\Requests\Psr\Request::getHeaders
-     *
-     * @return void
      */
-    public function testGetHeadersReturnsArray()
+    public function testGetHeadersReturnsArray(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');
@@ -30,10 +28,8 @@ final class GetHeadersTest extends TestCase
      * Tests receiving the headers when using getHeaders().
      *
      * @covers \Art4\Requests\Psr\Request::getHeaders
-     *
-     * @return void
      */
-    public function testGetHeadersReturnsArrayWithHostHeader()
+    public function testGetHeadersReturnsArrayWithHostHeader(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('example.org');

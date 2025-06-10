@@ -14,10 +14,8 @@ final class RewindTest extends TestCase
      * Tests receiving an exception when using rewind() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::rewind
-     *
-     * @return void
      */
-    public function testRewindThrowsRuntimeException()
+    public function testRewindThrowsRuntimeException(): void
     {
         $stream = StringBasedStream::createFromString('');
 

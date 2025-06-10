@@ -13,10 +13,8 @@ final class IsReadableTest extends TestCase
      * Tests receiving false when using isReadable() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::isReadable
-     *
-     * @return void
      */
-    public function testIsReadableReturnsFalse()
+    public function testIsReadableReturnsFalse(): void
     {
         $stream = StringBasedStream::createFromString('');
 

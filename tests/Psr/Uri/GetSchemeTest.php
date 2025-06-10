@@ -14,10 +14,8 @@ final class GetSchemeTest extends TestCase
      * Tests receiving the scheme when using getScheme().
      *
      * @covers \Art4\Requests\Psr\Uri::getScheme
-     *
-     * @return void
      */
-    public function testGetScheme()
+    public function testGetScheme(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -28,10 +26,8 @@ final class GetSchemeTest extends TestCase
      * Tests receiving the scheme when using getScheme().
      *
      * @covers \Art4\Requests\Psr\Uri::getScheme
-     *
-     * @return void
      */
-    public function testGetSchemeReturnEmptyString()
+    public function testGetSchemeReturnEmptyString(): void
     {
         $uri = Uri::fromIri(new Iri('example.org'));
 

@@ -14,7 +14,6 @@ return (new PhpCsFixer\Config())
         '@PHPUnit84Migration:risky' => true,
         'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'trailing_comma_in_multiline' => ['elements' => [/*'arguments', */'array_destructuring', 'arrays', 'match', 'parameters']],
-        'void_return' => false,
     ])
     ->setFinder($finder)
     ->setRiskyAllowed(true)

@@ -17,11 +17,9 @@ final class GetAuthorityTest extends TestCase
      * @dataProvider dataGetAuthority
      *
      * @covers \Art4\Requests\Psr\Uri::getAuthority
-     *
-     * @return void
      */
     #[DataProvider('dataGetAuthority')]
-    public function testGetAuthority(string $input, string $expected)
+    public function testGetAuthority(string $input, string $expected): void
     {
         $uri = Uri::fromIri(new Iri($input));
 

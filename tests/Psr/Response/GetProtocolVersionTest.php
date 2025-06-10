@@ -15,10 +15,8 @@ final class GetProtocolVersionTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Response::fromResponse
      * @covers \Art4\Requests\Psr\Response::getProtocolVersion
-     *
-     * @return void
      */
-    public function testGetProtocolVersionWithFloatReturnsString()
+    public function testGetProtocolVersionWithFloatReturnsString(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = 200;
@@ -32,10 +30,8 @@ final class GetProtocolVersionTest extends TestCase
      * Tests receiving the protocol version when using getProtocolVersion().
      *
      * @covers \Art4\Requests\Psr\Response::getProtocolVersion
-     *
-     * @return void
      */
-    public function testGetProtocolVersionWithFalseReturnsString()
+    public function testGetProtocolVersionWithFalseReturnsString(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = 200;

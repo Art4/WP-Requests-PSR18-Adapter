@@ -17,11 +17,9 @@ final class GetReasonPhraseTest extends TestCase
      * @dataProvider dataValidReasonPhrase
      *
      * @covers \Art4\Requests\Psr\Response::getReasonPhrase
-     *
-     * @return void
      */
     #[DataProvider('dataValidReasonPhrase')]
-    public function testGetReasonPhraseReturnsString(int $code, string $phrase)
+    public function testGetReasonPhraseReturnsString(int $code, string $phrase): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = $code;
@@ -34,10 +32,8 @@ final class GetReasonPhraseTest extends TestCase
      * Tests receiving the reason phrase when using getReasonPhrase().
      *
      * @covers \Art4\Requests\Psr\Response::getReasonPhrase
-     *
-     * @return void
      */
-    public function testGetReasonPhraseReturnsEmptyString()
+    public function testGetReasonPhraseReturnsEmptyString(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = 0;

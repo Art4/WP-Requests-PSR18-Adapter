@@ -14,10 +14,8 @@ final class GetStatusCodeTest extends TestCase
      * Tests receiving the status code when using getStatusCode().
      *
      * @covers \Art4\Requests\Psr\Response::getStatusCode
-     *
-     * @return void
      */
-    public function testGetStatusCodeReturnsInteger()
+    public function testGetStatusCodeReturnsInteger(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = 200;
@@ -30,10 +28,8 @@ final class GetStatusCodeTest extends TestCase
      * Tests receiving the status code 200 without code from Requests.
      *
      * @covers \Art4\Requests\Psr\Response::getStatusCode
-     *
-     * @return void
      */
-    public function testGetStatusCodeWithoudCodeFromResponseReturnsInteger()
+    public function testGetStatusCodeWithoudCodeFromResponseReturnsInteger(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = false;

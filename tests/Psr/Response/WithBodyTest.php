@@ -16,10 +16,8 @@ final class WithBodyTest extends TestCase
      * Tests changing the body when using withBody().
      *
      * @covers \Art4\Requests\Psr\Response::withBody
-     *
-     * @return void
      */
-    public function testWithBodyReturnsResponse()
+    public function testWithBodyReturnsResponse(): void
     {
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);
@@ -34,10 +32,8 @@ final class WithBodyTest extends TestCase
      * Tests changing the protocol version when using withBody().
      *
      * @covers \Art4\Requests\Psr\Response::withBody
-     *
-     * @return void
      */
-    public function testWithBodyReturnsNewInstance()
+    public function testWithBodyReturnsNewInstance(): void
     {
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);

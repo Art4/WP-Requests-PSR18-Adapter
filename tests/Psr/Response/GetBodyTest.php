@@ -15,10 +15,8 @@ final class GetBodyTest extends TestCase
      * Tests receiving the stream when using getBody().
      *
      * @covers \Art4\Requests\Psr\Response::getBody
-     *
-     * @return void
      */
-    public function testGetBodyReturnsStreamInterface()
+    public function testGetBodyReturnsStreamInterface(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = 200;
@@ -31,10 +29,8 @@ final class GetBodyTest extends TestCase
      * Tests receiving the stream when using getBody().
      *
      * @covers \Art4\Requests\Psr\Response::getBody
-     *
-     * @return void
      */
-    public function testGetBodyReturnsStreamWithContent()
+    public function testGetBodyReturnsStreamWithContent(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->body = 'response body';

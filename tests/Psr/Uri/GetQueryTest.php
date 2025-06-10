@@ -17,11 +17,9 @@ final class GetQueryTest extends TestCase
      * @dataProvider dataGetQuery
      *
      * @covers \Art4\Requests\Psr\Uri::getQuery
-     *
-     * @return void
      */
     #[DataProvider('dataGetQuery')]
-    public function testGetQuery(string $input, string $expected)
+    public function testGetQuery(string $input, string $expected): void
     {
         $uri = Uri::fromIri(new Iri($input));
 

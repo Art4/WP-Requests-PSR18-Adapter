@@ -18,10 +18,8 @@ final class WithRequestTargetTest extends TestCase
      * Tests changing the request-target when using withRequestTarget().
      *
      * @covers \Art4\Requests\Psr\Request::withRequestTarget
-     *
-     * @return void
      */
-    public function testWithRequestTargetReturnsRequest()
+    public function testWithRequestTargetReturnsRequest(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -32,10 +30,8 @@ final class WithRequestTargetTest extends TestCase
      * Tests changing the request-target when using withRequestTarget().
      *
      * @covers \Art4\Requests\Psr\Request::withRequestTarget
-     *
-     * @return void
      */
-    public function testWithRequestTargetReturnsNewInstance()
+    public function testWithRequestTargetReturnsNewInstance(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -52,11 +48,9 @@ final class WithRequestTargetTest extends TestCase
      *
      * @param string $input
      * @param string $expected
-     *
-     * @return void
      */
     #[DataProvider('dataValidRequestTarget')]
-    public function testWithRequestTargetChangesTheRequestTarget($input, $expected)
+    public function testWithRequestTargetChangesTheRequestTarget($input, $expected): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 

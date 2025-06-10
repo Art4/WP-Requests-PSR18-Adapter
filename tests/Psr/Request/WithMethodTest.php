@@ -16,10 +16,8 @@ final class WithMethodTest extends TestCase
      * Tests changing the method when using withMethod().
      *
      * @covers \Art4\Requests\Psr\Request::withMethod
-     *
-     * @return void
      */
-    public function testWithMethodReturnsRequest()
+    public function testWithMethodReturnsRequest(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -30,10 +28,8 @@ final class WithMethodTest extends TestCase
      * Tests changing the method when using withMethod().
      *
      * @covers \Art4\Requests\Psr\Request::withMethod
-     *
-     * @return void
      */
-    public function testWithMethodReturnsNewInstance()
+    public function testWithMethodReturnsNewInstance(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -44,10 +40,8 @@ final class WithMethodTest extends TestCase
      * Tests using withMethod() with empty string.
      *
      * @covers \Art4\Requests\Psr\Request::withMethod
-     *
-     * @return void
      */
-    public function testWithMethodWithEmptyStringThrowsException()
+    public function testWithMethodWithEmptyStringThrowsException(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -66,11 +60,9 @@ final class WithMethodTest extends TestCase
      *
      * @param string $input
      * @param string $expected
-     *
-     * @return void
      */
     #[DataProvider('dataValidMethod')]
-    public function testWithMethodChangesTheMethod($input, $expected)
+    public function testWithMethodChangesTheMethod($input, $expected): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
