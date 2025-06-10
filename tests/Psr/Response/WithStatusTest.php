@@ -42,6 +42,36 @@ final class WithStatusTest extends TestCase
     /**
      * Tests receiving an exception when the withStatus() method received an invalid input type as `$reasonPhrase`.
      *
+     * @covers \Art4\Requests\Psr\Response::withStatus
+     *
+     * @return void
+     */
+    public function testWithStatusWithInvalidCodeThrowsException()
+    {
+        $response = Response::fromResponse(new RequestsResponse());
+
+        TestCase::expectException(\InvalidArgumentException::class);
+        TestCase::expectExceptionMessage('Invalid status code `0`');
+
+        $response->withStatus(0);
+    }
+
+    /**
+     * Data Provider.
+     *
+     * @return array<string,array<int|string>>
+     */
+    public static function dataWithStatus(): array
+    {
+        return [
+            'Return an instance with the specified status code and, optionally, reason phrase.' => [200, 'foobar', 'foobar'],
+            'If no reason phrase is specified, implementations MAY choose to default to the RFC 7231 or IANA recommended reason phrase' => [200, '', 'OK'],
+        ];
+    }
+
+    /**
+     * Tests getting new status code and reason when using withStatus() method.
+     *
      * @dataProvider dataWithStatus
      *
      * @covers \Art4\Requests\Psr\Response::withStatus
@@ -57,18 +87,5 @@ final class WithStatusTest extends TestCase
 
         TestCase::assertSame($code, $response->getStatusCode());
         TestCase::assertSame($expected, $response->getReasonPhrase());
-    }
-
-    /**
-     * Data Provider.
-     *
-     * @return array<string,array<int|string>>
-     */
-    public static function dataWithStatus(): array
-    {
-        return [
-            'Return an instance with the specified status code and, optionally, reason phrase.' => [200, 'foobar', 'foobar'],
-            'If no reason phrase is specified, implementations MAY choose to default to the RFC 7231 or IANA recommended reason phrase' => [200, '', 'OK'],
-        ];
     }
 }

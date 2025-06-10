@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Run PHPStan with activated strict rules
 
+### Changed
+
+- Updated the IANA reason phrases from 2024-11-13.
+
+### Fixed
+
+- `Art4\Requests\Psr\Response::withStatus()` throws exception on invalid status code.
+
 ## [1.3.0 - 2024-10-14](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.2.0...1.3.0)
 
 ### Added

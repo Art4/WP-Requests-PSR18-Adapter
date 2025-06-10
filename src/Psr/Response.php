@@ -58,10 +58,16 @@ final class Response implements ResponseInterface
             $headers[$name] = $value;
         }
 
+        $statusCode = $response->status_code;
+
+        if (!is_int($statusCode)) {
+            $statusCode = 200;
+        }
+
         return new self(
             StringBasedStream::createFromString($response->body),
             $headers,
-            intval($response->status_code),
+            $statusCode,
             $protocol_version
         );
     }
@@ -90,7 +96,7 @@ final class Response implements ResponseInterface
      * All reason phrases.
      *
      * @see https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
-     * Last Updated 2022-06-08
+     * Last Updated 2024-11-13
      *
      * @var array<int,string>
      */
@@ -98,7 +104,8 @@ final class Response implements ResponseInterface
         100 => 'Continue',                        // RFC9110, Section 15.2.1
         101 => 'Switching Protocols',             // RFC9110, Section 15.2.2
         102 => 'Processing',                      // RFC2518
-        103 => 'Early Hints',                     // RFC2518
+        103 => 'Early Hints',                     // RFC8297
+        104 => 'Upload Resumption Supported',     // draft-ietf-httpbis-resumable-upload-05 (TEMPORARY - registered 2024-11-13, expires 2025-11-13)
         200 => 'OK',                              // RFC9110, Section 15.3.1
         201 => 'Created',                         // RFC9110, Section 15.3.2
         202 => 'Accepted',                        // RFC9110, Section 15.3.3
@@ -135,9 +142,9 @@ final class Response implements ResponseInterface
         415 => 'Unsupported Media Type',          // RFC9110, Section 15.5.16
         416 => 'Range Not Satisfiable',           // RFC9110, Section 15.5.17
         417 => 'Expectation Failed',              // RFC9110, Section 15.5.18
-        418 => 'I\'m a teapot',                   // RFC2324
-        421 => 'Misdirected Request',             // RFC7540
-        422 => 'Unprocessable Content',           // RFC9110
+        418 => 'I\'m a teapot',                   // RFC9110, Section 15.5.19
+        421 => 'Misdirected Request',             // RFC9110, Section 15.5.20
+        422 => 'Unprocessable Content',           // RFC9110, Section 15.5.21
         423 => 'Locked',                          // RFC4918
         424 => 'Failed Dependency',               // RFC4918
         425 => 'Too Early',                       // RFC8470
@@ -155,7 +162,7 @@ final class Response implements ResponseInterface
         506 => 'Variant Also Negotiates',         // RFC2295
         507 => 'Insufficient Storage',            // RFC4918
         508 => 'Loop Detected',                   // RFC5842
-        510 => 'Not Extended',                    // RFC2774
+        510 => 'Not Extended',                    // RFC2774 (OBSOLETED) Status change of HTTP experiments to Historic
         511 => 'Network Authentication Required', // RFC6585
     ];
 
@@ -214,6 +221,10 @@ final class Response implements ResponseInterface
      */
     public function withStatus(int $code, string $reasonPhrase = ''): ResponseInterface
     {
+        if (!array_key_exists($code, $this->reasonPhrases)) {
+            throw new \InvalidArgumentException('Invalid status code `' . $code . '`');
+        }
+
         $response = clone($this);
         $response->status_code = $code;
 

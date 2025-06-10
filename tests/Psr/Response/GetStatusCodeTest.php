@@ -25,4 +25,20 @@ final class GetStatusCodeTest extends TestCase
 
         TestCase::assertSame(200, $response->getStatusCode());
     }
+
+    /**
+     * Tests receiving the status code 200 without code from Requests.
+     *
+     * @covers \Art4\Requests\Psr\Response::getStatusCode
+     *
+     * @return void
+     */
+    public function testGetStatusCodeWithoudCodeFromResponseReturnsInteger()
+    {
+        $requestsResponse = new RequestsResponse();
+        $requestsResponse->status_code = false;
+        $response = Response::fromResponse($requestsResponse);
+
+        TestCase::assertSame(200, $response->getStatusCode());
+    }
 }
