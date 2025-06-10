@@ -21,7 +21,7 @@ final class HasHeaderTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        $this->assertFalse($response->hasHeader('name'));
+        TestCase::assertFalse($response->hasHeader('name'));
     }
 
     /**
@@ -36,7 +36,7 @@ final class HasHeaderTest extends TestCase
         $response = Response::fromResponse(new RequestsResponse());
         $response = $response->withHeader('name', 'value');
 
-        $this->assertTrue($response->hasHeader('name'));
+        TestCase::assertTrue($response->hasHeader('name'));
     }
 
     /**
@@ -51,6 +51,6 @@ final class HasHeaderTest extends TestCase
         $response = Response::fromResponse(new RequestsResponse());
         $response = $response->withHeader('NAME', 'value');
 
-        $this->assertTrue($response->hasHeader('name'));
+        TestCase::assertTrue($response->hasHeader('name'));
     }
 }

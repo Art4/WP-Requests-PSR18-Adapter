@@ -24,7 +24,7 @@ final class WithPathTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertInstanceOf(UriInterface::class, $uri->withPath('/path'));
+        TestCase::assertInstanceOf(UriInterface::class, $uri->withPath('/path'));
     }
 
     /**
@@ -38,7 +38,7 @@ final class WithPathTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertNotSame($uri, $uri->withPath('/path'));
+        TestCase::assertNotSame($uri, $uri->withPath('/path'));
     }
 
     /**
@@ -90,7 +90,7 @@ final class WithPathTest extends TestCase
 
         $uri = $uri->withPath($input);
 
-        $this->assertSame($expected, $uri->getPath());
+        TestCase::assertSame($expected, $uri->getPath());
     }
 
     /**

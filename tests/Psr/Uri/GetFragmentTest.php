@@ -23,7 +23,7 @@ final class GetFragmentTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri($input));
 
-        $this->assertSame($expected, $uri->getFragment());
+        TestCase::assertSame($expected, $uri->getFragment());
     }
 
     /**

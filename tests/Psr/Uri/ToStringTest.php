@@ -22,7 +22,7 @@ final class ToStringTest extends TestCase
         $uri = Uri::fromIri(new Iri(''));
         $uri = $uri->withScheme('http');
 
-        $this->assertSame('http:', $uri->__toString());
+        TestCase::assertSame('http:', $uri->__toString());
     }
 
     /**
@@ -37,7 +37,7 @@ final class ToStringTest extends TestCase
         $uri = Uri::fromIri(new Iri(''));
         $uri = $uri->withHost('host');
 
-        $this->assertSame('//host/', $uri->__toString());
+        TestCase::assertSame('//host/', $uri->__toString());
     }
 
     /**
@@ -52,7 +52,7 @@ final class ToStringTest extends TestCase
         $uri = Uri::fromIri(new Iri(''));
         $uri = $uri->withPath('path');
 
-        $this->assertSame('path', $uri->__toString());
+        TestCase::assertSame('path', $uri->__toString());
     }
 
     /**
@@ -68,7 +68,7 @@ final class ToStringTest extends TestCase
         $uri = $uri->withPath('rootlesspath');
         $uri = $uri->withHost('host');
 
-        $this->assertSame('//host/rootlesspath', $uri->__toString());
+        TestCase::assertSame('//host/rootlesspath', $uri->__toString());
     }
 
     /**
@@ -83,7 +83,7 @@ final class ToStringTest extends TestCase
         $uri = Uri::fromIri(new Iri(''));
         $uri = $uri->withPath('//path');
 
-        $this->assertSame('/path', $uri->__toString());
+        TestCase::assertSame('/path', $uri->__toString());
     }
 
     /**
@@ -98,7 +98,7 @@ final class ToStringTest extends TestCase
         $uri = Uri::fromIri(new Iri(''));
         $uri = $uri->withQuery('foo=bar');
 
-        $this->assertSame('?foo=bar', $uri->__toString());
+        TestCase::assertSame('?foo=bar', $uri->__toString());
     }
 
     /**
@@ -113,7 +113,7 @@ final class ToStringTest extends TestCase
         $uri = Uri::fromIri(new Iri(''));
         $uri = $uri->withFragment('fragment');
 
-        $this->assertSame('#fragment', $uri->__toString());
+        TestCase::assertSame('#fragment', $uri->__toString());
     }
 
     /**
@@ -129,7 +129,7 @@ final class ToStringTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri($input));
 
-        $this->assertSame($expected, $uri->__toString());
+        TestCase::assertSame($expected, $uri->__toString());
     }
 
     /**

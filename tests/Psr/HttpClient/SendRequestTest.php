@@ -25,11 +25,11 @@ final class SendRequestTest extends TestCase
     public function testSendRequestWithGetSendsCorrectDataAndReturnsCorrectResponseData()
     {
         $transport = $this->createMock(Transport::class);
-        $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
-            $this->assertSame('https://example.org/', $url);
-            $this->assertSame(['Host' => 'example.org'], $headers);
-            $this->assertSame('', $data);
-            $this->assertSame('GET', $options['type']);
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+            TestCase::assertSame('https://example.org/', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
+            TestCase::assertSame('', $data);
+            TestCase::assertSame('GET', $options['type']);
 
             return
                 'HTTP/1.1 200 OK' . "\r\n".
@@ -46,11 +46,11 @@ final class SendRequestTest extends TestCase
 
         $response = $httpClient->sendRequest($request);
 
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame('OK', $response->getReasonPhrase());
-        $this->assertSame('1.1', $response->getProtocolVersion());
-        $this->assertSame(['content-type' => ['text/plain']], $response->getHeaders());
-        $this->assertSame('foobar', $response->getBody()->__toString());
+        TestCase::assertSame(200, $response->getStatusCode());
+        TestCase::assertSame('OK', $response->getReasonPhrase());
+        TestCase::assertSame('1.1', $response->getProtocolVersion());
+        TestCase::assertSame(['content-type' => ['text/plain']], $response->getHeaders());
+        TestCase::assertSame('foobar', $response->getBody()->__toString());
     }
 
     /**
@@ -63,11 +63,11 @@ final class SendRequestTest extends TestCase
     public function testSendRequestWithPostSendsCorrectDataAndReturnsCorrectResponseData()
     {
         $transport = $this->createMock(Transport::class);
-        $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
-            $this->assertSame('https://example.org/posts', $url);
-            $this->assertSame(['Host' => 'example.org'], $headers);
-            $this->assertSame('{"title":"Post title"}', $data);
-            $this->assertSame('POST', $options['type']);
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+            TestCase::assertSame('https://example.org/posts', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
+            TestCase::assertSame('{"title":"Post title"}', $data);
+            TestCase::assertSame('POST', $options['type']);
 
             return
                 'HTTP/1.1 201 Created' . "\r\n".
@@ -85,11 +85,11 @@ final class SendRequestTest extends TestCase
 
         $response = $httpClient->sendRequest($request);
 
-        $this->assertSame(201, $response->getStatusCode());
-        $this->assertSame('Created', $response->getReasonPhrase());
-        $this->assertSame('1.1', $response->getProtocolVersion());
-        $this->assertSame(['content-type' => ['application/json']], $response->getHeaders());
-        $this->assertSame('{"id":1,"title":"Post title"}', $response->getBody()->__toString());
+        TestCase::assertSame(201, $response->getStatusCode());
+        TestCase::assertSame('Created', $response->getReasonPhrase());
+        TestCase::assertSame('1.1', $response->getProtocolVersion());
+        TestCase::assertSame(['content-type' => ['application/json']], $response->getHeaders());
+        TestCase::assertSame('{"id":1,"title":"Post title"}', $response->getBody()->__toString());
     }
 
     /**
@@ -102,11 +102,11 @@ final class SendRequestTest extends TestCase
     public function testSendRequestReturnsResponseOn404Error()
     {
         $transport = $this->createMock(Transport::class);
-        $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
-            $this->assertSame('https://example.org/not-found', $url);
-            $this->assertSame(['Host' => 'example.org'], $headers);
-            $this->assertSame('', $data);
-            $this->assertSame('GET', $options['type']);
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+            TestCase::assertSame('https://example.org/not-found', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
+            TestCase::assertSame('', $data);
+            TestCase::assertSame('GET', $options['type']);
 
             return
                 'HTTP/1.1 404 Not Found' . "\r\n".
@@ -123,11 +123,11 @@ final class SendRequestTest extends TestCase
 
         $response = $httpClient->sendRequest($request);
 
-        $this->assertSame(404, $response->getStatusCode());
-        $this->assertSame('Not Found', $response->getReasonPhrase());
-        $this->assertSame('1.1', $response->getProtocolVersion());
-        $this->assertSame(['content-type' => ['text/plain']], $response->getHeaders());
-        $this->assertSame('404 Not Found', $response->getBody()->__toString());
+        TestCase::assertSame(404, $response->getStatusCode());
+        TestCase::assertSame('Not Found', $response->getReasonPhrase());
+        TestCase::assertSame('1.1', $response->getProtocolVersion());
+        TestCase::assertSame(['content-type' => ['text/plain']], $response->getHeaders());
+        TestCase::assertSame('404 Not Found', $response->getBody()->__toString());
     }
 
     /**
@@ -140,11 +140,11 @@ final class SendRequestTest extends TestCase
     public function testSendRequestReturnsResponseOn503Error()
     {
         $transport = $this->createMock(Transport::class);
-        $transport->expects($this->once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
-            $this->assertSame('https://example.org/not-available', $url);
-            $this->assertSame(['Host' => 'example.org'], $headers);
-            $this->assertSame('', $data);
-            $this->assertSame('GET', $options['type']);
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+            TestCase::assertSame('https://example.org/not-available', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
+            TestCase::assertSame('', $data);
+            TestCase::assertSame('GET', $options['type']);
 
             return
                 'HTTP/1.1 503 Service Unavailable' . "\r\n".
@@ -161,12 +161,12 @@ final class SendRequestTest extends TestCase
 
         $response = $httpClient->sendRequest($request);
 
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertSame(503, $response->getStatusCode());
-        $this->assertSame('Service Unavailable', $response->getReasonPhrase());
-        $this->assertSame('1.1', $response->getProtocolVersion());
-        $this->assertSame(['content-type' => ['text/plain']], $response->getHeaders());
-        $this->assertSame('503 Service Unavailable', $response->getBody()->__toString());
+        TestCase::assertInstanceOf(ResponseInterface::class, $response);
+        TestCase::assertSame(503, $response->getStatusCode());
+        TestCase::assertSame('Service Unavailable', $response->getReasonPhrase());
+        TestCase::assertSame('1.1', $response->getProtocolVersion());
+        TestCase::assertSame(['content-type' => ['text/plain']], $response->getHeaders());
+        TestCase::assertSame('503 Service Unavailable', $response->getBody()->__toString());
     }
 
     /**

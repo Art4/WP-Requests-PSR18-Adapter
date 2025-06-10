@@ -24,7 +24,7 @@ final class WithSchemeTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertInstanceOf(UriInterface::class, $uri->withScheme('http'));
+        TestCase::assertInstanceOf(UriInterface::class, $uri->withScheme('http'));
     }
 
     /**
@@ -40,7 +40,7 @@ final class WithSchemeTest extends TestCase
 
         $uri = $uri->withScheme('');
 
-        $this->assertSame('', $uri->getScheme());
+        TestCase::assertSame('', $uri->getScheme());
     }
 
     /**
@@ -54,7 +54,7 @@ final class WithSchemeTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertNotSame($uri, $uri->withScheme('http'));
+        TestCase::assertNotSame($uri, $uri->withScheme('http'));
     }
 
     /**
@@ -101,6 +101,6 @@ final class WithSchemeTest extends TestCase
 
         $uri = $uri->withScheme('http');
 
-        $this->assertSame('http', $uri->getScheme());
+        TestCase::assertSame('http', $uri->getScheme());
     }
 }

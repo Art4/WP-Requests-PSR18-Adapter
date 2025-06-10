@@ -24,7 +24,7 @@ final class WithMethodAndUriTest extends TestCase
     {
         $uri = $this->createMock(UriInterface::class);
 
-        $this->assertInstanceOf(
+        TestCase::assertInstanceOf(
             RequestInterface::class,
             Request::withMethodAndUri('', $uri)
         );
@@ -43,6 +43,6 @@ final class WithMethodAndUriTest extends TestCase
         $uri->method('getHost')->willReturn('example.org');
         $request = Request::withMethodAndUri('GET', $uri);
 
-        $this->assertSame(['Host' => ['example.org']], $request->getHeaders());
+        TestCase::assertSame(['Host' => ['example.org']], $request->getHeaders());
     }
 }

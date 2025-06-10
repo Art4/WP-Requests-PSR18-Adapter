@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.3.0...HEAD)
 
-nothing yet.
+### Added
+
+- Run PHPStan with activated strict rules
 
 ## [1.3.0 - 2024-10-14](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.2.0...1.3.0)
 

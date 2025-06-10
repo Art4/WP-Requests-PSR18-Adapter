@@ -20,7 +20,7 @@ final class GetMetadataTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        $this->assertSame([], $stream->getMetadata());
+        TestCase::assertSame([], $stream->getMetadata());
     }
 
     /**
@@ -34,6 +34,6 @@ final class GetMetadataTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        $this->assertNull($stream->getMetadata('key'));
+        TestCase::assertNull($stream->getMetadata('key'));
     }
 }

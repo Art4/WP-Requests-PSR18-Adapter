@@ -24,7 +24,7 @@ final class WithHostTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertInstanceOf(UriInterface::class, $uri->withHost('example.com'));
+        TestCase::assertInstanceOf(UriInterface::class, $uri->withHost('example.com'));
     }
 
     /**
@@ -40,7 +40,7 @@ final class WithHostTest extends TestCase
 
         $uri = $uri->withHost('');
 
-        $this->assertSame('', $uri->getHost());
+        TestCase::assertSame('', $uri->getHost());
     }
 
     /**
@@ -54,7 +54,7 @@ final class WithHostTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertNotSame($uri, $uri->withHost('example.com'));
+        TestCase::assertNotSame($uri, $uri->withHost('example.com'));
     }
 
     /**
@@ -101,6 +101,6 @@ final class WithHostTest extends TestCase
 
         $uri = $uri->withHost('example.com');
 
-        $this->assertSame('example.com', $uri->getHost());
+        TestCase::assertSame('example.com', $uri->getHost());
     }
 }

@@ -21,7 +21,7 @@ final class CreateFromStringTest extends TestCase
      */
     public function testCreateFromStringReturnsStream()
     {
-        $this->assertInstanceOf(
+        TestCase::assertInstanceOf(
             StreamInterface::class,
             StringBasedStream::createFromString('')
         );

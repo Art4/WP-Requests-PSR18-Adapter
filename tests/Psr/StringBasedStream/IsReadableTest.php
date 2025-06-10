@@ -20,6 +20,6 @@ final class IsReadableTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        $this->assertFalse($stream->isReadable());
+        TestCase::assertFalse($stream->isReadable());
     }
 }

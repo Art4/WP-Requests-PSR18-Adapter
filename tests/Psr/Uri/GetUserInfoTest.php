@@ -23,7 +23,7 @@ final class GetUserInfoTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri($input));
 
-        $this->assertSame($expected, $uri->getUserInfo());
+        TestCase::assertSame($expected, $uri->getUserInfo());
     }
 
     /**

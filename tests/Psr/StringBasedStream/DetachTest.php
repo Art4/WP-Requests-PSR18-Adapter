@@ -20,6 +20,6 @@ final class DetachTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        $this->assertNull($stream->detach());
+        TestCase::assertNull($stream->detach());
     }
 }

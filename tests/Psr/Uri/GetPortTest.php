@@ -25,7 +25,7 @@ final class GetPortTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri($input));
 
-        $this->assertSame($expected, $uri->getPort());
+        TestCase::assertSame($expected, $uri->getPort());
     }
 
     /**

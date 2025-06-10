@@ -22,7 +22,7 @@ final class WithoutHeaderTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
-        $this->assertInstanceOf(RequestInterface::class, $request->withoutHeader('name'));
+        TestCase::assertInstanceOf(RequestInterface::class, $request->withoutHeader('name'));
     }
 
     /**
@@ -36,7 +36,7 @@ final class WithoutHeaderTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
-        $this->assertNotSame($request, $request->withoutHeader('name'));
+        TestCase::assertNotSame($request, $request->withoutHeader('name'));
     }
 
     /**
@@ -56,7 +56,7 @@ final class WithoutHeaderTest extends TestCase
         $request = $request->withHeader('Name', 'value');
         $request = $request->withoutHeader('Name');
 
-        $this->assertSame([], $request->getHeaders());
+        TestCase::assertSame([], $request->getHeaders());
     }
 
     /**
@@ -77,6 +77,6 @@ final class WithoutHeaderTest extends TestCase
         $request = $request->withHeader('NAME2', 'value2');
         $request = $request->withoutHeader('name1');
 
-        $this->assertSame(['NAME2' => ['value2']], $request->getHeaders());
+        TestCase::assertSame(['NAME2' => ['value2']], $request->getHeaders());
     }
 }

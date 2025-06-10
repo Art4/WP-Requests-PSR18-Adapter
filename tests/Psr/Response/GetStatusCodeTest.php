@@ -23,6 +23,6 @@ final class GetStatusCodeTest extends TestCase
         $requestsResponse->status_code = 200;
         $response = Response::fromResponse($requestsResponse);
 
-        $this->assertSame(200, $response->getStatusCode());
+        TestCase::assertSame(200, $response->getStatusCode());
     }
 }

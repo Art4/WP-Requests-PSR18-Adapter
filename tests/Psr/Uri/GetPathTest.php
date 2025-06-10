@@ -26,7 +26,7 @@ final class GetPathTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri($input));
 
-        $this->assertSame($expected, $uri->getPath());
+        TestCase::assertSame($expected, $uri->getPath());
     }
 
     /**

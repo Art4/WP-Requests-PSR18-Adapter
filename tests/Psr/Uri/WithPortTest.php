@@ -24,7 +24,7 @@ final class WithPortTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertInstanceOf(UriInterface::class, $uri->withPort(5000));
+        TestCase::assertInstanceOf(UriInterface::class, $uri->withPort(5000));
     }
 
     /**
@@ -40,7 +40,7 @@ final class WithPortTest extends TestCase
 
         $uri = $uri->withPort(null);
 
-        $this->assertSame(null, $uri->getPort());
+        TestCase::assertSame(null, $uri->getPort());
     }
 
     /**
@@ -54,7 +54,7 @@ final class WithPortTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        $this->assertNotSame($uri, $uri->withPort(5000));
+        TestCase::assertNotSame($uri, $uri->withPort(5000));
     }
 
     /**
@@ -101,7 +101,7 @@ final class WithPortTest extends TestCase
 
         $uri = $uri->withPort(5000);
 
-        $this->assertSame(5000, $uri->getPort());
+        TestCase::assertSame(5000, $uri->getPort());
     }
 
     /**

@@ -21,6 +21,6 @@ final class GetUriTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
-        $this->assertInstanceOf(UriInterface::class, $request->getUri());
+        TestCase::assertInstanceOf(UriInterface::class, $request->getUri());
     }
 }

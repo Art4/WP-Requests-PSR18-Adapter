@@ -20,6 +20,6 @@ final class IsWritableTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        $this->assertFalse($stream->isWritable());
+        TestCase::assertFalse($stream->isWritable());
     }
 }

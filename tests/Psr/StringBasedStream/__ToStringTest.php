@@ -20,6 +20,6 @@ final class __ToStringTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('full content');
 
-        $this->assertSame('full content', $stream->__toString());
+        TestCase::assertSame('full content', $stream->__toString());
     }
 }
