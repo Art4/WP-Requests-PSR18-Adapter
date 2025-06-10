@@ -20,7 +20,7 @@
         "rmccue/requests": "^1.8 || ^2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.4",
+        "friendsofphp/php-cs-fixer": "^3.75",
         "phpstan/phpstan": "^1.12 || ^2.1",
         "phpstan/phpstan-strict-rules": "^1.6 || ^2.0",
         "phpunit/phpunit": "^8.5 || ^9.6 || ^11.5 || ^12.2",
