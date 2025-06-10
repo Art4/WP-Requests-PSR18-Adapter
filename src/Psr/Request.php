@@ -48,6 +48,10 @@ final class Request implements RequestInterface
      */
     public static function withMethodAndUri(string $method, UriInterface $uri)
     {
+        if ($method === '') {
+            throw new \InvalidArgumentException('Method must be a non-empty string');
+        }
+
         $request = new self($method, $uri);
         $request->body = StringBasedStream::createFromString('');
 
@@ -186,6 +190,10 @@ final class Request implements RequestInterface
      */
     public function withMethod(string $method): RequestInterface
     {
+        if ($method === '') {
+            throw new \InvalidArgumentException('Method must be a non-empty string');
+        }
+
         $request = clone($this);
         $request->method = $method;
 

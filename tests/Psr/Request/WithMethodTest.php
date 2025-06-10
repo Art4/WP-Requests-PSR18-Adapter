@@ -40,6 +40,23 @@ final class WithMethodTest extends TestCase
     }
 
     /**
+     * Tests using withMethod() with empty string.
+     *
+     * @covers \Art4\Requests\Psr\Request::withMethod
+     *
+     * @return void
+     */
+    public function testWithMethodWithEmptyStringThrowsException()
+    {
+        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+
+        TestCase::expectException(\InvalidArgumentException::class);
+        TestCase::expectExceptionMessage('Method must be a non-empty string');
+
+        $request->withMethod('');
+    }
+
+    /**
      * Tests changing the method when using withMethod().
      *
      * @dataProvider dataValidMethod
@@ -71,7 +88,6 @@ final class WithMethodTest extends TestCase
             'Return an instance with the provided HTTP method' => ['POST', 'POST'],
             'implementations SHOULD NOT modify the given string' => ['Head', 'Head'],
             'do not throw InvalidArgumentException for invalid HTTP methods' => ['foobar', 'foobar'],
-            'do not throw InvalidArgumentException for empty methods' => ['', ''],
         ];
     }
 }

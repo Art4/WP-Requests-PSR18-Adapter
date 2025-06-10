@@ -8,7 +8,6 @@ use Art4\Requests\Psr\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithMethodAndUriTest extends TestCase
 {
@@ -26,8 +25,26 @@ final class WithMethodAndUriTest extends TestCase
 
         TestCase::assertInstanceOf(
             RequestInterface::class,
-            Request::withMethodAndUri('', $uri)
+            Request::withMethodAndUri('GET', $uri)
         );
+    }
+
+    /**
+     * Tests throwing an exception when using withMethodAndUri() with empty method.
+     *
+     * @covers \Art4\Requests\Psr\Request::withMethodAndUri
+     * @covers \Art4\Requests\Psr\Request::__construct
+     *
+     * @return void
+     */
+    public function testWithMethodAndUriWithEmptyMethodThrowsException()
+    {
+        $uri = $this->createMock(UriInterface::class);
+
+        TestCase::expectException(\InvalidArgumentException::class);
+        TestCase::expectExceptionMessage('Method must be a non-empty string');
+
+        Request::withMethodAndUri('', $uri);
     }
 
     /**

@@ -59,6 +59,10 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
             $uri = Uri::fromIri(new Iri($uri));
         }
 
+        if ($method === '') {
+            $method = 'GET';
+        }
+
         return Request::withMethodAndUri($method, $uri);
     }
 
