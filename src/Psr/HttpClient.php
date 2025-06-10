@@ -53,7 +53,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
     {
         if (! $uri instanceof UriInterface) {
             if (!is_string($uri)) {
-                throw InvalidArgument::create(2, '$uri', UriInterface::class.'|string', gettype($uri));
+                throw InvalidArgument::create(2, '$uri', UriInterface::class . '|string', gettype($uri));
             }
 
             $uri = Uri::fromIri(new Iri($uri));

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Request;
 
+use Art4\Requests\Psr\Request;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use Art4\Requests\Psr\Request;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
-use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithAddedHeaderTest extends TestCase
 {

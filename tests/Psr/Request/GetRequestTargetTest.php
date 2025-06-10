@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Request;
 
-use Psr\Http\Message\UriInterface;
 use Art4\Requests\Psr\Request;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Psr\Http\Message\UriInterface;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetRequestTargetTest extends TestCase

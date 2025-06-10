@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Response;
 
+use Art4\Requests\Psr\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 

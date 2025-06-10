@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
+use Art4\Requests\Psr\Uri;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class FromIriTest extends TestCase

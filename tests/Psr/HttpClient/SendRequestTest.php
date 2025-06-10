@@ -32,9 +32,9 @@ final class SendRequestTest extends TestCase
             TestCase::assertSame('GET', $options['type']);
 
             return
-                'HTTP/1.1 200 OK' . "\r\n".
-                'Content-Type:text/plain'. "\r\n".
-                "\r\n".
+                'HTTP/1.1 200 OK' . "\r\n" .
+                'Content-Type:text/plain' . "\r\n" .
+                "\r\n" .
                 'foobar';
         });
 
@@ -70,9 +70,9 @@ final class SendRequestTest extends TestCase
             TestCase::assertSame('POST', $options['type']);
 
             return
-                'HTTP/1.1 201 Created' . "\r\n".
-                'Content-Type:application/json'. "\r\n".
-                "\r\n".
+                'HTTP/1.1 201 Created' . "\r\n" .
+                'Content-Type:application/json' . "\r\n" .
+                "\r\n" .
                 '{"id":1,"title":"Post title"}';
         });
 
@@ -109,9 +109,9 @@ final class SendRequestTest extends TestCase
             TestCase::assertSame('GET', $options['type']);
 
             return
-                'HTTP/1.1 404 Not Found' . "\r\n".
-                'Content-Type:text/plain'. "\r\n".
-                "\r\n".
+                'HTTP/1.1 404 Not Found' . "\r\n" .
+                'Content-Type:text/plain' . "\r\n" .
+                "\r\n" .
                 '404 Not Found';
         });
 
@@ -147,9 +147,9 @@ final class SendRequestTest extends TestCase
             TestCase::assertSame('GET', $options['type']);
 
             return
-                'HTTP/1.1 503 Service Unavailable' . "\r\n".
-                'Content-Type:text/plain'. "\r\n".
-                "\r\n".
+                'HTTP/1.1 503 Service Unavailable' . "\r\n" .
+                'Content-Type:text/plain' . "\r\n" .
+                "\r\n" .
                 '503 Service Unavailable';
         });
 

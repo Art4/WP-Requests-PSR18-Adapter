@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
-use Psr\Http\Message\StreamInterface;
 use Art4\Requests\Psr\StringBasedStream;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use Psr\Http\Message\StreamInterface;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class CreateFromStringTest extends TestCase
 {

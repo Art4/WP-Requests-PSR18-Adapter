@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
-use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
+use WpOrg\Requests\Iri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetHostTest extends TestCase

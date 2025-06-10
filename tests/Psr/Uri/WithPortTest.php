@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
+use Art4\Requests\Psr\Uri;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
-use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithPortTest extends TestCase
 {
