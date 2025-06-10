@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Update the IANA reason phrases from 2024-11-13.
+- Update Code style to PER-CS2.0.
 
 ### Fixed
 
