@@ -317,7 +317,6 @@ final class Response implements ResponseInterface
      *
      * @param StreamInterface $body Body.
      * @return static
-     * @throws \InvalidArgumentException When the body is not valid.
      */
     public function withBody(StreamInterface $body): MessageInterface
     {

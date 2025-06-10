@@ -306,7 +306,6 @@ final class Request implements RequestInterface
      *
      * @param StreamInterface $body Body.
      * @return static
-     * @throws \InvalidArgumentException When the body is not valid.
      */
     public function withBody(StreamInterface $body): MessageInterface
     {
