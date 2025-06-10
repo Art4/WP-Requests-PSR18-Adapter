@@ -22,6 +22,7 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.4",
         "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-strict-rules": "^1.6",
         "phpunit/phpunit": "^8 || ^9 || ^10",
         "yoast/phpunit-polyfills": "^2"
     },
