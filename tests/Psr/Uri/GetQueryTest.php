@@ -6,6 +6,7 @@ namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetQueryTest extends TestCase
@@ -19,6 +20,7 @@ final class GetQueryTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataGetQuery')]
     public function testGetQuery(string $input, string $expected)
     {
         $uri = Uri::fromIri(new Iri($input));

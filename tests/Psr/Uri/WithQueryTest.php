@@ -10,6 +10,7 @@ use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithQueryTest extends TestCase
 {
@@ -52,6 +53,7 @@ final class WithQueryTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotString')]
     public function testWithQueryWithoutStringThrowsInvalidArgumentException($input)
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
@@ -84,6 +86,7 @@ final class WithQueryTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataWithQuery')]
     public function testWithQueryChangesTheQuery($input, $expected)
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));

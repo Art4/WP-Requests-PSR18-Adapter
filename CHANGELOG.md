@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Run PHPStan with activated strict rules
+- Run PHPStan with activated strict rules.
+- Run tests with PHPUnit 11 and 12.
 
 ### Changed
 

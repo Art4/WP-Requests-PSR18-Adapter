@@ -10,6 +10,7 @@ use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithFragmentTest extends TestCase
 {
@@ -52,6 +53,7 @@ final class WithFragmentTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotString')]
     public function testWithFragmentWithoutStringThrowsInvalidArgumentException($input)
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
@@ -84,6 +86,7 @@ final class WithFragmentTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataWithFragment')]
     public function testWithFragmentChangesTheFragment($input, $expected)
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));

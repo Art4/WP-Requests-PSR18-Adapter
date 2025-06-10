@@ -10,6 +10,7 @@ use Psr\Http\Message\UriInterface;
 use Art4\Requests\Psr\Request;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithRequestTargetTest extends TestCase
 {
@@ -54,6 +55,7 @@ final class WithRequestTargetTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataValidRequestTarget')]
     public function testWithRequestTargetChangesTheRequestTarget($input, $expected)
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));

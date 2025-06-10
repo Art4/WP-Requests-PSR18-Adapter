@@ -10,6 +10,7 @@ use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithPortTest extends TestCase
 {
@@ -68,6 +69,7 @@ final class WithPortTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotIntOrNull')]
     public function testWithPortWithoutIntOrNullThrowsInvalidArgumentException($input)
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
@@ -116,6 +118,7 @@ final class WithPortTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidPorts')]
     public function testWithPortWithoutValidPortThrowsInvalidArgumentException($input)
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));

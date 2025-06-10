@@ -7,6 +7,7 @@ namespace Art4\Requests\Tests\Psr\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use Art4\Requests\Psr\Request;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class WithUriTest extends TestCase
@@ -150,6 +151,7 @@ final class WithUriTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataPreserveHost')]
     public function testWithUriAndPreserveHost(string $initHost, string $newHost, array $expectedHeaders)
     {
         $uri = $this->createMock(UriInterface::class);

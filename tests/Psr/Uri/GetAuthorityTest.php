@@ -6,6 +6,7 @@ namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetAuthorityTest extends TestCase
@@ -19,6 +20,7 @@ final class GetAuthorityTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataGetAuthority')]
     public function testGetAuthority(string $input, string $expected)
     {
         $uri = Uri::fromIri(new Iri($input));

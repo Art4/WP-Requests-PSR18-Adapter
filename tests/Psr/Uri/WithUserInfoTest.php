@@ -10,6 +10,7 @@ use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithUserInfoTest extends TestCase
 {
@@ -52,6 +53,7 @@ final class WithUserInfoTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotString')]
     public function testWithUserInfoWithoutStringInUserThrowsInvalidArgumentException($input)
     {
         $uri = Uri::fromIri(new Iri(''));
@@ -83,6 +85,7 @@ final class WithUserInfoTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotStringOrNull')]
     public function testWithUserInfoWithoutStringInPasswordThrowsInvalidArgumentException($input)
     {
         $uri = Uri::fromIri(new Iri(''));
@@ -116,6 +119,7 @@ final class WithUserInfoTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataWithUserInfo')]
     public function testWithUserInfoChangesUserInfo($user, $password, $expected)
     {
         $uri = Uri::fromIri(new Iri(''));

@@ -6,6 +6,7 @@ namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetPortTest extends TestCase
@@ -21,6 +22,7 @@ final class GetPortTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataGetPort')]
     public function testGetPort(string $input, $expected)
     {
         $uri = Uri::fromIri(new Iri($input));

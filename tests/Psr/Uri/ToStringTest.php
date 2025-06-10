@@ -6,6 +6,7 @@ namespace Art4\Requests\Tests\Psr\Uri;
 
 use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class ToStringTest extends TestCase
@@ -125,6 +126,7 @@ final class ToStringTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataToString')]
     public function testToStringReturnsCorrectString(string $input, string $expected)
     {
         $uri = Uri::fromIri(new Iri($input));

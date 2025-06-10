@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
-use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
+use PHPUnit\Framework\Attributes\DataProvider;
+use WpOrg\Requests\Iri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetPathTest extends TestCase
@@ -22,6 +23,7 @@ final class GetPathTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataGetPath')]
     public function testGetPath($input, $expected)
     {
         $uri = Uri::fromIri(new Iri($input));

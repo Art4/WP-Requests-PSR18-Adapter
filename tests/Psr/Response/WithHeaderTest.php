@@ -10,6 +10,7 @@ use Art4\Requests\Psr\Response;
 use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithHeaderTest extends TestCase
 {
@@ -62,6 +63,7 @@ final class WithHeaderTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotStringOrArray')]
     public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input)
     {
         $response = Response::fromResponse(new RequestsResponse());
@@ -93,6 +95,7 @@ final class WithHeaderTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotString')]
     public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input)
     {
         $response = Response::fromResponse(new RequestsResponse());

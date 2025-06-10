@@ -10,6 +10,7 @@ use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithSchemeTest extends TestCase
 {
@@ -68,6 +69,7 @@ final class WithSchemeTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotString')]
     public function testWithSchemeWithoutStringThrowsInvalidArgumentException($input)
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));

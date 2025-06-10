@@ -6,6 +6,7 @@ namespace Art4\Requests\Tests\Psr\HttpClient;
 
 use Art4\Requests\Psr\HttpClient;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Exception\InvalidArgument;
@@ -62,6 +63,7 @@ final class CreateRequestTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotString')]
     public function testCreateRequestWithoutUriStringThrowsException($input)
     {
         $httpClient = new HttpClient([]);

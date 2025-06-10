@@ -10,6 +10,7 @@ use Psr\Http\Message\UriInterface;
 use Art4\Requests\Psr\Request;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class WithHeaderTest extends TestCase
 {
@@ -63,6 +64,7 @@ final class WithHeaderTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotStringOrArray')]
     public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input)
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
@@ -94,6 +96,7 @@ final class WithHeaderTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataInvalidTypeNotString')]
     public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input)
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));

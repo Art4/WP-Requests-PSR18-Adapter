@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Art4\Requests\Tests\Psr\Response;
 
 use Art4\Requests\Psr\Response;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\ResponseInterface;
 use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
@@ -79,6 +80,7 @@ final class WithStatusTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('dataWithStatus')]
     public function testWithStatusChangesStatusCode(int $code, string $phrase, string $expected)
     {
         $response = Response::fromResponse(new RequestsResponse());
