@@ -64,9 +64,7 @@ final class StringBasedStream implements StreamInterface
     /**
      * Closes the stream and any underlying resources.
      */
-    public function close(): void
-    {
-    }
+    public function close(): void {}
 
     /**
      * Separates any underlying resources from the stream.
