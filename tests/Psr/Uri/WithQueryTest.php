@@ -63,7 +63,7 @@ final class WithQueryTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public static function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }

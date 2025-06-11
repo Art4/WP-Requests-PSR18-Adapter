@@ -77,7 +77,7 @@ final class WithPortTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public static function dataInvalidTypeNotIntOrNull()
+    public static function dataInvalidTypeNotIntOrNull(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_INT, TypeProviderHelper::GROUP_NULL);
     }
