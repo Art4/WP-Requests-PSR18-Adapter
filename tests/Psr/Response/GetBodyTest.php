@@ -20,6 +20,7 @@ final class GetBodyTest extends TestCase
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = 200;
+
         $response = Response::fromResponse($requestsResponse);
 
         TestCase::assertInstanceOf(StreamInterface::class, $response->getBody());
@@ -35,6 +36,7 @@ final class GetBodyTest extends TestCase
         $requestsResponse = new RequestsResponse();
         $requestsResponse->body = 'response body';
         $requestsResponse->status_code = 200;
+
         $response = Response::fromResponse($requestsResponse);
 
         TestCase::assertSame('response body', $response->getBody()->__toString());

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
+use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
@@ -14,6 +16,11 @@ return RectorConfig::configure()
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,
+        codingStyle: true,
         typeDeclarations: true,
     )
+    ->withSkip([
+        CatchExceptionNameMatchingTypeRector::class,
+        SymplifyQuoteEscapeRector::class,
+    ])
 ;
