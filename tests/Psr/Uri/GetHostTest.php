@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
-use WpOrg\Requests\Iri;
 use Art4\Requests\Psr\Uri;
+use WpOrg\Requests\Iri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetHostTest extends TestCase
@@ -14,10 +14,8 @@ final class GetHostTest extends TestCase
      * Tests receiving the host when using getHost().
      *
      * @covers \Art4\Requests\Psr\Uri::getHost
-     *
-     * @return void
      */
-    public function testGetHost()
+    public function testGetHost(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -28,10 +26,8 @@ final class GetHostTest extends TestCase
      * Tests receiving the host when using getHost().
      *
      * @covers \Art4\Requests\Psr\Uri::getHost
-     *
-     * @return void
      */
-    public function testGetHostReturnEmptyString()
+    public function testGetHostReturnEmptyString(): void
     {
         $uri = Uri::fromIri(new Iri(''));
 
@@ -42,10 +38,8 @@ final class GetHostTest extends TestCase
      * Tests receiving the host when using getHost().
      *
      * @covers \Art4\Requests\Psr\Uri::getHost
-     *
-     * @return void
      */
-    public function testGetHostReturnLowercaseString()
+    public function testGetHostReturnLowercaseString(): void
     {
         $uri = Uri::fromIri(new Iri('https://EXAMPLE.ORG'));
 

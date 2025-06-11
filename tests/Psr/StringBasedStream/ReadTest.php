@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
-use RuntimeException;
 use Art4\Requests\Psr\StringBasedStream;
+use RuntimeException;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class ReadTest extends TestCase
@@ -14,10 +14,8 @@ final class ReadTest extends TestCase
      * Tests receiving an exception when using read() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::read
-     *
-     * @return void
      */
-    public function testReadThrowsRuntimeException()
+    public function testReadThrowsRuntimeException(): void
     {
         $stream = StringBasedStream::createFromString('');
 

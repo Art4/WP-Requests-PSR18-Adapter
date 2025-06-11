@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
+use Art4\Requests\Psr\Uri;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithQueryTest extends TestCase
 {
@@ -17,10 +18,8 @@ final class WithQueryTest extends TestCase
      * Tests changing the query when using withQuery().
      *
      * @covers \Art4\Requests\Psr\Uri::withQuery
-     *
-     * @return void
      */
-    public function testWithQueryReturnsUri()
+    public function testWithQueryReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -31,10 +30,8 @@ final class WithQueryTest extends TestCase
      * Tests changing the query when using withQuery().
      *
      * @covers \Art4\Requests\Psr\Uri::withQuery
-     *
-     * @return void
      */
-    public function testWithQueryReturnsNewInstance()
+    public function testWithQueryReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -49,10 +46,9 @@ final class WithQueryTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withQuery
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithQueryWithoutStringThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testWithQueryWithoutStringThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -81,10 +77,9 @@ final class WithQueryTest extends TestCase
      *
      * @param string $input
      * @param string $expected
-     *
-     * @return void
      */
-    public function testWithQueryChangesTheQuery($input, $expected)
+    #[DataProvider('dataWithQuery')]
+    public function testWithQueryChangesTheQuery($input, $expected): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 

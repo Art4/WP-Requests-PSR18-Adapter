@@ -6,6 +6,7 @@ namespace Art4\Requests\Tests\Psr\HttpClient;
 
 use Art4\Requests\Psr\HttpClient;
 use Art4\Requests\Tests\TypeProviderHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Exception\InvalidArgument;
@@ -17,10 +18,8 @@ final class CreateRequestTest extends TestCase
      * Tests receiving an Request when using createRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::createRequest
-     *
-     * @return void
      */
-    public function testCreateRequestWithUriInstanceReturnsRequest()
+    public function testCreateRequestWithUriInstanceReturnsRequest(): void
     {
         $httpClient = new HttpClient([]);
 
@@ -36,10 +35,8 @@ final class CreateRequestTest extends TestCase
      * Tests receiving an Request when using createRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::createRequest
-     *
-     * @return void
      */
-    public function testCreateRequestWithUriStringReturnsRequest()
+    public function testCreateRequestWithUriStringReturnsRequest(): void
     {
         $httpClient = new HttpClient([]);
 
@@ -59,10 +56,9 @@ final class CreateRequestTest extends TestCase
      * @covers \Art4\Requests\Psr\HttpClient::createRequest
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testCreateRequestWithoutUriStringThrowsException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testCreateRequestWithoutUriStringThrowsException($input): void
     {
         $httpClient = new HttpClient([]);
 

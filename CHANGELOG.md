@@ -9,7 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Run PHPStan with activated strict rules
+- Run PHPStan with activated strict rules.
+- Run tests with PHPUnit 11 and 12.
+
+### Changed
+
+- Update the IANA reason phrases from 2024-11-13.
+- Update Code style to PER-CS2.0.
+
+### Fixed
+
+- `Art4\Requests\Psr\Request::withMethod()` throws exception on empty string as method.
+- `Art4\Requests\Psr\Response::withStatus()` throws exception on invalid status code.
 
 ## [1.3.0 - 2024-10-14](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.2.0...1.3.0)
 

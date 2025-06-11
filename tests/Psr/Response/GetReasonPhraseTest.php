@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Art4\Requests\Tests\Psr\Response;
 
 use Art4\Requests\Psr\Response;
+use PHPUnit\Framework\Attributes\DataProvider;
 use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
@@ -16,10 +17,9 @@ final class GetReasonPhraseTest extends TestCase
      * @dataProvider dataValidReasonPhrase
      *
      * @covers \Art4\Requests\Psr\Response::getReasonPhrase
-     *
-     * @return void
      */
-    public function testGetReasonPhraseReturnsString(int $code, string $phrase)
+    #[DataProvider('dataValidReasonPhrase')]
+    public function testGetReasonPhraseReturnsString(int $code, string $phrase): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = $code;
@@ -32,10 +32,8 @@ final class GetReasonPhraseTest extends TestCase
      * Tests receiving the reason phrase when using getReasonPhrase().
      *
      * @covers \Art4\Requests\Psr\Response::getReasonPhrase
-     *
-     * @return void
      */
-    public function testGetReasonPhraseReturnsEmptyString()
+    public function testGetReasonPhraseReturnsEmptyString(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = 0;
@@ -56,6 +54,7 @@ final class GetReasonPhraseTest extends TestCase
             [101, 'Switching Protocols'],
             [102, 'Processing'],
             [103, 'Early Hints'],
+            [104, 'Upload Resumption Supported'],
             [200, 'OK'],
             [201, 'Created'],
             [202, 'Accepted'],

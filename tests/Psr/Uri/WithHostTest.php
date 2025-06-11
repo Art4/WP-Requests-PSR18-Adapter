@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
+use Art4\Requests\Psr\Uri;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithHostTest extends TestCase
 {
@@ -17,10 +18,8 @@ final class WithHostTest extends TestCase
      * Tests changing the host when using withHost().
      *
      * @covers \Art4\Requests\Psr\Uri::withHost
-     *
-     * @return void
      */
-    public function testWithHostReturnsUri()
+    public function testWithHostReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -31,10 +30,8 @@ final class WithHostTest extends TestCase
      * Tests changing the host when using withHost().
      *
      * @covers \Art4\Requests\Psr\Uri::withHost
-     *
-     * @return void
      */
-    public function testWithHostWithEmptyStringRemovesTheHost()
+    public function testWithHostWithEmptyStringRemovesTheHost(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -47,10 +44,8 @@ final class WithHostTest extends TestCase
      * Tests changing the host when using withHost().
      *
      * @covers \Art4\Requests\Psr\Uri::withHost
-     *
-     * @return void
      */
-    public function testWithHostReturnsNewInstance()
+    public function testWithHostReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -65,10 +60,9 @@ final class WithHostTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withHost
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithHostWithoutStringThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testWithHostWithoutStringThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -92,10 +86,8 @@ final class WithHostTest extends TestCase
      * Tests changing the host when using withHost().
      *
      * @covers \Art4\Requests\Psr\Uri::withHost
-     *
-     * @return void
      */
-    public function testWithHostChangesTheHost()
+    public function testWithHostChangesTheHost(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 

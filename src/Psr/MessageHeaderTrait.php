@@ -222,9 +222,8 @@ trait MessageHeaderTrait
      *
      * @param string $name Case-insensitive header field name.
      * @param string[] $values Header value(s) or empty array to remove the header.
-     * @return void
      */
-    private function updateHeader($name, $values)
+    private function updateHeader($name, $values): void
     {
         $headerName = strtolower($name);
 

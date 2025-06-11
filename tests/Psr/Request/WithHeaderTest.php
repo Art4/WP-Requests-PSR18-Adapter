@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Request;
 
+use Art4\Requests\Psr\Request;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use Art4\Requests\Psr\Request;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithHeaderTest extends TestCase
 {
@@ -18,10 +19,8 @@ final class WithHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithHeaderReturnsRequest()
+    public function testWithHeaderReturnsRequest(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -32,10 +31,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderReturnsNewInstance()
+    public function testWithHeaderReturnsNewInstance(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -60,10 +57,9 @@ final class WithHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotStringOrArray')]
+    public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -91,10 +87,9 @@ final class WithHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -109,10 +104,8 @@ final class WithHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithHeaderChangesTheHeaders()
+    public function testWithHeaderChangesTheHeaders(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');
@@ -128,10 +121,8 @@ final class WithHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithHeaderCaseInsensitiveChangesTheHeaders()
+    public function testWithHeaderCaseInsensitiveChangesTheHeaders(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');

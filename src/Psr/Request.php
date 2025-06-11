@@ -48,6 +48,10 @@ final class Request implements RequestInterface
      */
     public static function withMethodAndUri(string $method, UriInterface $uri)
     {
+        if ($method === '') {
+            throw new \InvalidArgumentException('Method must be a non-empty string');
+        }
+
         $request = new self($method, $uri);
         $request->body = StringBasedStream::createFromString('');
 
@@ -186,6 +190,10 @@ final class Request implements RequestInterface
      */
     public function withMethod(string $method): RequestInterface
     {
+        if ($method === '') {
+            throw new \InvalidArgumentException('Method must be a non-empty string');
+        }
+
         $request = clone($this);
         $request->method = $method;
 
@@ -298,7 +306,6 @@ final class Request implements RequestInterface
      *
      * @param StreamInterface $body Body.
      * @return static
-     * @throws \InvalidArgumentException When the body is not valid.
      */
     public function withBody(StreamInterface $body): MessageInterface
     {
@@ -314,9 +321,8 @@ final class Request implements RequestInterface
      * @see http://tools.ietf.org/html/rfc3986#section-4.3
      * @param UriInterface $uri New request URI to use.
      * @param bool $preserveHost Preserve the original state of the Host header.
-     * @return void
      */
-    private function setUri(UriInterface $uri, $preserveHost)
+    private function setUri(UriInterface $uri, $preserveHost): void
     {
         $this->uri = $uri;
 

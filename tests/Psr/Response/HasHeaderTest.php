@@ -14,10 +14,8 @@ final class HasHeaderTest extends TestCase
      * Tests receiving boolean when using hasHeader().
      *
      * @covers \Art4\Requests\Psr\Response::hasHeader
-     *
-     * @return void
      */
-    public function testHasHeaderReturnsFalse()
+    public function testHasHeaderReturnsFalse(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -28,10 +26,8 @@ final class HasHeaderTest extends TestCase
      * Tests receiving boolean when using hasHeader().
      *
      * @covers \Art4\Requests\Psr\Response::hasHeader
-     *
-     * @return void
      */
-    public function testHasHeaderReturnsTrue()
+    public function testHasHeaderReturnsTrue(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
         $response = $response->withHeader('name', 'value');
@@ -43,10 +39,8 @@ final class HasHeaderTest extends TestCase
      * Tests receiving boolean when using hasHeader().
      *
      * @covers \Art4\Requests\Psr\Response::hasHeader
-     *
-     * @return void
      */
-    public function testHasHeaderWithCaseInsensitiveNameReturnsTrue()
+    public function testHasHeaderWithCaseInsensitiveNameReturnsTrue(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
         $response = $response->withHeader('NAME', 'value');

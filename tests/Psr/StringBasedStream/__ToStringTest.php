@@ -13,10 +13,8 @@ final class __ToStringTest extends TestCase
      * Tests returns the full content when using __toString() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::__toString
-     *
-     * @return void
      */
-    public function testToStringReturnsFullContent()
+    public function testToStringReturnsFullContent(): void
     {
         $stream = StringBasedStream::createFromString('full content');
 

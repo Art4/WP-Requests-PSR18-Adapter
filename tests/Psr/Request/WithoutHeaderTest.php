@@ -15,10 +15,8 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withoutHeader
-     *
-     * @return void
      */
-    public function testWithoutHeaderReturnsRequest()
+    public function testWithoutHeaderReturnsRequest(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -29,10 +27,8 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withoutHeader
-     *
-     * @return void
      */
-    public function testWithoutHeaderReturnsNewInstance()
+    public function testWithoutHeaderReturnsNewInstance(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -44,10 +40,8 @@ final class WithoutHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withoutHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithoutHeaderChangesTheHeaders()
+    public function testWithoutHeaderChangesTheHeaders(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');
@@ -64,10 +58,8 @@ final class WithoutHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withoutHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithoutHeaderCaseInsensitiveChangesTheHeaders()
+    public function testWithoutHeaderCaseInsensitiveChangesTheHeaders(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');

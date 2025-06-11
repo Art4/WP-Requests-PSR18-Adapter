@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
+use Art4\Requests\Psr\Uri;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithPathTest extends TestCase
 {
@@ -17,10 +18,8 @@ final class WithPathTest extends TestCase
      * Tests changing the path when using withPath().
      *
      * @covers \Art4\Requests\Psr\Uri::withPath
-     *
-     * @return void
      */
-    public function testWithPathReturnsUri()
+    public function testWithPathReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -31,10 +30,8 @@ final class WithPathTest extends TestCase
      * Tests changing the path when using withPath().
      *
      * @covers \Art4\Requests\Psr\Uri::withPath
-     *
-     * @return void
      */
-    public function testWithPathReturnsNewInstance()
+    public function testWithPathReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -49,10 +46,9 @@ final class WithPathTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withPath
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithPathWithoutStringThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testWithPathWithoutStringThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -81,10 +77,9 @@ final class WithPathTest extends TestCase
      *
      * @param string $input
      * @param string $expected
-     *
-     * @return void
      */
-    public function testWithPathChangesThePath($input, $expected)
+    #[DataProvider('dataWithPath')]
+    public function testWithPathChangesThePath($input, $expected): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 

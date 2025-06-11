@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Response;
 
-use InvalidArgumentException;
-use Psr\Http\Message\ResponseInterface;
 use Art4\Requests\Psr\Response;
+use Art4\Requests\Tests\TypeProviderHelper;
+use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
+use Psr\Http\Message\ResponseInterface;
 use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithHeaderTest extends TestCase
 {
@@ -17,10 +18,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderReturnsResponseInterface()
+    public function testWithHeaderReturnsResponseInterface(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -31,10 +30,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderReturnsNewInstance()
+    public function testWithHeaderReturnsNewInstance(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -59,10 +56,9 @@ final class WithHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Response::withHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotStringOrArray')]
+    public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -90,10 +86,9 @@ final class WithHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Response::withHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -107,10 +102,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderChangesTheHeaders()
+    public function testWithHeaderChangesTheHeaders(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -123,10 +116,8 @@ final class WithHeaderTest extends TestCase
      * Tests changing the header when using withHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withHeader
-     *
-     * @return void
      */
-    public function testWithHeaderCaseInsensitiveChangesTheHeaders()
+    public function testWithHeaderCaseInsensitiveChangesTheHeaders(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 

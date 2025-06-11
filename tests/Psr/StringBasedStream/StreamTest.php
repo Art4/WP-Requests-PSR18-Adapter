@@ -13,10 +13,8 @@ final class StreamTest extends TestCase
      * Tests all properties are set when using createFromString().
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::createFromString
-     *
-     * @return void
      */
-    public function testCreateFromStringReturnsStreamWithAllProperties()
+    public function testCreateFromStringReturnsStreamWithAllProperties(): void
     {
         $stream = StringBasedStream::createFromString('foobar');
 

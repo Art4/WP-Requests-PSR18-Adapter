@@ -13,10 +13,8 @@ final class GetMetadataTest extends TestCase
      * Tests receiving an array when using getMetadata().
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::getMetadata
-     *
-     * @return void
      */
-    public function testGetMetadataReturnsArray()
+    public function testGetMetadataReturnsArray(): void
     {
         $stream = StringBasedStream::createFromString('');
 
@@ -27,10 +25,8 @@ final class GetMetadataTest extends TestCase
      * Tests receiving null when using getMetadata().
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::getMetadata
-     *
-     * @return void
      */
-    public function testGetMetadataWithKeyReturnsNull()
+    public function testGetMetadataWithKeyReturnsNull(): void
     {
         $stream = StringBasedStream::createFromString('');
 

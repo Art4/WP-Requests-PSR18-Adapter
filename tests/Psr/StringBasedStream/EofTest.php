@@ -13,10 +13,8 @@ final class EofTest extends TestCase
      * Tests receiving true when using eof() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::eof
-     *
-     * @return void
      */
-    public function testEofReturnsTrue()
+    public function testEofReturnsTrue(): void
     {
         $stream = StringBasedStream::createFromString('');
 

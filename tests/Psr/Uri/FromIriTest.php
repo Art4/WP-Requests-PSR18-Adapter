@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
+use Art4\Requests\Psr\Uri;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class FromIriTest extends TestCase
@@ -16,10 +16,8 @@ final class FromIriTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Uri::fromIri
      * @covers \Art4\Requests\Psr\Uri::__construct
-     *
-     * @return void
      */
-    public function testFromIriReturnsUri()
+    public function testFromIriReturnsUri(): void
     {
         TestCase::assertInstanceOf(
             UriInterface::class,
@@ -31,10 +29,8 @@ final class FromIriTest extends TestCase
      * Tests Iri instance is immutable when using fromIri().
      *
      * @covers \Art4\Requests\Psr\Uri::withScheme
-     *
-     * @return void
      */
-    public function testFromIriHasImmutableIriInstance()
+    public function testFromIriHasImmutableIriInstance(): void
     {
         $iri = new Iri('https://example.org');
         $uri = Uri::fromIri($iri);

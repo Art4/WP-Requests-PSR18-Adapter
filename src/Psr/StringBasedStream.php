@@ -69,8 +69,6 @@ final class StringBasedStream implements StreamInterface
 
     /**
      * Closes the stream and any underlying resources.
-     *
-     * @return void
      */
     public function close(): void
     {
@@ -92,9 +90,9 @@ final class StringBasedStream implements StreamInterface
     /**
      * Get the size of the stream if known.
      *
-     * @return int|null Returns the size in bytes if known, or null if unknown.
+     * @return int Returns the size in bytes if known, or null if unknown.
      */
-    public function getSize(): ?int
+    public function getSize(): int
     {
         return strlen($this->content);
     }

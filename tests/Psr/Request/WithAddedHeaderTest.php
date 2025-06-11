@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Request;
 
+use Art4\Requests\Psr\Request;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use Art4\Requests\Psr\Request;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithAddedHeaderTest extends TestCase
 {
@@ -17,10 +18,8 @@ final class WithAddedHeaderTest extends TestCase
      * Tests changing the header when using withAddedHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderReturnsRequest()
+    public function testWithAddedHeaderReturnsRequest(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -31,10 +30,8 @@ final class WithAddedHeaderTest extends TestCase
      * Tests changing the header when using withAddedHeader().
      *
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderReturnsNewInstance()
+    public function testWithAddedHeaderReturnsNewInstance(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -59,10 +56,9 @@ final class WithAddedHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithAddedHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotStringOrArray')]
+    public function testWithAddedHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -90,10 +86,9 @@ final class WithAddedHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithAddedHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testWithAddedHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -108,10 +103,8 @@ final class WithAddedHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderChangesTheHeaders()
+    public function testWithAddedHeaderChangesTheHeaders(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');
@@ -127,10 +120,8 @@ final class WithAddedHeaderTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withAddedHeader
      * @covers \Art4\Requests\Psr\Request::updateHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderCaseInsensitiveChangesTheHeaders()
+    public function testWithAddedHeaderCaseInsensitiveChangesTheHeaders(): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getHost')->willReturn('');

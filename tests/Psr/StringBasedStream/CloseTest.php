@@ -13,13 +13,11 @@ final class CloseTest extends TestCase
      * Tests receiving void when using close() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::close
-     *
-     * @doesNotPerformAssertions
-     *
-     * @return void
      */
-    public function testCloseReturnsVoid()
+    public function testCloseReturnsVoid(): void
     {
+        $this->expectNotToPerformAssertions();
+
         $stream = StringBasedStream::createFromString('');
 
         $stream->close();

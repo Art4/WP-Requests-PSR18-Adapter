@@ -14,10 +14,8 @@ final class CreateStreamFromResourceTest extends TestCase
      * Tests receiving an exception when using createStreamFromResource().
      *
      * @covers \Art4\Requests\Psr\HttpClient::createStreamFromResource
-     *
-     * @return void
      */
-    public function testCreateStreamFromResourceThrowsException()
+    public function testCreateStreamFromResourceThrowsException(): void
     {
         $httpClient = new HttpClient();
 

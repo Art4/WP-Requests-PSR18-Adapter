@@ -14,10 +14,8 @@ final class GetHeaderTest extends TestCase
      * Tests receiving the header when using getHeader().
      *
      * @covers \Art4\Requests\Psr\Request::getHeader
-     *
-     * @return void
      */
-    public function testGetHeaderWithoutHeaderReturnsEmptyArray()
+    public function testGetHeaderWithoutHeaderReturnsEmptyArray(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 
@@ -28,10 +26,8 @@ final class GetHeaderTest extends TestCase
      * Tests receiving the header when using getHeader().
      *
      * @covers \Art4\Requests\Psr\Request::getHeader
-     *
-     * @return void
      */
-    public function testGetHeaderReturnsArray()
+    public function testGetHeaderReturnsArray(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $request = $request->withHeader('name', 'value');
@@ -43,10 +39,8 @@ final class GetHeaderTest extends TestCase
      * Tests receiving the header when using getHeader().
      *
      * @covers \Art4\Requests\Psr\Request::getHeader
-     *
-     * @return void
      */
-    public function testGetHeaderWithCaseInsensitiveNameReturnsArray()
+    public function testGetHeaderWithCaseInsensitiveNameReturnsArray(): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
         $request = $request->withHeader('name', 'value');

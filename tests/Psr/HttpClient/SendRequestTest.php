@@ -19,10 +19,8 @@ final class SendRequestTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\HttpClient::__construct
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestWithGetSendsCorrectDataAndReturnsCorrectResponseData()
+    public function testSendRequestWithGetSendsCorrectDataAndReturnsCorrectResponseData(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -32,9 +30,9 @@ final class SendRequestTest extends TestCase
             TestCase::assertSame('GET', $options['type']);
 
             return
-                'HTTP/1.1 200 OK' . "\r\n".
-                'Content-Type:text/plain'. "\r\n".
-                "\r\n".
+                'HTTP/1.1 200 OK' . "\r\n" .
+                'Content-Type:text/plain' . "\r\n" .
+                "\r\n" .
                 'foobar';
         });
 
@@ -57,10 +55,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving a response when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestWithPostSendsCorrectDataAndReturnsCorrectResponseData()
+    public function testSendRequestWithPostSendsCorrectDataAndReturnsCorrectResponseData(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -70,9 +66,9 @@ final class SendRequestTest extends TestCase
             TestCase::assertSame('POST', $options['type']);
 
             return
-                'HTTP/1.1 201 Created' . "\r\n".
-                'Content-Type:application/json'. "\r\n".
-                "\r\n".
+                'HTTP/1.1 201 Created' . "\r\n" .
+                'Content-Type:application/json' . "\r\n" .
+                "\r\n" .
                 '{"id":1,"title":"Post title"}';
         });
 
@@ -96,10 +92,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving a response when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestReturnsResponseOn404Error()
+    public function testSendRequestReturnsResponseOn404Error(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -109,9 +103,9 @@ final class SendRequestTest extends TestCase
             TestCase::assertSame('GET', $options['type']);
 
             return
-                'HTTP/1.1 404 Not Found' . "\r\n".
-                'Content-Type:text/plain'. "\r\n".
-                "\r\n".
+                'HTTP/1.1 404 Not Found' . "\r\n" .
+                'Content-Type:text/plain' . "\r\n" .
+                "\r\n" .
                 '404 Not Found';
         });
 
@@ -134,10 +128,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving a response when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestReturnsResponseOn503Error()
+    public function testSendRequestReturnsResponseOn503Error(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
@@ -147,9 +139,9 @@ final class SendRequestTest extends TestCase
             TestCase::assertSame('GET', $options['type']);
 
             return
-                'HTTP/1.1 503 Service Unavailable' . "\r\n".
-                'Content-Type:text/plain'. "\r\n".
-                "\r\n".
+                'HTTP/1.1 503 Service Unavailable' . "\r\n" .
+                'Content-Type:text/plain' . "\r\n" .
+                "\r\n" .
                 '503 Service Unavailable';
         });
 
@@ -173,10 +165,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving an exception when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestThrowsRequestException()
+    public function testSendRequestThrowsRequestException(): void
     {
         $transport = $this->createMock(Transport::class);
 
@@ -196,10 +186,8 @@ final class SendRequestTest extends TestCase
      * Tests receiving an exception when using sendRequest().
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     *
-     * @return void
      */
-    public function testSendRequestThrowsNetworkException()
+    public function testSendRequestThrowsNetworkException(): void
     {
         $e = new ExceptionTransport('error message', 'Unknown');
 

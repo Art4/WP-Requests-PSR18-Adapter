@@ -15,10 +15,8 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withoutHeader
-     *
-     * @return void
      */
-    public function testWithoutHeaderReturnsResponseInterface()
+    public function testWithoutHeaderReturnsResponseInterface(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -29,10 +27,8 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withoutHeader
-     *
-     * @return void
      */
-    public function testWithoutHeaderReturnsNewInstance()
+    public function testWithoutHeaderReturnsNewInstance(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -43,10 +39,8 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withoutHeader
-     *
-     * @return void
      */
-    public function testWithoutHeaderChangesTheHeaders()
+    public function testWithoutHeaderChangesTheHeaders(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -60,10 +54,8 @@ final class WithoutHeaderTest extends TestCase
      * Tests removing the header when using withoutHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withoutHeader
-     *
-     * @return void
      */
-    public function testWithoutHeaderCaseInsensitiveChangesTheHeaders()
+    public function testWithoutHeaderCaseInsensitiveChangesTheHeaders(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 

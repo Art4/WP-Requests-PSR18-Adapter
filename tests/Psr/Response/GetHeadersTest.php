@@ -15,10 +15,8 @@ final class GetHeadersTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Response::fromResponse
      * @covers \Art4\Requests\Psr\Response::getHeaders
-     *
-     * @return void
      */
-    public function _testGetHeadersReturnsEmptyArray()
+    public function _testGetHeadersReturnsEmptyArray(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -30,10 +28,8 @@ final class GetHeadersTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Response::fromResponse
      * @covers \Art4\Requests\Psr\Response::getHeaders
-     *
-     * @return void
      */
-    public function testGetHeadersReturnsArray()
+    public function testGetHeadersReturnsArray(): void
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->headers['name'] = 'value';

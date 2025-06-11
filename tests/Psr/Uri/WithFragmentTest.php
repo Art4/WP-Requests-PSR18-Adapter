@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
+use Art4\Requests\Psr\Uri;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithFragmentTest extends TestCase
 {
@@ -17,10 +18,8 @@ final class WithFragmentTest extends TestCase
      * Tests changing the fragment when using withFragment().
      *
      * @covers \Art4\Requests\Psr\Uri::withFragment
-     *
-     * @return void
      */
-    public function testWithFragmentReturnsUri()
+    public function testWithFragmentReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -31,10 +30,8 @@ final class WithFragmentTest extends TestCase
      * Tests changing the fragment when using withFragment().
      *
      * @covers \Art4\Requests\Psr\Uri::withFragment
-     *
-     * @return void
      */
-    public function testWithFragmentReturnsNewInstance()
+    public function testWithFragmentReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -49,10 +46,9 @@ final class WithFragmentTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withFragment
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithFragmentWithoutStringThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testWithFragmentWithoutStringThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -81,10 +77,9 @@ final class WithFragmentTest extends TestCase
      *
      * @param string $input
      * @param string $expected
-     *
-     * @return void
      */
-    public function testWithFragmentChangesTheFragment($input, $expected)
+    #[DataProvider('dataWithFragment')]
+    public function testWithFragmentChangesTheFragment($input, $expected): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 

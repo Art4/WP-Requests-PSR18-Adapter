@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Response;
 
-use InvalidArgumentException;
-use Psr\Http\Message\ResponseInterface;
 use Art4\Requests\Psr\Response;
+use Art4\Requests\Tests\TypeProviderHelper;
+use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
+use Psr\Http\Message\ResponseInterface;
 use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithAddedHeaderTest extends TestCase
 {
@@ -17,10 +18,8 @@ final class WithAddedHeaderTest extends TestCase
      * Tests changing the header when using withAddedHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withAddedHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderReturnsResponseInterface()
+    public function testWithAddedHeaderReturnsResponseInterface(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -31,10 +30,8 @@ final class WithAddedHeaderTest extends TestCase
      * Tests changing the header when using withAddedHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withAddedHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderReturnsNewInstance()
+    public function testWithAddedHeaderReturnsNewInstance(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -59,10 +56,9 @@ final class WithAddedHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Response::withAddedHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithAddedHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotStringOrArray')]
+    public function testWithAddedHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -90,10 +86,9 @@ final class WithAddedHeaderTest extends TestCase
      * @covers \Art4\Requests\Psr\Response::withAddedHeader
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithAddedHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotString')]
+    public function testWithAddedHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -107,10 +102,8 @@ final class WithAddedHeaderTest extends TestCase
      * Tests changing the header when using withAddedHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withAddedHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderChangesTheHeaders()
+    public function testWithAddedHeaderChangesTheHeaders(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 
@@ -123,10 +116,8 @@ final class WithAddedHeaderTest extends TestCase
      * Tests changing the header when using withAddedHeader().
      *
      * @covers \Art4\Requests\Psr\Response::withAddedHeader
-     *
-     * @return void
      */
-    public function testWithAddedHeaderCaseInsensitiveChangesTheHeaders()
+    public function testWithAddedHeaderCaseInsensitiveChangesTheHeaders(): void
     {
         $response = Response::fromResponse(new RequestsResponse());
 

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
-use Psr\Http\Message\StreamInterface;
 use Art4\Requests\Psr\StringBasedStream;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Art4\Requests\Tests\TypeProviderHelper;
+use Psr\Http\Message\StreamInterface;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class CreateFromStringTest extends TestCase
 {
@@ -16,10 +16,8 @@ final class CreateFromStringTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::createFromString
      * @covers \Art4\Requests\Psr\StringBasedStream::__construct
-     *
-     * @return void
      */
-    public function testCreateFromStringReturnsStream()
+    public function testCreateFromStringReturnsStream(): void
     {
         TestCase::assertInstanceOf(
             StreamInterface::class,

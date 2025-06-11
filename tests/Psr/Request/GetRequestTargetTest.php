@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Request;
 
-use Psr\Http\Message\UriInterface;
 use Art4\Requests\Psr\Request;
+use PHPUnit\Framework\Attributes\DataProvider;
+use Psr\Http\Message\UriInterface;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class GetRequestTargetTest extends TestCase
@@ -16,10 +17,9 @@ final class GetRequestTargetTest extends TestCase
      * @dataProvider dataGetRequestTarget
      *
      * @covers \Art4\Requests\Psr\Request::getRequestTarget
-     *
-     * @return void
      */
-    public function testGetRequestTargetReturnsString(string $path, string $query, string $expected)
+    #[DataProvider('dataGetRequestTarget')]
+    public function testGetRequestTargetReturnsString(string $path, string $query, string $expected): void
     {
         $uri = $this->createMock(UriInterface::class);
         $uri->method('getPath')->willReturn($path);

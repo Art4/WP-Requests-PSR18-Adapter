@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Art4\Requests\Tests\Psr\Uri;
 
+use Art4\Requests\Psr\Uri;
+use Art4\Requests\Tests\TypeProviderHelper;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\UriInterface;
 use WpOrg\Requests\Iri;
-use Art4\Requests\Psr\Uri;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-use Art4\Requests\Tests\TypeProviderHelper;
 
 final class WithPortTest extends TestCase
 {
@@ -17,10 +18,8 @@ final class WithPortTest extends TestCase
      * Tests changing the port when using withPort().
      *
      * @covers \Art4\Requests\Psr\Uri::withPort
-     *
-     * @return void
      */
-    public function testWithPortReturnsUri()
+    public function testWithPortReturnsUri(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -31,10 +30,8 @@ final class WithPortTest extends TestCase
      * Tests changing the port when using withPort().
      *
      * @covers \Art4\Requests\Psr\Uri::withPort
-     *
-     * @return void
      */
-    public function testWithPortWithNullRemovesThePort()
+    public function testWithPortWithNullRemovesThePort(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org:5000'));
 
@@ -47,10 +44,8 @@ final class WithPortTest extends TestCase
      * Tests changing the port when using withPort().
      *
      * @covers \Art4\Requests\Psr\Uri::withPort
-     *
-     * @return void
      */
-    public function testWithPortReturnsNewInstance()
+    public function testWithPortReturnsNewInstance(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -65,10 +60,9 @@ final class WithPortTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withPort
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithPortWithoutIntOrNullThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidTypeNotIntOrNull')]
+    public function testWithPortWithoutIntOrNullThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -92,10 +86,8 @@ final class WithPortTest extends TestCase
      * Tests changing the port when using withPort().
      *
      * @covers \Art4\Requests\Psr\Uri::withPort
-     *
-     * @return void
      */
-    public function testWithPortChangesThePort()
+    public function testWithPortChangesThePort(): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
@@ -113,10 +105,9 @@ final class WithPortTest extends TestCase
      * @covers \Art4\Requests\Psr\Uri::withPort
      *
      * @param mixed $input Invalid parameter input.
-     *
-     * @return void
      */
-    public function testWithPortWithoutValidPortThrowsInvalidArgumentException($input)
+    #[DataProvider('dataInvalidPorts')]
+    public function testWithPortWithoutValidPortThrowsInvalidArgumentException($input): void
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
