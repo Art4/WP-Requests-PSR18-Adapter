@@ -37,7 +37,7 @@ final class WithPortTest extends TestCase
 
         $uri = $uri->withPort(null);
 
-        TestCase::assertSame(null, $uri->getPort());
+        TestCase::assertNull($uri->getPort());
     }
 
     /**

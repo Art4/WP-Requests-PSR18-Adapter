@@ -6,6 +6,7 @@ use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\YieldDataProviderRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -24,10 +25,12 @@ return RectorConfig::configure()
         earlyReturn: true,
         strictBooleans: true,
         rectorPreset: true,
+        phpunitCodeQuality: true,
     )
     ->withSkip([
         CatchExceptionNameMatchingTypeRector::class,
         PostIncDecToPreIncDecRector::class,
         SymplifyQuoteEscapeRector::class,
+        YieldDataProviderRector::class,
     ])
 ;
