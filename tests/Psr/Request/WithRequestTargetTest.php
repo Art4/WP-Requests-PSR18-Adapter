@@ -46,11 +46,10 @@ final class WithRequestTargetTest extends TestCase
      * @covers \Art4\Requests\Psr\Request::withRequestTarget
      * @covers \Art4\Requests\Psr\Request::getRequestTarget
      *
-     * @param string $input
      * @param string $expected
      */
     #[DataProvider('dataValidRequestTarget')]
-    public function testWithRequestTargetChangesTheRequestTarget($input, $expected): void
+    public function testWithRequestTargetChangesTheRequestTarget(string $input, $expected): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 

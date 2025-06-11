@@ -26,7 +26,7 @@ final class CreateStreamFromResourceTest extends TestCase
         }
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage('Art4\Requests\Psr\HttpClient::createStreamFromResource() is not yet implemented.');
+        $this->expectExceptionMessage(HttpClient::class . '::createStreamFromResource() is not yet implemented.');
 
         $httpClient->createStreamFromResource($resource);
     }

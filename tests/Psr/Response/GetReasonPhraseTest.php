@@ -23,6 +23,7 @@ final class GetReasonPhraseTest extends TestCase
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = $code;
+
         $response = Response::fromResponse($requestsResponse);
 
         TestCase::assertSame($phrase, $response->getReasonPhrase());
@@ -37,6 +38,7 @@ final class GetReasonPhraseTest extends TestCase
     {
         $requestsResponse = new RequestsResponse();
         $requestsResponse->status_code = 0;
+
         $response = Response::fromResponse($requestsResponse);
 
         TestCase::assertSame('', $response->getReasonPhrase());
@@ -47,7 +49,7 @@ final class GetReasonPhraseTest extends TestCase
      *
      * @return array<array<int|string>>
      */
-    public static function dataValidReasonPhrase()
+    public static function dataValidReasonPhrase(): array
     {
         return [
             [100, 'Continue'],

@@ -55,7 +55,7 @@ final class WithQueryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withQuery(): Argument #1 ($query) must be of type string', Uri::class));
 
-        $uri = $uri->withQuery($input);
+        $uri->withQuery($input);
     }
 
     /**
@@ -63,7 +63,7 @@ final class WithQueryTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public static function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
@@ -93,7 +93,7 @@ final class WithQueryTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public static function dataWithQuery()
+    public static function dataWithQuery(): array
     {
         return [
             'Return an instance with the specified query string' => ['query', 'query'],

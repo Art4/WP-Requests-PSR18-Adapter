@@ -55,7 +55,7 @@ final class WithPathTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withPath(): Argument #1 ($path) must be of type string', Uri::class));
 
-        $uri = $uri->withPath($input);
+        $uri->withPath($input);
     }
 
     /**

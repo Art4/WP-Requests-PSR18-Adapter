@@ -20,7 +20,7 @@ final class CreateStreamFromFileTest extends TestCase
         $httpClient = new HttpClient();
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage('Art4\Requests\Psr\HttpClient::createStreamFromFile() is not yet implemented.');
+        $this->expectExceptionMessage(HttpClient::class . '::createStreamFromFile() is not yet implemented.');
 
         $httpClient->createStreamFromFile('path/to/filename.txt');
     }

@@ -174,14 +174,14 @@ final class TypeProviderHelper
      *
      * @var null|resource|false
      */
-    private static $memory_handle_open = null;
+    private static $memory_handle_open;
 
     /**
      * File handle to local memory (closed resource).
      *
      * @var null|resource|false
      */
-    private static $memory_handle_closed = null;
+    private static $memory_handle_closed;
 
     /**
      * Clean up after the tests.
@@ -207,7 +207,7 @@ final class TypeProviderHelper
      *
      * @return array<string, mixed>
      */
-    public static function getAllExcept(array ...$except)
+    public static function getAllExcept(array ...$except): array
     {
         $except = array_flip(array_merge(...$except));
 
@@ -223,7 +223,7 @@ final class TypeProviderHelper
      *
      * @return array<string, mixed>
      */
-    public static function getSelection(array ...$selection)
+    public static function getSelection(array ...$selection): array
     {
         $selection = array_flip(array_merge(...$selection));
 
@@ -235,7 +235,7 @@ final class TypeProviderHelper
      *
      * @return array<string, mixed>
      */
-    public static function getAll()
+    public static function getAll(): array
     {
         if (self::$memory_handle_open === null) {
             self::$memory_handle_open = fopen('php://memory', 'r+');

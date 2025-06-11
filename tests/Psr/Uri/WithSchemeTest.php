@@ -69,7 +69,7 @@ final class WithSchemeTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withScheme(): Argument #1 ($scheme) must be of type string', Uri::class));
 
-        $uri = $uri->withScheme($input);
+        $uri->withScheme($input);
     }
 
     /**
@@ -77,7 +77,7 @@ final class WithSchemeTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public static function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }

@@ -31,7 +31,7 @@ final class GetUserInfoTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public static function dataGetUserInfo()
+    public static function dataGetUserInfo(): array
     {
         return [
             'empty' => ['', ''],

@@ -34,9 +34,6 @@ class NetworkException extends Exception implements NetworkExceptionInterface
 
     /**
      * Create a new exception
-     *
-     * @param RequestInterface $request
-     * @param Transport        $previous
      */
     public function __construct(RequestInterface $request, Transport $previous)
     {

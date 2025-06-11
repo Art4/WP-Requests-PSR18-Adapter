@@ -73,7 +73,7 @@ final class WithAddedHeaderTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public static function dataInvalidTypeNotStringOrArray()
+    public static function dataInvalidTypeNotStringOrArray(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING, TypeProviderHelper::GROUP_ARRAY);
     }

@@ -55,7 +55,7 @@ final class WithUserInfoTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withUserInfo(): Argument #1 ($user) must be of type string', Uri::class));
 
-        $uri = $uri->withUserInfo($input);
+        $uri->withUserInfo($input);
     }
 
     /**
@@ -63,7 +63,7 @@ final class WithUserInfoTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public static function dataInvalidTypeNotString()
+    public static function dataInvalidTypeNotString(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING);
     }
@@ -85,7 +85,7 @@ final class WithUserInfoTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withUserInfo(): Argument #2 ($password) must be of type null|string', Uri::class));
 
-        $uri = $uri->withUserInfo('user', $input);
+        $uri->withUserInfo('user', $input);
     }
 
     /**
@@ -93,7 +93,7 @@ final class WithUserInfoTest extends TestCase
      *
      * @return array<string, mixed>
      */
-    public static function dataInvalidTypeNotStringOrNull()
+    public static function dataInvalidTypeNotStringOrNull(): array
     {
         return TypeProviderHelper::getAllExcept(TypeProviderHelper::GROUP_STRING, TypeProviderHelper::GROUP_NULL);
     }

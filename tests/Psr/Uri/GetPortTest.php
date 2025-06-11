@@ -33,7 +33,7 @@ final class GetPortTest extends TestCase
      *
      * @return array<string,array<string|int|null>>
      */
-    public static function dataGetPort()
+    public static function dataGetPort(): array
     {
         return [
             'retrieve the port component of the URI' => ['https://example.org:12345', 12345],
