@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // First, include the Composer Autoloader.
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
