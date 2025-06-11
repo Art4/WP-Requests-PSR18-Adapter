@@ -41,12 +41,9 @@ final class Request implements RequestInterface
     /**
      * create Request with method and uri
      *
-     * @param string $method
-     * @param UriInterface $uri
      *
-     * @return Request
      */
-    public static function withMethodAndUri(string $method, UriInterface $uri)
+    public static function withMethodAndUri(string $method, UriInterface $uri): self
     {
         if ($method === '') {
             throw new \InvalidArgumentException('Method must be a non-empty string');
@@ -87,7 +84,6 @@ final class Request implements RequestInterface
      * Constructor
      *
      * @param string $method
-     * @param UriInterface $uri
      *
      * @return Request
      */
@@ -110,8 +106,6 @@ final class Request implements RequestInterface
      *
      * If no URI is available, and no request-target has been specifically
      * provided, this method MUST return the string "/".
-     *
-     * @return string
      */
     public function getRequestTarget(): string
     {
@@ -148,7 +142,6 @@ final class Request implements RequestInterface
      *
      * @see http://tools.ietf.org/html/rfc7230#section-5.3 (for the various
      *     request-target forms allowed in request messages)
-     * @param string $requestTarget
      * @return static
      */
     public function withRequestTarget(string $requestTarget): RequestInterface
@@ -322,7 +315,7 @@ final class Request implements RequestInterface
      * @param UriInterface $uri New request URI to use.
      * @param bool $preserveHost Preserve the original state of the Host header.
      */
-    private function setUri(UriInterface $uri, $preserveHost): void
+    private function setUri(UriInterface $uri, bool $preserveHost): void
     {
         $this->uri = $uri;
 

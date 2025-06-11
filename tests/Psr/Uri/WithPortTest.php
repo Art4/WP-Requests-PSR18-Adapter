@@ -69,7 +69,7 @@ final class WithPortTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withPort(): Argument #1 ($port) must be of type null|int', Uri::class));
 
-        $uri = $uri->withPort($input);
+        $uri->withPort($input);
     }
 
     /**
@@ -114,7 +114,7 @@ final class WithPortTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withPort(): Argument #1 ($port) must be of type null|int in the range of 0 - 65535', Uri::class));
 
-        $uri = $uri->withPort($input);
+        $uri->withPort($input);
     }
 
     /**

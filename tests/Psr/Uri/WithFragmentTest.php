@@ -55,7 +55,7 @@ final class WithFragmentTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withFragment(): Argument #1 ($fragment) must be of type string', Uri::class));
 
-        $uri = $uri->withFragment($input);
+        $uri->withFragment($input);
     }
 
     /**
@@ -93,7 +93,7 @@ final class WithFragmentTest extends TestCase
      *
      * @return array<string,string[]>
      */
-    public static function dataWithFragment()
+    public static function dataWithFragment(): array
     {
         return [
             'Return an instance with the specified fragment string' => ['fragment', 'fragment'],

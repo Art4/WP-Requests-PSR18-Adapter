@@ -58,11 +58,10 @@ final class WithMethodTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\Request::withMethod
      *
-     * @param string $input
      * @param string $expected
      */
     #[DataProvider('dataValidMethod')]
-    public function testWithMethodChangesTheMethod($input, $expected): void
+    public function testWithMethodChangesTheMethod(string $input, $expected): void
     {
         $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
 

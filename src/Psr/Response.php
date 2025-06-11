@@ -36,11 +36,9 @@ final class Response implements ResponseInterface
     /**
      * create Response
      *
-     * @param RequestsResponse $response
      *
-     * @return Response
      */
-    public static function fromResponse(RequestsResponse $response)
+    public static function fromResponse(RequestsResponse $response): self
     {
         if (is_bool($response->protocol_version)) {
             $protocol_version = '1.1';
@@ -85,7 +83,7 @@ final class Response implements ResponseInterface
     /**
      * @var null|string
      */
-    private $reasonPhrase = null;
+    private $reasonPhrase;
 
     /**
      * @var string
@@ -169,10 +167,7 @@ final class Response implements ResponseInterface
     /**
      * Constructor
      *
-     * @param StreamInterface $body
      * @param array<string,string[]> $headers
-     * @param int $status_code
-     * @param string $protocol_version
      */
     private function __construct(StreamInterface $body, array $headers, int $status_code, string $protocol_version)
     {
@@ -228,11 +223,7 @@ final class Response implements ResponseInterface
         $response = clone($this);
         $response->status_code = $code;
 
-        if ($reasonPhrase === '') {
-            $response->reasonPhrase = null;
-        } else {
-            $response->reasonPhrase = $reasonPhrase;
-        }
+        $response->reasonPhrase = $reasonPhrase === '' ? null : $reasonPhrase;
 
         return $response;
     }

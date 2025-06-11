@@ -23,7 +23,7 @@ final class SendRequestTest extends TestCase
     public function testSendRequestWithGetSendsCorrectDataAndReturnsCorrectResponseData(): void
     {
         $transport = $this->createMock(Transport::class);
-        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/', $url);
             TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame('', $data);
@@ -59,7 +59,7 @@ final class SendRequestTest extends TestCase
     public function testSendRequestWithPostSendsCorrectDataAndReturnsCorrectResponseData(): void
     {
         $transport = $this->createMock(Transport::class);
-        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/posts', $url);
             TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame('{"title":"Post title"}', $data);
@@ -96,7 +96,7 @@ final class SendRequestTest extends TestCase
     public function testSendRequestReturnsResponseOn404Error(): void
     {
         $transport = $this->createMock(Transport::class);
-        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/not-found', $url);
             TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame('', $data);
@@ -132,7 +132,7 @@ final class SendRequestTest extends TestCase
     public function testSendRequestReturnsResponseOn503Error(): void
     {
         $transport = $this->createMock(Transport::class);
-        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, $options) {
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/not-available', $url);
             TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame('', $data);

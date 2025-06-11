@@ -69,7 +69,7 @@ final class WithSchemeTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withScheme(): Argument #1 ($scheme) must be of type string', Uri::class));
 
-        $uri = $uri->withScheme($input);
+        $uri->withScheme($input);
     }
 
     /**

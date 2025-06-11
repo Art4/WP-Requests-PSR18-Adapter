@@ -69,7 +69,7 @@ final class WithHostTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withHost(): Argument #1 ($host) must be of type string', Uri::class));
 
-        $uri = $uri->withHost($input);
+        $uri->withHost($input);
     }
 
     /**

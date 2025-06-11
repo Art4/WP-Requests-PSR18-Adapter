@@ -38,11 +38,9 @@ final class Uri implements UriInterface
     /**
      * create Uri from Iri instance
      *
-     * @param Iri $iri
      *
-     * @return Uri
      */
-    public static function fromIri(Iri $iri)
+    public static function fromIri(Iri $iri): self
     {
         return new self(clone($iri));
     }
@@ -56,8 +54,6 @@ final class Uri implements UriInterface
 
     /**
      * Constructor
-     *
-     * @param Iri $iri
      */
     private function __construct(Iri $iri)
     {
@@ -313,7 +309,7 @@ final class Uri implements UriInterface
 
         if ($user === '') {
             $iri->userinfo = $user;
-        } elseif ($password === null or $password === '') {
+        } elseif ($password === null || $password === '') {
             $iri->userinfo = $user;
         } else {
             $iri->userinfo = $user . ':' . $password;
@@ -494,7 +490,6 @@ final class Uri implements UriInterface
      * - If a fragment is present, it MUST be prefixed by "#".
      *
      * @see http://tools.ietf.org/html/rfc3986#section-4.1
-     * @return string
      */
     public function __toString(): string
     {

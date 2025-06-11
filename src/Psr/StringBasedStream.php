@@ -24,11 +24,8 @@ final class StringBasedStream implements StreamInterface
 {
     /**
      * Create StringBasedStream from string
-     *
-     * @param string $content
-     * @return static
      */
-    public static function createFromString(string $content)
+    public static function createFromString(string $content): self
     {
         return new self($content);
     }
@@ -40,8 +37,6 @@ final class StringBasedStream implements StreamInterface
 
     /**
      * Constructor
-     *
-     * @param string $content
      */
     private function __construct(string $content)
     {
@@ -60,7 +55,6 @@ final class StringBasedStream implements StreamInterface
      * string casting operations.
      *
      * @see http://php.net/manual/en/language.oop5.magic.php#object.tostring
-     * @return string
      */
     public function __toString(): string
     {
@@ -72,7 +66,6 @@ final class StringBasedStream implements StreamInterface
      */
     public function close(): void
     {
-        return;
     }
 
     /**
@@ -110,8 +103,6 @@ final class StringBasedStream implements StreamInterface
 
     /**
      * Returns true if the stream is at the end of the stream.
-     *
-     * @return bool
      */
     public function eof(): bool
     {
@@ -120,8 +111,6 @@ final class StringBasedStream implements StreamInterface
 
     /**
      * Returns whether or not the stream is seekable.
-     *
-     * @return bool
      */
     public function isSeekable(): bool
     {
@@ -162,8 +151,6 @@ final class StringBasedStream implements StreamInterface
 
     /**
      * Returns whether or not the stream is writable.
-     *
-     * @return bool
      */
     public function isWritable(): bool
     {
@@ -184,8 +171,6 @@ final class StringBasedStream implements StreamInterface
 
     /**
      * Returns whether or not the stream is readable.
-     *
-     * @return bool
      */
     public function isReadable(): bool
     {
@@ -210,7 +195,6 @@ final class StringBasedStream implements StreamInterface
     /**
      * Returns the remaining contents in a string
      *
-     * @return string
      * @throws \RuntimeException if unable to read or an error occurs while
      *     reading.
      */
