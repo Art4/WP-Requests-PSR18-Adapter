@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add support for PHP 8.4
 - Run PHPStan with activated strict rules.
 - Run tests with PHPUnit 11 and 12.
 - Add `rector.php` config file to run [rector](https://getrector.com) for code improvements.
