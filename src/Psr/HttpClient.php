@@ -91,11 +91,14 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
             $headers[$key] = $request->getHeaderLine($key);
         }
 
+        // Prepare the request body/data for WpOrg\Requests library
+        $data = $this->prepareRequestData($request);
+
         try {
             $response = Requests::request(
                 $request->getUri()->__toString(),
                 $headers,
-                $request->getBody()->__toString(),
+                $data,
                 $request->getMethod(),
                 $this->options
             );
@@ -106,6 +109,49 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         }
 
         return Response::fromResponse($response);
+    }
+
+    /**
+     * Prepare request data for compatibility with WpOrg\Requests library
+     *
+     * Handles differences between Guzzle/PSR-7 and WpOrg\Requests:
+     * 1. GET/HEAD/DELETE: Always use empty array (no body)
+     * 2. POST/PUT/PATCH with JSON: Keep as string
+     * 3. Form data: Parse to array if Content-Type is form-urlencoded
+     *
+     * @param RequestInterface $request
+     * @return array|string
+     */
+    private function prepareRequestData(RequestInterface $request)
+    {
+        $method = strtoupper($request->getMethod());
+        $body = $request->getBody()->__toString();
+
+        // For GET, HEAD, DELETE requests: never send body data
+        // WpOrg\Requests uses data_format='query' for these methods,
+        // which calls http_build_query() expecting an array
+        if (in_array($method, ['GET', 'HEAD', 'DELETE'])) {
+            return [];
+        }
+
+        // For requests with empty body, return empty array
+        if ($body === '' || $body === '[]') {
+            return [];
+        }
+
+        // Check Content-Type header to determine how to handle the body
+        $contentType = $request->getHeaderLine('Content-Type');
+
+        // If Content-Type is application/x-www-form-urlencoded, parse to array
+        // This allows WpOrg\Requests to properly handle form data
+        if (strpos($contentType, 'application/x-www-form-urlencoded') === 0) {
+            parse_str($body, $parsedData);
+            return $parsedData;
+        }
+
+        // For all other content types (application/json, text/xml, etc.),
+        // return body as string - the transport layer will handle it correctly
+        return $body;
     }
 
     /**
