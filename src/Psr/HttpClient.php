@@ -130,7 +130,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         // For GET, HEAD, DELETE requests: never send body data
         // WpOrg\Requests uses data_format='query' for these methods,
         // which calls http_build_query() expecting an array
-        if (in_array($method, ['GET', 'HEAD', 'DELETE'])) {
+        if (in_array($method, ['GET', 'HEAD', 'DELETE'], true)) {
             return [];
         }
 
