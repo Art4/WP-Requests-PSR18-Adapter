@@ -120,7 +120,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      * 3. Form data: Parse to array if Content-Type is form-urlencoded
      *
      * @param RequestInterface $request
-     * @return array|string
+     * @return array<string,string>|string
      */
     private function prepareRequestData(RequestInterface $request)
     {
@@ -131,11 +131,13 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         // WpOrg\Requests uses data_format='query' for these methods,
         // which calls http_build_query() expecting an array
         if (in_array($method, ['GET', 'HEAD', 'DELETE'], true)) {
+            /** @var array<string,string> */
             return [];
         }
 
         // For requests with empty body, return empty array
         if ($body === '' || $body === '[]') {
+            /** @var array<string,string> */
             return [];
         }
 
@@ -145,6 +147,8 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         // If Content-Type is application/x-www-form-urlencoded, parse to array
         // This allows WpOrg\Requests to properly handle form data
         if (strpos($contentType, 'application/x-www-form-urlencoded') === 0) {
+            /** @var array<string,string> $parsedData */
+            $parsedData = [];
             parse_str($body, $parsedData);
             return $parsedData;
         }
