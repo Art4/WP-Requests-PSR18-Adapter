@@ -17,8 +17,16 @@ parameters:
 
     ignoreErrors:
         # $data must be array|null, but underlying transport classes accept array|string
+        # Our prepareRequestData() returns array<string,string>|string for proper handling
         -
-            message: "#^Parameter \\#3 \\$data of static method WpOrg\\\\Requests\\\\Requests\\:\\:request\\(\\) expects array\\|null, string given\\.$#"
+            message: "#^Parameter \\#3 \\$data of static method WpOrg\\\\Requests\\\\Requests\\:\\:request\\(\\) expects array\\|null, array<string, string>\\|string given\\.$#"
+            count: 1
+            path: src/Psr/HttpClient.php
+        
+        # parse_str() returns array<int|string, array<mixed>|string> which is compatible
+        # with our array<string,string> return type for prepareRequestData()
+        -
+            message: "#^Method Art4\\\\Requests\\\\Psr\\\\HttpClient\\:\\:prepareRequestData\\(\\) should return array<string, string>\\|string but returns array<int\\|string, array<mixed>\\|string>\\.$#"
             count: 1
             path: src/Psr/HttpClient.php
 

@@ -26,7 +26,7 @@ final class SendRequestTest extends TestCase
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/', $url);
             TestCase::assertSame(['Host' => 'example.org'], $headers);
-            TestCase::assertSame('', $data);
+            TestCase::assertSame([], $data);
             TestCase::assertSame('GET', $options['type']);
 
             return
@@ -99,7 +99,7 @@ final class SendRequestTest extends TestCase
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/not-found', $url);
             TestCase::assertSame(['Host' => 'example.org'], $headers);
-            TestCase::assertSame('', $data);
+            TestCase::assertSame([], $data);
             TestCase::assertSame('GET', $options['type']);
 
             return
@@ -135,7 +135,7 @@ final class SendRequestTest extends TestCase
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/not-available', $url);
             TestCase::assertSame(['Host' => 'example.org'], $headers);
-            TestCase::assertSame('', $data);
+            TestCase::assertSame([], $data);
             TestCase::assertSame('GET', $options['type']);
 
             return
