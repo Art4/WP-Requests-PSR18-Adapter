@@ -11,17 +11,30 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 final class GetContentsTest extends TestCase
 {
     /**
-     * Tests receiving an exception when using getContents() method.
+     * Tests receiving a string when using getContents() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::getContents
      */
-    public function testGetContentsThrowsRuntimeException(): void
+    public function testGetContentsReturnsEmptyString(): void
     {
-        $stream = StringBasedStream::createFromString('');
+        $content = '';
 
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage(sprintf('%s::getContents() is not implemented.', StringBasedStream::class));
+        $stream = StringBasedStream::createFromString($content);
 
-        $stream->getContents();
+        TestCase::assertSame($content, $stream->getContents());
+    }
+
+    /**
+     * Tests receiving a string when using getContents() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::getContents
+     */
+    public function testGetContentsReturnsString(): void
+    {
+        $content = '{"data":"some json"}';
+
+        $stream = StringBasedStream::createFromString($content);
+
+        TestCase::assertSame($content, $stream->getContents());
     }
 }

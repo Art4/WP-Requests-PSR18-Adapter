@@ -192,13 +192,10 @@ final class StringBasedStream implements StreamInterface
 
     /**
      * Returns the remaining contents in a string
-     *
-     * @throws \RuntimeException if unable to read or an error occurs while
-     *     reading.
      */
     public function getContents(): string
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        return $this->content;
     }
 
     /**
