@@ -5,7 +5,9 @@
          beStrictAboutCoverageMetadata="false"
          beStrictAboutOutputDuringTests="true"
          cacheDirectory=".phpunit.cache"
-         requireCoverageMetadata="false">
+         requireCoverageMetadata="false"
+         colors="true"
+>
   <coverage/>
   <testsuite name="default">
     <directory suffix="Test.php">tests</directory>
