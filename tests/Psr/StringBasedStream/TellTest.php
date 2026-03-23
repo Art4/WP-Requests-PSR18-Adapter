@@ -5,23 +5,19 @@ declare(strict_types=1);
 namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
 use Art4\Requests\Psr\StringBasedStream;
-use RuntimeException;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class TellTest extends TestCase
 {
     /**
-     * Tests receiving an exception when using tell() method.
+     * Tests receiving an integer when using tell() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::tell
      */
-    public function testTellThrowsRuntimeException(): void
+    public function testTellReturnsZeroOnFirstCall(): void
     {
-        $stream = StringBasedStream::createFromString('');
+        $stream = StringBasedStream::createFromString('0123456789');
 
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage(sprintf('%s::tell() is not implemented.', StringBasedStream::class));
-
-        $stream->tell();
+        TestCase::assertSame(0, $stream->tell());
     }
 }

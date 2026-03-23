@@ -36,6 +36,11 @@ final class StringBasedStream implements StreamInterface
     private $content;
 
     /**
+     * @var int
+     */
+    private $pointer = 0;
+
+    /**
      * Constructor
      */
     private function __construct(string $content)
@@ -92,11 +97,10 @@ final class StringBasedStream implements StreamInterface
      * Returns the current position of the file read/write pointer
      *
      * @return int Position of the file pointer
-     * @throws \RuntimeException on error.
      */
     public function tell(): int
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        return $this->pointer;
     }
 
     /**
