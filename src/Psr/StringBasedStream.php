@@ -133,7 +133,27 @@ final class StringBasedStream implements StreamInterface
      */
     public function seek(int $offset, int $whence = SEEK_SET): void
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        $size = strlen($this->content);
+
+        switch ($whence) {
+            case SEEK_SET:
+                $new = $offset;
+                break;
+            case SEEK_CUR:
+                $new = $this->pointer + $offset;
+                break;
+            case SEEK_END:
+                $new = $size + $offset;
+                break;
+            default:
+                throw new RuntimeException('Invalid whence.');
+        }
+
+        if ($new < 0 || $new > $size) {
+            throw new RuntimeException('Cannot seek to position ' . $new);
+        }
+
+        $this->pointer = $new;
     }
 
     /**

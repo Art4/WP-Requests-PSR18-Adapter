@@ -11,17 +11,135 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 final class SeekTest extends TestCase
 {
     /**
-     * Tests receiving an exception when using seek() method.
+     * Tests using seek() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::seek
      */
-    public function testSeekThrowsRuntimeException(): void
+    public function testSeekWithoutWhenceParameter(): void
     {
-        $stream = StringBasedStream::createFromString('');
+        $stream = StringBasedStream::createFromString('0123456789');
+
+        $stream->seek(3);
+
+        TestCase::assertSame(3, $stream->tell());
+    }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekWithInvalidWhenceParameterThrowsException(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage(sprintf('%s::seek() is not implemented.', StringBasedStream::class));
+        $this->expectExceptionMessage('Invalid whence.');
 
-        $stream->seek(0);
+        $stream->seek(3, 404);
+    }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekWithSeekSet(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+
+        $stream->seek(3, SEEK_SET);
+
+        TestCase::assertSame(3, $stream->tell());
+    }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekWithSeekSetThrowsException(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot seek to position 11');
+
+        $stream->seek(11, SEEK_SET);
+    }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekWithSeekCur(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+
+        $stream->seek(3, SEEK_CUR);
+
+        TestCase::assertSame(3, $stream->tell());
+    }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekWithSeekCurThrowsException(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot seek to position 11');
+
+        $stream->seek(11, SEEK_CUR);
+    }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekWithSeekSetAndSeekCurThrowsException(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+
+        $stream->seek(6, SEEK_SET);
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot seek to position 12');
+
+        $stream->seek(6, SEEK_CUR);
+    }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekWithSeekEnd(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+
+        $stream->seek(0, SEEK_END);
+
+        TestCase::assertSame(10, $stream->tell());
+    }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekWithSeekEndThrowsException(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot seek to position 15');
+
+        $stream->seek(5, SEEK_END);
     }
 }
