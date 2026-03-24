@@ -164,11 +164,10 @@ final class StringBasedStream implements StreamInterface
      *
      * @see seek()
      * @link http://www.php.net/manual/en/function.fseek.php
-     * @throws \RuntimeException on failure.
      */
     public function rewind(): void
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        $this->pointer = 0;
     }
 
     /**

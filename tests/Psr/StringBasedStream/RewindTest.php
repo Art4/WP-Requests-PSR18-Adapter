@@ -11,17 +11,18 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 final class RewindTest extends TestCase
 {
     /**
-     * Tests receiving an exception when using rewind() method.
+     * Tests using rewind() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::rewind
      */
-    public function testRewindThrowsRuntimeException(): void
+    public function testRewindCallsSeek(): void
     {
-        $stream = StringBasedStream::createFromString('');
+        $stream = StringBasedStream::createFromString('0123456789');
 
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage(sprintf('%s::rewind() is not implemented.', StringBasedStream::class));
+        $stream->seek(5, SEEK_SET);
 
         $stream->rewind();
+
+        TestCase::assertSame(0, $stream->tell());
     }
 }
