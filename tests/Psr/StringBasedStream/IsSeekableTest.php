@@ -10,14 +10,14 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 final class IsSeekableTest extends TestCase
 {
     /**
-     * Tests receiving false when using isSeekable() method.
+     * Tests receiving bool when using isSeekable() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::isSeekable
      */
-    public function testIsSeekableReturnsFalse(): void
+    public function testIsSeekableReturnsTrue(): void
     {
         $stream = StringBasedStream::createFromString('');
 
-        TestCase::assertFalse($stream->isSeekable());
+        TestCase::assertTrue($stream->isSeekable());
     }
 }
