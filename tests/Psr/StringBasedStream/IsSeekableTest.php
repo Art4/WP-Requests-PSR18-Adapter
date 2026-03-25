@@ -20,4 +20,17 @@ final class IsSeekableTest extends TestCase
 
         TestCase::assertTrue($stream->isSeekable());
     }
+
+    /**
+     * Tests receiving bool when using isSeekable() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::isSeekable
+     */
+    public function testIsSeekableReturnsFalseAfterClose(): void
+    {
+        $stream = StringBasedStream::createFromString('');
+        $stream->close();
+
+        TestCase::assertFalse($stream->isSeekable());
+    }
 }

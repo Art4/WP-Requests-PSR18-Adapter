@@ -41,6 +41,11 @@ final class StringBasedStream implements StreamInterface
     private $pointer = 0;
 
     /**
+     * @var bool
+     */
+    private $seekable = true;
+
+    /**
      * Constructor
      */
     private function __construct(string $content)
@@ -69,7 +74,10 @@ final class StringBasedStream implements StreamInterface
     /**
      * Closes the stream and any underlying resources.
      */
-    public function close(): void {}
+    public function close(): void
+    {
+        $this->seekable = false;
+    }
 
     /**
      * Separates any underlying resources from the stream.
@@ -116,7 +124,7 @@ final class StringBasedStream implements StreamInterface
      */
     public function isSeekable(): bool
     {
-        return true;
+        return $this->seekable;
     }
 
     /**
