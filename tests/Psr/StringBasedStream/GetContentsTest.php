@@ -52,4 +52,19 @@ final class GetContentsTest extends TestCase
 
         TestCase::assertSame('56789', $stream->getContents());
     }
+
+    /**
+     * Tests receiving a string when using getContents() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::getContents
+     */
+    public function testGetContentsAfterCloseReturnsEmptyString(): void
+    {
+        $content = '0123456789';
+
+        $stream = StringBasedStream::createFromString($content);
+        $stream->close();
+
+        TestCase::assertSame('', $stream->getContents());
+    }
 }

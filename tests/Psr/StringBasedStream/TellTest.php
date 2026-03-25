@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Art4\Requests\Tests\Psr\StringBasedStream;
 
 use Art4\Requests\Psr\StringBasedStream;
+use RuntimeException;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 final class TellTest extends TestCase
@@ -63,5 +64,21 @@ final class TellTest extends TestCase
         $stream->seek(0, SEEK_END);
 
         TestCase::assertSame(10, $stream->tell());
+    }
+
+    /**
+     * Tests receiving an exception when using tell() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::tell
+     */
+    public function testTellAfterCloseThrowsException(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+        $stream->close();
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Stream is closed.');
+
+        $stream->tell();
     }
 }

@@ -20,4 +20,17 @@ final class __ToStringTest extends TestCase
 
         TestCase::assertSame('full content', $stream->__toString());
     }
+
+    /**
+     * Tests using __toString() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::__toString
+     */
+    public function testToStringAfterCloseReturnsEmptyString(): void
+    {
+        $stream = StringBasedStream::createFromString('full content');
+        $stream->close();
+
+        TestCase::assertSame('', $stream->__toString());
+    }
 }

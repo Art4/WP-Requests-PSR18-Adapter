@@ -38,10 +38,23 @@ final class EofTest extends TestCase
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::eof
      */
-    public function testEofAfterTellReturnsTrue(): void
+    public function testEofAfterSeekReturnsTrue(): void
     {
         $stream = StringBasedStream::createFromString('0123456789');
         $stream->seek(0, SEEK_END);
+
+        TestCase::assertTrue($stream->eof());
+    }
+
+    /**
+     * Tests receiving bool when using eof() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::eof
+     */
+    public function testEofAfterCloseReturnsTrue(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+        $stream->close();
 
         TestCase::assertTrue($stream->eof());
     }

@@ -233,4 +233,20 @@ final class SeekTest extends TestCase
 
         $stream->seek(-15, SEEK_END);
     }
+
+    /**
+     * Tests using seek() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::seek
+     */
+    public function testSeekAfterCloseThrowsException(): void
+    {
+        $stream = StringBasedStream::createFromString('0123456789');
+        $stream->close();
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Stream is closed.');
+
+        $stream->seek(0);
+    }
 }

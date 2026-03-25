@@ -76,6 +76,8 @@ final class StringBasedStream implements StreamInterface
      */
     public function close(): void
     {
+        $this->content = '';
+        $this->pointer = 0;
         $this->seekable = false;
     }
 
@@ -105,9 +107,14 @@ final class StringBasedStream implements StreamInterface
      * Returns the current position of the file read/write pointer
      *
      * @return int Position of the file pointer
+     * @throws \RuntimeException on error.
      */
     public function tell(): int
     {
+        if (! $this->seekable) {
+            throw new RuntimeException('Stream is closed.');
+        }
+
         return $this->pointer;
     }
 
@@ -141,6 +148,10 @@ final class StringBasedStream implements StreamInterface
      */
     public function seek(int $offset, int $whence = SEEK_SET): void
     {
+        if (! $this->seekable) {
+            throw new RuntimeException('Stream is closed.');
+        }
+
         $size = strlen($this->content);
 
         switch ($whence) {
