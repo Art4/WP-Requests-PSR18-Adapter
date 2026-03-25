@@ -229,7 +229,26 @@ final class StringBasedStream implements StreamInterface
      */
     public function read(int $length): string
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        if ($length < 0) {
+            throw new RuntimeException('Length must be non-negative.');
+        }
+
+        if ($length === 0) {
+            return '';
+        }
+
+        $size = strlen($this->content);
+        $length = min($length, max(0, $size - $this->pointer));
+
+        if ($length === 0) {
+            return '';
+        }
+
+        $result = substr($this->content, $this->pointer, $length);
+
+        $this->pointer += $length;
+
+        return $result;
     }
 
     /**
