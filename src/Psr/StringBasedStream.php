@@ -218,7 +218,17 @@ final class StringBasedStream implements StreamInterface
      */
     public function getContents(): string
     {
-        return $this->content;
+        $size = strlen($this->content);
+
+        if ($this->pointer >= $size) {
+            return '';
+        }
+
+        $result = substr($this->content, $this->pointer);
+
+        $this->pointer = $size;
+
+        return $result;
     }
 
     /**
