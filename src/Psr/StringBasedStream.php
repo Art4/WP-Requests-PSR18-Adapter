@@ -116,7 +116,7 @@ final class StringBasedStream implements StreamInterface
      */
     public function eof(): bool
     {
-        return true;
+        return $this->pointer >= strlen($this->content);
     }
 
     /**
