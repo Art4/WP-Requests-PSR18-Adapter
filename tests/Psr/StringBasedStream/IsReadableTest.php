@@ -10,14 +10,14 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 final class IsReadableTest extends TestCase
 {
     /**
-     * Tests receiving false when using isReadable() method.
+     * Tests receiving true when using isReadable() method.
      *
      * @covers \Art4\Requests\Psr\StringBasedStream::isReadable
      */
-    public function testIsReadableReturnsFalse(): void
+    public function testIsReadableReturnsTrue(): void
     {
         $stream = StringBasedStream::createFromString('');
 
-        TestCase::assertFalse($stream->isReadable());
+        TestCase::assertTrue($stream->isReadable());
     }
 }

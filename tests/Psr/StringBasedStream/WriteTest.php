@@ -20,7 +20,7 @@ final class WriteTest extends TestCase
         $stream = StringBasedStream::createFromString('');
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage(sprintf('%s::write() is not implemented.', StringBasedStream::class));
+        $this->expectExceptionMessage(sprintf('%s::write() is not supported.', StringBasedStream::class));
 
         $stream->write('');
     }

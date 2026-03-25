@@ -206,7 +206,7 @@ final class StringBasedStream implements StreamInterface
      */
     public function write(string $string): int
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        throw new RuntimeException(__METHOD__ . '() is not supported.');
     }
 
     /**
@@ -214,7 +214,7 @@ final class StringBasedStream implements StreamInterface
      */
     public function isReadable(): bool
     {
-        return false;
+        return true;
     }
 
     /**
