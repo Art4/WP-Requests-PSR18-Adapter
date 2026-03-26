@@ -64,12 +64,12 @@ jobs:
         with:
           composer-options: --ignore-platform-reqs
 
-      - name: Run phpunit tests
+      - name: Run phpunit tests (without PHPUnit issues)
         if: ${{ matrix.php <= '8.2' }}
         run: composer run phpunit
 
-      - name: Run phpunit tests
-        if: ${{ matrix.php > '8.3' }}
+      - name: Run phpunit tests (with PHPUnit issues)
+        if: ${{ matrix.php >= '8.3' }}
         run: composer run phpunit -- --display-all-issues
 
   static-code-analysis:
