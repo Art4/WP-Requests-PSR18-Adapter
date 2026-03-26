@@ -1,6 +1,6 @@
 {
     "name": "art4/requests-psr18-adapter",
-    "version": "1.4.0",
+    "version": "1.5.0-dev",
     "description": "Use WordPress/Requests as a PSR-18 HTTP client",
     "type": "library",
     "license": "GPL-3.0-or-later",
