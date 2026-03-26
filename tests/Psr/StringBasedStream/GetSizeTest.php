@@ -20,4 +20,17 @@ final class GetSizeTest extends TestCase
 
         TestCase::assertSame(12, $stream->getSize());
     }
+
+    /**
+     * Tests returns content size when using getSize() method.
+     *
+     * @covers \Art4\Requests\Psr\StringBasedStream::getSize
+     */
+    public function testGetSizeAfterCloseReturnsZero(): void
+    {
+        $stream = StringBasedStream::createFromString('full content');
+        $stream->close();
+
+        TestCase::assertSame(0, $stream->getSize());
+    }
 }

@@ -36,6 +36,16 @@ final class StringBasedStream implements StreamInterface
     private $content;
 
     /**
+     * @var int
+     */
+    private $pointer = 0;
+
+    /**
+     * @var bool
+     */
+    private $seekable = true;
+
+    /**
      * Constructor
      */
     private function __construct(string $content)
@@ -64,7 +74,12 @@ final class StringBasedStream implements StreamInterface
     /**
      * Closes the stream and any underlying resources.
      */
-    public function close(): void {}
+    public function close(): void
+    {
+        $this->content = '';
+        $this->pointer = 0;
+        $this->seekable = false;
+    }
 
     /**
      * Separates any underlying resources from the stream.
@@ -96,7 +111,11 @@ final class StringBasedStream implements StreamInterface
      */
     public function tell(): int
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        if (! $this->seekable) {
+            throw new RuntimeException('Stream is closed.');
+        }
+
+        return $this->pointer;
     }
 
     /**
@@ -104,7 +123,7 @@ final class StringBasedStream implements StreamInterface
      */
     public function eof(): bool
     {
-        return true;
+        return $this->pointer >= strlen($this->content);
     }
 
     /**
@@ -112,7 +131,7 @@ final class StringBasedStream implements StreamInterface
      */
     public function isSeekable(): bool
     {
-        return false;
+        return $this->seekable;
     }
 
     /**
@@ -129,7 +148,31 @@ final class StringBasedStream implements StreamInterface
      */
     public function seek(int $offset, int $whence = SEEK_SET): void
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        if (! $this->seekable) {
+            throw new RuntimeException('Stream is closed.');
+        }
+
+        $size = strlen($this->content);
+
+        switch ($whence) {
+            case SEEK_SET:
+                $new = $offset;
+                break;
+            case SEEK_CUR:
+                $new = $this->pointer + $offset;
+                break;
+            case SEEK_END:
+                $new = $size + $offset;
+                break;
+            default:
+                throw new RuntimeException('Invalid whence.');
+        }
+
+        if ($new < 0 || $new > $size) {
+            throw new RuntimeException('Cannot seek to position ' . $new);
+        }
+
+        $this->pointer = $new;
     }
 
     /**
@@ -140,11 +183,10 @@ final class StringBasedStream implements StreamInterface
      *
      * @see seek()
      * @link http://www.php.net/manual/en/function.fseek.php
-     * @throws \RuntimeException on failure.
      */
     public function rewind(): void
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        $this->pointer = 0;
     }
 
     /**
@@ -164,7 +206,7 @@ final class StringBasedStream implements StreamInterface
      */
     public function write(string $string): int
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        throw new RuntimeException(__METHOD__ . '() is not supported.');
     }
 
     /**
@@ -172,7 +214,7 @@ final class StringBasedStream implements StreamInterface
      */
     public function isReadable(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -187,18 +229,44 @@ final class StringBasedStream implements StreamInterface
      */
     public function read(int $length): string
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        if ($length < 0) {
+            throw new RuntimeException('Length must be non-negative.');
+        }
+
+        if ($length === 0) {
+            return '';
+        }
+
+        $size = strlen($this->content);
+        $length = min($length, max(0, $size - $this->pointer));
+
+        if ($length === 0) {
+            return '';
+        }
+
+        $result = substr($this->content, $this->pointer, $length);
+
+        $this->pointer += $length;
+
+        return $result;
     }
 
     /**
      * Returns the remaining contents in a string
-     *
-     * @throws \RuntimeException if unable to read or an error occurs while
-     *     reading.
      */
     public function getContents(): string
     {
-        throw new RuntimeException(__METHOD__ . '() is not implemented.');
+        $size = strlen($this->content);
+
+        if ($this->pointer >= $size) {
+            return '';
+        }
+
+        $result = substr($this->content, $this->pointer);
+
+        $this->pointer = $size;
+
+        return $result;
     }
 
     /**
@@ -208,17 +276,23 @@ final class StringBasedStream implements StreamInterface
      * stream_get_meta_data() function.
      *
      * @link http://php.net/manual/en/function.stream-get-meta-data.php
-     * @param string $key Specific metadata to retrieve.
+     * @param string|null $key Specific metadata to retrieve.
      * @return array|mixed|null Returns an associative array if no key is
      *     provided. Returns a specific key value if a key is provided and the
      *     value is found, or null if the key is not found.
      */
     public function getMetadata(?string $key = null)
     {
-        if (is_string($key)) {
-            return null;
+        $meta = [
+            'seekable' => $this->seekable,
+            'readable' => true,
+            'writable' => false,
+        ];
+
+        if ($key === null) {
+            return $meta;
         }
 
-        return [];
+        return $meta[$key] ?? null;
     }
 }
