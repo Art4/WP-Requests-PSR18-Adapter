@@ -47,7 +47,7 @@ jobs:
           tools: phpunit
 
       # Install dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install lowest Composer dependencies (PHP 7.2)"
         if: ${{ matrix.prefer-versions == 'lowest' }}
         uses: "ramsey/composer-install@v2"
@@ -84,14 +84,14 @@ jobs:
           fetch-depth: 2
 
       - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2 # @link https://github.com/marketplace/actions/setup-php-action
         with:
           php-version: ${{ matrix.php }}
           tools: phpunit
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
 
       # Install composer dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install Composer dependencies"
         uses: "ramsey/composer-install@v2"
 
@@ -115,7 +115,7 @@ jobs:
           fetch-depth: 2
 
       - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2 # @link https://github.com/marketplace/actions/setup-php-action
         with:
           php-version: ${{ matrix.php }}
           tools: phpunit
@@ -123,7 +123,7 @@ jobs:
           coverage: xdebug
 
       # Install composer dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install Composer dependencies"
         uses: "ramsey/composer-install@v2"
 
@@ -156,14 +156,14 @@ jobs:
           fetch-depth: 2
 
       - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2 # @link https://github.com/marketplace/actions/setup-php-action
         with:
           php-version: ${{ matrix.php }}
           tools: none
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
 
       # Install composer dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install Composer dependencies"
         uses: "ramsey/composer-install@v2"
 
