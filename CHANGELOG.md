@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Implement pointer support in `Art4\Requests\Psr\StringBasedStream`.
 - Add support for PHP 8.5
 - Run PHPStan with activated strict rules.
 - Run tests with PHPUnit 11 and 12.
