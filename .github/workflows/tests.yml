@@ -65,7 +65,12 @@ jobs:
           composer-options: --ignore-platform-reqs
 
       - name: Run phpunit tests
+        if: ${{ matrix.php <= '8.2' }}
         run: composer run phpunit
+
+      - name: Run phpunit tests
+        if: ${{ matrix.php > '8.3' }}
+        run: composer run phpunit -- --display-all-issues
 
   static-code-analysis:
     name: PHPStan (PHP ${{ matrix.php }})
