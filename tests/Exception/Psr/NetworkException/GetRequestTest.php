@@ -19,8 +19,8 @@ final class GetRequestTest extends TestCase
      */
     public function testGetRequestReturnsRequest(): void
     {
-        $request = $this->createStub(RequestInterface::class);
-        $previous = $this->createStub(Transport::class);
+        $request = TestCase::createStub(RequestInterface::class);
+        $previous = TestCase::createStub(Transport::class);
 
         $exception = new NetworkException($request, $previous);
 
