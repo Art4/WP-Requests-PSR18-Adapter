@@ -128,7 +128,7 @@ jobs:
         uses: "ramsey/composer-install@v2"
 
       - name: Run phpunit tests
-        run: composer run phpunit -- -- --display-all-issues --coverage-clover ./.code-coverage/clover.xml
+        run: composer run phpunit -- --display-all-issues --coverage-clover ./.code-coverage/clover.xml
 
       - name: Send coverage report to Codecov
         if: ${{ success() }}
