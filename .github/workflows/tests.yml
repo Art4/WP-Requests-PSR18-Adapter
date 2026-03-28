@@ -46,6 +46,11 @@ jobs:
           ini-values: error_reporting=-1, display_errors=On, log_errors_max_len=0
           tools: phpunit
 
+      # Remove Rector and PHPStan on PHP <= 7.3 from composer.json
+      - name: "Remove Rector and PHPStan (PHP <= 7.3)"
+        if: ${{ matrix.php <= '7.3' }}
+        run: composer remove --dev --no-install rector/rector phpstan/phpstan
+
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install lowest Composer dependencies (PHP 7.2)"
