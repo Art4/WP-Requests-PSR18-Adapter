@@ -64,13 +64,8 @@ jobs:
         with:
           composer-options: --ignore-platform-reqs
 
-      - name: Run phpunit tests (without PHPUnit issues)
-        if: ${{ matrix.php <= '8.2' }}
+      - name: Run phpunit tests
         run: composer run phpunit
-
-      - name: Run phpunit tests (with PHPUnit issues)
-        if: ${{ matrix.php >= '8.3' }}
-        run: composer run phpunit -- --display-all-issues
 
   static-code-analysis:
     name: PHPStan (PHP ${{ matrix.php }})
@@ -111,7 +106,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: ["ubuntu-latest"]
-        php: ["8.4"]
+        php: ["8.5"]
 
     steps:
       - name: Checkout
@@ -133,7 +128,7 @@ jobs:
         uses: "ramsey/composer-install@v2"
 
       - name: Run phpunit tests
-        run: composer run phpunit -- --coverage-clover ./.code-coverage/clover.xml
+        run: composer run phpunit -- -- --display-all-issues --coverage-clover ./.code-coverage/clover.xml
 
       - name: Send coverage report to Codecov
         if: ${{ success() }}
