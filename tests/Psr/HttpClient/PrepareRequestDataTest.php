@@ -205,17 +205,17 @@ final class PrepareRequestDataTest extends TestCase
     }
 
     /**
-     * Tests that POST requests with form-urlencoded body send parsed array.
+     * Tests that POST requests with form-urlencoded body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
      * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
-    public function testPostRequestWithFormUrlencodedBodySendsArray(): void
+    public function testPostRequestWithFormUrlencodedBodySendsString(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/form', $url);
-            TestCase::assertSame(['name' => 'John Doe', 'email' => 'john@example.com'], $data);
+            TestCase::assertSame('name=John+Doe&email=john%40example.com', $data);
             TestCase::assertSame('POST', $options['type']);
 
             return
@@ -239,17 +239,17 @@ final class PrepareRequestDataTest extends TestCase
     }
 
     /**
-     * Tests that POST requests with form-urlencoded charset body send parsed array.
+     * Tests that POST requests with form-urlencoded charset body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
      * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
-    public function testPostRequestWithFormUrlencodedCharsetBodySendsArray(): void
+    public function testPostRequestWithFormUrlencodedCharsetBodySendsString(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/form', $url);
-            TestCase::assertSame(['username' => 'admin', 'password' => 'secret'], $data);
+            TestCase::assertSame('username=admin&password=secret', $data);
             TestCase::assertSame('POST', $options['type']);
 
             return
@@ -266,6 +266,46 @@ final class PrepareRequestDataTest extends TestCase
         $request = $httpClient->createRequest('POST', 'https://example.org/form');
         $request = $request->withHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         $request = $request->withBody($httpClient->createStream('username=admin&password=secret'));
+
+        $response = $httpClient->sendRequest($request);
+
+        TestCase::assertSame(200, $response->getStatusCode());
+    }
+
+    /**
+     * Tests that POST requests with repeated form-urlencoded params are preserved.
+     *
+     * Some APIs use repeated parameter names (e.g. item=foo&item=bar) to send
+     * arrays. parse_str() would collapse these into a single value, so the
+     * body must be passed as a raw string.
+     *
+     * @covers \Art4\Requests\Psr\HttpClient::sendRequest
+     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
+     */
+    public function testPostRequestWithRepeatedFormParamsPreservesAll(): void
+    {
+        $body = 'item=first&item=second&item=third&category=test';
+
+        $transport = $this->createMock(Transport::class);
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options) use ($body): string {
+            TestCase::assertSame('https://example.org/batch', $url);
+            TestCase::assertSame($body, $data);
+            TestCase::assertSame('POST', $options['type']);
+
+            return
+                'HTTP/1.1 200 OK' . "\r\n" .
+                'Content-Type:application/json' . "\r\n" .
+                "\r\n" .
+                '{"processed":3}';
+        });
+
+        $httpClient = new HttpClient([
+            'transport' => $transport,
+        ]);
+
+        $request = $httpClient->createRequest('POST', 'https://example.org/batch');
+        $request = $request->withHeader('Content-Type', 'application/x-www-form-urlencoded');
+        $request = $request->withBody($httpClient->createStream($body));
 
         $response = $httpClient->sendRequest($request);
 

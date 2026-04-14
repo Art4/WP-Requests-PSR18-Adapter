@@ -116,8 +116,12 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      *
      * Handles differences between Guzzle/PSR-7 and WpOrg\Requests:
      * 1. GET/HEAD/DELETE: Always use empty array (no body)
-     * 2. POST/PUT/PATCH with JSON: Keep as string
-     * 3. Form data: Parse to array if Content-Type is form-urlencoded
+     * 2. All other methods: Keep body as string
+     *
+     * For POST/PUT/PATCH, the body is passed as a raw string regardless of
+     * Content-Type. This ensures URL-encoded bodies with repeated parameter
+     * names (e.g. "text=foo&text=bar") are preserved correctly, since
+     * parse_str() would collapse them into a single value.
      *
      * @param RequestInterface $request
      * @return array<string,string>|string
@@ -141,20 +145,9 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
             return [];
         }
 
-        // Check Content-Type header to determine how to handle the body
-        $contentType = $request->getHeaderLine('Content-Type');
-
-        // If Content-Type is application/x-www-form-urlencoded, parse to array
-        // This allows WpOrg\Requests to properly handle form data
-        if (strpos($contentType, 'application/x-www-form-urlencoded') === 0) {
-            /** @var array<string,string> $parsedData */
-            $parsedData = [];
-            parse_str($body, $parsedData);
-            return $parsedData;
-        }
-
-        // For all other content types (application/json, text/xml, etc.),
-        // return body as string - the transport layer will handle it correctly
+        // Pass body as raw string for all content types.
+        // WpOrg\Requests with data_format='body' (the default for POST/PUT/PATCH)
+        // sends strings as-is in the request body.
         return $body;
     }
 
