@@ -23,13 +23,6 @@ parameters:
             count: 1
             path: src/Psr/HttpClient.php
         
-        # parse_str() returns array<int|string, array<mixed>|string> which is compatible
-        # with our array<string,string> return type for prepareRequestData()
-        -
-            message: "#^Method Art4\\\\Requests\\\\Psr\\\\HttpClient\\:\\:prepareRequestData\\(\\) should return array<string, string>\\|string but returns array<int\\|string, array<mixed>\\|string>\\.$#"
-            count: 1
-            path: src/Psr/HttpClient.php
-
         # Method Art4\Requests\Psr\HttpClient::createStreamFromFile() is not yet implemented.
         -
             message: "#^Method Art4\\\\Requests\\\\Psr\\\\HttpClient\\:\\:createStreamFromFile\\(\\) has InvalidArgumentException in PHPDoc \\@throws tag but it\\'s not thrown\\.$#"
