@@ -91,8 +91,27 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
             $headers[$key] = $request->getHeaderLine($key);
         }
 
-        // Prepare the request body/data for WpOrg\Requests library
+        $body = $request->getBody()->__toString();
         $data = $this->prepareRequestData($request);
+
+        // If prepareRequestData dropped a non-empty body, strip Content-Length
+        // and Transfer-Encoding so the server doesn't hang waiting for bytes
+        // that will never arrive.
+        if ($data === [] && $body !== '') {
+            foreach (array_keys($headers) as $name) {
+                if (strcasecmp($name, 'Content-Length') === 0 || strcasecmp($name, 'Transfer-Encoding') === 0) {
+                    unset($headers[$name]);
+                }
+            }
+        }
+
+        $options = $this->options;
+        // Force data_format='body' when passing a raw string.
+        // WpOrg\Requests defaults to 'query' for GET/HEAD/DELETE, which calls
+        // http_build_query() on $data and fatals with TypeError if it's a string.
+        if (is_string($data)) {
+            $options['data_format'] = 'body';
+        }
 
         try {
             $response = Requests::request(
@@ -100,7 +119,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
                 $headers,
                 $data,
                 $request->getMethod(),
-                $this->options
+                $options
             );
         } catch (Transport $th) {
             throw new NetworkException($request, $th);
@@ -128,26 +147,13 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      */
     private function prepareRequestData(RequestInterface $request)
     {
-        $method = strtoupper($request->getMethod());
         $body = $request->getBody()->__toString();
 
-        // For GET, HEAD, DELETE requests: never send body data
-        // WpOrg\Requests uses data_format='query' for these methods,
-        // which calls http_build_query() expecting an array
-        if (in_array($method, ['GET', 'HEAD', 'DELETE'], true)) {
-            /** @var array<string,string> */
-            return [];
-        }
-
-        // For requests with empty body, return empty array
         if ($body === '' || $body === '[]') {
             /** @var array<string,string> */
             return [];
         }
 
-        // Pass body as raw string for all content types.
-        // WpOrg\Requests with data_format='body' (the default for POST/PUT/PATCH)
-        // sends strings as-is in the request body.
         return $body;
     }
 
