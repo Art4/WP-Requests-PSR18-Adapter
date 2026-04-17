@@ -76,18 +76,19 @@ final class PrepareRequestDataTest extends TestCase
     }
 
     /**
-     * Tests that HEAD requests with body send empty array.
+     * Tests that HEAD requests with body pass body as string with data_format='body'.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
      * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
-    public function testHeadRequestWithBodySendsEmptyArray(): void
+    public function testHeadRequestWithBodyPassesBodyAsString(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/', $url);
-            TestCase::assertSame([], $data);
+            TestCase::assertSame('some body', $data);
             TestCase::assertSame('HEAD', $options['type']);
+            TestCase::assertSame('body', $options['data_format']);
 
             return
                 'HTTP/1.1 200 OK' . "\r\n" .
@@ -108,18 +109,19 @@ final class PrepareRequestDataTest extends TestCase
     }
 
     /**
-     * Tests that DELETE requests with body send empty array.
+     * Tests that DELETE requests with body pass body as string with data_format='body'.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
      * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
-    public function testDeleteRequestWithBodySendsEmptyArray(): void
+    public function testDeleteRequestWithBodyPassesBodyAsString(): void
     {
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/posts/1', $url);
-            TestCase::assertSame([], $data);
+            TestCase::assertSame('ignored', $data);
             TestCase::assertSame('DELETE', $options['type']);
+            TestCase::assertSame('body', $options['data_format']);
 
             return
                 'HTTP/1.1 204 No Content' . "\r\n" .
