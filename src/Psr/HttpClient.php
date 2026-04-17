@@ -92,7 +92,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         }
 
         $body = $request->getBody()->__toString();
-        $data = $this->prepareRequestData($request);
+        $data = $this->prepareRequestData($request, $body);
 
         // If prepareRequestData dropped a non-empty body, strip Content-Length
         // and Transfer-Encoding so the server doesn't hang waiting for bytes
