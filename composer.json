@@ -22,6 +22,8 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.4",
+        "nyholm/psr7": "^1.8",
+        "php-http/client-integration-tests": "^4.0",
         "phpstan/phpstan": "^1.12 || ^2.1",
         "phpstan/phpstan-strict-rules": "^1.6 || ^2.0",
         "phpunit/phpunit": "^8.5 || ^9.6 || ^11.5 || ^12.2",
