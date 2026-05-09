@@ -91,8 +91,27 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
             $headers[$key] = $request->getHeaderLine($key);
         }
 
-        // Prepare the request body/data for WpOrg\Requests library
-        $data = $this->prepareRequestData($request);
+        $body = $request->getBody()->__toString();
+        $data = $this->prepareRequestData($request, $body);
+
+        // If prepareRequestData dropped a non-empty body, strip Content-Length
+        // and Transfer-Encoding so the server doesn't hang waiting for bytes
+        // that will never arrive.
+        if ($data === [] && $body !== '') {
+            foreach (array_keys($headers) as $name) {
+                if (strcasecmp($name, 'Content-Length') === 0 || strcasecmp($name, 'Transfer-Encoding') === 0) {
+                    unset($headers[$name]);
+                }
+            }
+        }
+
+        $options = $this->options;
+        // Force data_format='body' when passing a raw string.
+        // WpOrg\Requests defaults to 'query' for GET/HEAD/DELETE, which calls
+        // http_build_query() on $data and fatals with TypeError if it's a string.
+        if (is_string($data)) {
+            $options['data_format'] = 'body';
+        }
 
         try {
             $response = Requests::request(
@@ -100,7 +119,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
                 $headers,
                 $data,
                 $request->getMethod(),
-                $this->options
+                $options
             );
         } catch (Transport $th) {
             throw new NetworkException($request, $th);
@@ -116,45 +135,24 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      *
      * Handles differences between Guzzle/PSR-7 and WpOrg\Requests:
      * 1. GET/HEAD/DELETE: Always use empty array (no body)
-     * 2. POST/PUT/PATCH with JSON: Keep as string
-     * 3. Form data: Parse to array if Content-Type is form-urlencoded
+     * 2. All other methods: Keep body as string
+     *
+     * For POST/PUT/PATCH, the body is passed as a raw string regardless of
+     * Content-Type. This ensures URL-encoded bodies with repeated parameter
+     * names (e.g. "text=foo&text=bar") are preserved correctly, since
+     * parse_str() would collapse them into a single value.
      *
      * @param RequestInterface $request
+     * @param string $body Pre-stringified request body (avoids stringifying twice).
      * @return array<string,string>|string
      */
-    private function prepareRequestData(RequestInterface $request)
+    private function prepareRequestData(RequestInterface $request, string $body)
     {
-        $method = strtoupper($request->getMethod());
-        $body = $request->getBody()->__toString();
-
-        // For GET, HEAD, DELETE requests: never send body data
-        // WpOrg\Requests uses data_format='query' for these methods,
-        // which calls http_build_query() expecting an array
-        if (in_array($method, ['GET', 'HEAD', 'DELETE'], true)) {
-            /** @var array<string,string> */
-            return [];
-        }
-
-        // For requests with empty body, return empty array
         if ($body === '' || $body === '[]') {
             /** @var array<string,string> */
             return [];
         }
 
-        // Check Content-Type header to determine how to handle the body
-        $contentType = $request->getHeaderLine('Content-Type');
-
-        // If Content-Type is application/x-www-form-urlencoded, parse to array
-        // This allows WpOrg\Requests to properly handle form data
-        if (strpos($contentType, 'application/x-www-form-urlencoded') === 0) {
-            /** @var array<string,string> $parsedData */
-            $parsedData = [];
-            parse_str($body, $parsedData);
-            return $parsedData;
-        }
-
-        // For all other content types (application/json, text/xml, etc.),
-        // return body as string - the transport layer will handle it correctly
         return $body;
     }
 
