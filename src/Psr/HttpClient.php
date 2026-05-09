@@ -107,10 +107,10 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
          */
         $data = ($body === '' || $body === '[]') ? [] : $body;
 
-        // If prepareRequestData dropped a non-empty body, strip Content-Length
+        // If $data contains a non-empty body, strip Content-Length
         // and Transfer-Encoding so the server doesn't hang waiting for bytes
         // that will never arrive.
-        if ($data === [] && $body !== '') {
+        if ($data === []) {
             foreach (array_keys($headers) as $name) {
                 if (strcasecmp($name, 'Content-Length') === 0 || strcasecmp($name, 'Transfer-Encoding') === 0) {
                     unset($headers[$name]);
