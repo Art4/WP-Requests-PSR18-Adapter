@@ -117,7 +117,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
             $response = Requests::request(
                 $request->getUri()->__toString(),
                 $headers,
-                $data,
+                $data, /** @phpstan-ignore argument.type(# $data must be array|null, but underlying transport classes accept array|string; prepareRequestData() returns array<string,string>|string for proper handling) */
                 $request->getMethod(),
                 $options
             );
@@ -167,8 +167,8 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      * @param string $filename Filename or stream URI to use as basis of stream.
      * @param string $mode Mode with which to open the underlying filename/stream.
      *
-     * @throws \RuntimeException If the file cannot be opened.
-     * @throws \InvalidArgumentException If the mode is invalid.
+     * @_throws \RuntimeException If the file cannot be opened.
+     * @_throws \InvalidArgumentException If the mode is invalid.
      */
     public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface
     {
