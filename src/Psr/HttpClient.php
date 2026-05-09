@@ -92,7 +92,20 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         }
 
         $body = $request->getBody()->__toString();
-        $data = $this->prepareRequestData($request, $body);
+
+        /*
+         * Prepare request data for compatibility with WpOrg\Requests library
+         *
+         * Handles differences between Guzzle/PSR-7 and WpOrg\Requests:
+         * 1. GET/HEAD/DELETE: Always use empty array (no body)
+         * 2. All other methods: Keep body as string
+         *
+         * For POST/PUT/PATCH, the body is passed as a raw string regardless of
+         * Content-Type. This ensures URL-encoded bodies with repeated parameter
+         * names (e.g. "text=foo&text=bar") are preserved correctly, since
+         * parse_str() would collapse them into a single value.
+         */
+        $data = ($body === '' || $body === '[]') ? [] : $body;
 
         // If prepareRequestData dropped a non-empty body, strip Content-Length
         // and Transfer-Encoding so the server doesn't hang waiting for bytes
@@ -128,32 +141,6 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         }
 
         return Response::fromResponse($response);
-    }
-
-    /**
-     * Prepare request data for compatibility with WpOrg\Requests library
-     *
-     * Handles differences between Guzzle/PSR-7 and WpOrg\Requests:
-     * 1. GET/HEAD/DELETE: Always use empty array (no body)
-     * 2. All other methods: Keep body as string
-     *
-     * For POST/PUT/PATCH, the body is passed as a raw string regardless of
-     * Content-Type. This ensures URL-encoded bodies with repeated parameter
-     * names (e.g. "text=foo&text=bar") are preserved correctly, since
-     * parse_str() would collapse them into a single value.
-     *
-     * @param RequestInterface $request
-     * @param string $body Pre-stringified request body (avoids stringifying twice).
-     * @return array<string,string>|string
-     */
-    private function prepareRequestData(RequestInterface $request, string $body)
-    {
-        if ($body === '' || $body === '[]') {
-            /** @var array<string,string> */
-            return [];
-        }
-
-        return $body;
     }
 
     /**
