@@ -374,6 +374,7 @@ final class Uri implements UriInterface
 
         $iri = clone($this->iri);
 
+        /** @phpstan-ignore assign.propertyType(Fix false positive: WpOrg\Requests\Iri::$port DOES accept string|null) */
         $iri->port = ($port !== null) ? strval($port) : null;
 
         return new self($iri);

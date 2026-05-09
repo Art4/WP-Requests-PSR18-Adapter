@@ -21,6 +21,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame([], $data);
             TestCase::assertSame('GET', $options['type']);
 
@@ -53,6 +54,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame([], $data);
             TestCase::assertSame('GET', $options['type']);
 
@@ -86,6 +88,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame('some body', $data);
             TestCase::assertSame('HEAD', $options['type']);
             TestCase::assertSame('body', $options['data_format']);
@@ -119,6 +122,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/posts/1', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame('ignored', $data);
             TestCase::assertSame('DELETE', $options['type']);
             TestCase::assertSame('body', $options['data_format']);
@@ -151,6 +155,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/posts', $url);
+            TestCase::assertSame(['Host' => 'example.org', 'Content-Type' => 'application/json'], $headers);
             TestCase::assertSame('{"title":"Test Post","body":"Content"}', $data);
             TestCase::assertSame('POST', $options['type']);
 
@@ -175,6 +180,43 @@ final class PrepareRequestDataTest extends TestCase
     }
 
     /**
+     * Tests that POST requests with JSON body send body as string.
+     *
+     * @covers \Art4\Requests\Psr\HttpClient::sendRequest
+     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
+     */
+    public function testPostRequestWithoutBodyAndContentLengthAndTransferEncodingHeadersRemovesHeaders(): void
+    {
+        $transport = $this->createMock(Transport::class);
+        $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
+            TestCase::assertSame('https://example.org/posts', $url);
+            TestCase::assertSame(['Host' => 'example.org', 'Content-Type' => 'application/json'], $headers);
+            TestCase::assertSame([], $data);
+            TestCase::assertSame('POST', $options['type']);
+
+            return
+                'HTTP/1.1 201 Created' . "\r\n" .
+                'Content-Type:application/json' . "\r\n" .
+                "\r\n" .
+                '{"id":1,"title":"Test Post"}';
+        });
+
+        $httpClient = new HttpClient([
+            'transport' => $transport,
+        ]);
+
+        $request = $httpClient->createRequest('POST', 'https://example.org/posts');
+        $request = $request->withHeader('Content-Type', 'application/json');
+        $request = $request->withAddedHeader('Content-Length', '99999');
+        $request = $request->withAddedHeader('Transfer-Encoding', 'UTF-8');
+        $request = $request->withBody($httpClient->createStream(''));
+
+        $response = $httpClient->sendRequest($request);
+
+        TestCase::assertSame(201, $response->getStatusCode());
+    }
+
+    /**
      * Tests that POST requests with empty body send empty array.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
@@ -185,6 +227,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/posts', $url);
+            TestCase::assertSame(['Host' => 'example.org'], $headers);
             TestCase::assertSame([], $data);
             TestCase::assertSame('POST', $options['type']);
 
@@ -217,6 +260,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/form', $url);
+            TestCase::assertSame(['Host' => 'example.org', 'Content-Type' => 'application/x-www-form-urlencoded'], $headers);
             TestCase::assertSame('name=John+Doe&email=john%40example.com', $data);
             TestCase::assertSame('POST', $options['type']);
 
@@ -251,6 +295,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/form', $url);
+            TestCase::assertSame(['Host' => 'example.org', 'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'], $headers);
             TestCase::assertSame('username=admin&password=secret', $data);
             TestCase::assertSame('POST', $options['type']);
 
@@ -291,6 +336,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options) use ($body): string {
             TestCase::assertSame('https://example.org/batch', $url);
+            TestCase::assertSame(['Host' => 'example.org', 'Content-Type' => 'application/x-www-form-urlencoded'], $headers);
             TestCase::assertSame($body, $data);
             TestCase::assertSame('POST', $options['type']);
 
@@ -325,6 +371,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/posts/1', $url);
+            TestCase::assertSame(['Host' => 'example.org', 'Content-Type' => 'application/json'], $headers);
             TestCase::assertSame('{"title":"Updated Post"}', $data);
             TestCase::assertSame('PUT', $options['type']);
 
@@ -359,6 +406,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/posts/1', $url);
+            TestCase::assertSame(['Host' => 'example.org', 'Content-Type' => 'application/json'], $headers);
             TestCase::assertSame('{"title":"Patched Title"}', $data);
             TestCase::assertSame('PATCH', $options['type']);
 
@@ -393,6 +441,7 @@ final class PrepareRequestDataTest extends TestCase
         $transport = $this->createMock(Transport::class);
         $transport->expects(TestCase::once())->method('request')->willReturnCallback(function ($url, $headers, $data, array $options): string {
             TestCase::assertSame('https://example.org/api', $url);
+            TestCase::assertSame(['Host' => 'example.org', 'Content-Type' => 'application/xml'], $headers);
             TestCase::assertSame('<?xml version="1.0"?><root><item>value</item></root>', $data);
             TestCase::assertSame('POST', $options['type']);
 

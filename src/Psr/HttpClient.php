@@ -92,12 +92,25 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         }
 
         $body = $request->getBody()->__toString();
-        $data = $this->prepareRequestData($request, $body);
 
-        // If prepareRequestData dropped a non-empty body, strip Content-Length
-        // and Transfer-Encoding so the server doesn't hang waiting for bytes
+        /*
+         * Prepare request data for compatibility with WpOrg\Requests library
+         *
+         * Handles differences between Guzzle/PSR-7 and WpOrg\Requests:
+         * 1. GET/HEAD/DELETE: Always use empty array (no body)
+         * 2. All other methods: Keep body as string
+         *
+         * For POST/PUT/PATCH, the body is passed as a raw string regardless of
+         * Content-Type. This ensures URL-encoded bodies with repeated parameter
+         * names (e.g. "text=foo&text=bar") are preserved correctly, since
+         * parse_str() would collapse them into a single value.
+         */
+        $data = ($body === '' || $body === '[]') ? [] : $body;
+
+        // If $data contains a non-empty body, strip Content-Length
+        // and Transfer-Encoding headers so the server doesn't hang waiting for bytes
         // that will never arrive.
-        if ($data === [] && $body !== '') {
+        if ($data === []) {
             foreach (array_keys($headers) as $name) {
                 if (strcasecmp($name, 'Content-Length') === 0 || strcasecmp($name, 'Transfer-Encoding') === 0) {
                     unset($headers[$name]);
@@ -117,7 +130,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
             $response = Requests::request(
                 $request->getUri()->__toString(),
                 $headers,
-                $data,
+                $data, /** @phpstan-ignore argument.type(# $data must be array|null, but underlying transport classes accept array|string) */
                 $request->getMethod(),
                 $options
             );
@@ -131,32 +144,6 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
     }
 
     /**
-     * Prepare request data for compatibility with WpOrg\Requests library
-     *
-     * Handles differences between Guzzle/PSR-7 and WpOrg\Requests:
-     * 1. GET/HEAD/DELETE: Always use empty array (no body)
-     * 2. All other methods: Keep body as string
-     *
-     * For POST/PUT/PATCH, the body is passed as a raw string regardless of
-     * Content-Type. This ensures URL-encoded bodies with repeated parameter
-     * names (e.g. "text=foo&text=bar") are preserved correctly, since
-     * parse_str() would collapse them into a single value.
-     *
-     * @param RequestInterface $request
-     * @param string $body Pre-stringified request body (avoids stringifying twice).
-     * @return array<string,string>|string
-     */
-    private function prepareRequestData(RequestInterface $request, string $body)
-    {
-        if ($body === '' || $body === '[]') {
-            /** @var array<string,string> */
-            return [];
-        }
-
-        return $body;
-    }
-
-    /**
      * Create a stream from an existing file.
      *
      * The file MUST be opened using the given mode, which may be any mode
@@ -167,8 +154,8 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      * @param string $filename Filename or stream URI to use as basis of stream.
      * @param string $mode Mode with which to open the underlying filename/stream.
      *
-     * @throws \RuntimeException If the file cannot be opened.
-     * @throws \InvalidArgumentException If the mode is invalid.
+     * @_throws \RuntimeException If the file cannot be opened.
+     * @_throws \InvalidArgumentException If the mode is invalid.
      */
     public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface
     {
