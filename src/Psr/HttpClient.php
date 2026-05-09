@@ -108,7 +108,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
         $data = ($body === '' || $body === '[]') ? [] : $body;
 
         // If $data contains a non-empty body, strip Content-Length
-        // and Transfer-Encoding so the server doesn't hang waiting for bytes
+        // and Transfer-Encoding headers so the server doesn't hang waiting for bytes
         // that will never arrive.
         if ($data === []) {
             foreach (array_keys($headers) as $name) {
@@ -130,7 +130,7 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
             $response = Requests::request(
                 $request->getUri()->__toString(),
                 $headers,
-                $data, /** @phpstan-ignore argument.type(# $data must be array|null, but underlying transport classes accept array|string; prepareRequestData() returns array<string,string>|string for proper handling) */
+                $data, /** @phpstan-ignore argument.type(# $data must be array|null, but underlying transport classes accept array|string) */
                 $request->getMethod(),
                 $options
             );
