@@ -143,12 +143,11 @@ final class HttpClient implements RequestFactoryInterface, StreamFactoryInterfac
      * parse_str() would collapse them into a single value.
      *
      * @param RequestInterface $request
+     * @param string $body Pre-stringified request body (avoids stringifying twice).
      * @return array<string,string>|string
      */
-    private function prepareRequestData(RequestInterface $request)
+    private function prepareRequestData(RequestInterface $request, string $body)
     {
-        $body = $request->getBody()->__toString();
-
         if ($body === '' || $body === '[]') {
             /** @var array<string,string> */
             return [];
