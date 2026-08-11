@@ -1,3 +1,5 @@
+
+
 # WordPress/Requests PSR-18 Adapter
 
 [![Latest Version](https://img.shields.io/github/release/Art4/WP-Requests-PSR18-Adapter.svg)](https://github.com/Art4/WP-Requests-PSR18-Adapter/releases)
@@ -13,7 +15,7 @@ Use [WordPress/Requests](https://github.com/WordPress/Requests) as a [PSR-18](ht
 
 ## Why?
 
-Requests is a HTTP library written in PHP, that [lacks of support for PSR-7](https://github.com/WordPress/Requests/issues/320) and also for PSR-18 because of the compatability with PHP 5.6+.
+Requests is a HTTP library written in PHP, that [lacks of support for PSR-7](https://github.com/WordPress/Requests/issues/320) and also for PSR-18 because of the compatibility with PHP 5.6+.
 
 [I've created a PR in Requests to add PSR-7 support](https://github.com/WordPress/Requests/pull/768) but this would add new direct dependencies to Requests. So I created this library as an optional wrapper for Requests. If one day Requests nativly supports PSR-7 and PSR-18, this library might become obsolete.
 
