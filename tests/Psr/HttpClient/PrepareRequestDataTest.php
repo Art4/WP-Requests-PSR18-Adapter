@@ -14,7 +14,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that GET requests with empty body send empty array.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testGetRequestWithEmptyBodySendsEmptyArray(): void
     {
@@ -47,7 +46,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that GET requests with "[]" body send empty array.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testGetRequestWithBracketBodySendsEmptyArray(): void
     {
@@ -81,7 +79,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that HEAD requests with body pass body as string with data_format='body'.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testHeadRequestWithBodyPassesBodyAsString(): void
     {
@@ -115,7 +112,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that DELETE requests with body pass body as string with data_format='body'.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testDeleteRequestWithBodyPassesBodyAsString(): void
     {
@@ -148,7 +144,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that POST requests with JSON body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPostRequestWithJsonBodySendsString(): void
     {
@@ -183,7 +178,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that POST requests with JSON body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPostRequestWithoutBodyAndContentLengthAndTransferEncodingHeadersRemovesHeaders(): void
     {
@@ -220,7 +214,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that POST requests with empty body send empty array.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPostRequestWithEmptyBodySendsEmptyArray(): void
     {
@@ -253,7 +246,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that POST requests with form-urlencoded body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPostRequestWithFormUrlencodedBodySendsString(): void
     {
@@ -288,7 +280,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that POST requests with form-urlencoded charset body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPostRequestWithFormUrlencodedCharsetBodySendsString(): void
     {
@@ -327,7 +318,6 @@ final class PrepareRequestDataTest extends TestCase
      * body must be passed as a raw string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPostRequestWithRepeatedFormParamsPreservesAll(): void
     {
@@ -364,7 +354,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that PUT requests with JSON body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPutRequestWithJsonBodySendsString(): void
     {
@@ -399,7 +388,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that PATCH requests with JSON body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPatchRequestWithJsonBodySendsString(): void
     {
@@ -434,7 +422,6 @@ final class PrepareRequestDataTest extends TestCase
      * Tests that POST requests with XML body send body as string.
      *
      * @covers \Art4\Requests\Psr\HttpClient::sendRequest
-     * @covers \Art4\Requests\Psr\HttpClient::prepareRequestData
      */
     public function testPostRequestWithXmlBodySendsString(): void
     {
