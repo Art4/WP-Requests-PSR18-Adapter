@@ -41,9 +41,9 @@
     },
     "scripts": {
         "codestyle": "php-cs-fixer fix",
-        "coverage": "phpunit --coverage-html=.code-coverage",
+        "coverage": "@phpunit --coverage-html=.code-coverage",
         "phpstan": "phpstan analyze --memory-limit 512M --configuration .phpstan.neon",
-        "phpunit": "phpunit",
+        "phpunit": "@php scripts/phpunit.php",
         "test": [
             "@phpstan",
             "@phpunit",

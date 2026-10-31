@@ -8,7 +8,8 @@
 /.phpstan.neon           export-ignore
 /AGENTS.md               export-ignore
 /docker-compose.yml      export-ignore
-/phpunit.xml             export-ignore
+/phpunit.legacy.xml     export-ignore
+/phpunit.xml            export-ignore
 /rector.php              export-ignore
 /scripts                 export-ignore
 /tests                   export-ignore

@@ -20,6 +20,7 @@
 | Only some PHP versions | `PHP_VERSIONS="php74 php85" scripts/test-all` |
 
 Notes:
+- **PHPUnit configuration:** `composer phpunit` runs `scripts/phpunit.php`, which uses `phpunit.legacy.xml` for PHPUnit 9.6 and `phpunit.xml` for PHPUnit 10 and newer.
 - **composer.lock is not used** (`"lock": false` in `composer.json`). CI and local runs always resolve the latest allowed versions. New releases of dev tools can turn CI red without a code change – reproduce with `composer update`.
 - **`vendor/` is separate for every PHP version** (`.docker/vendor/<service>`, mounted to `/app/vendor`; the directories are kept in Git with a `.gitkeep` so they belong to the host user). Run `composer update` once per service before running tests there. `scripts/test-all` does this for you.
 - Containers run as the host user (`DOCKER_UID`/`DOCKER_GID`, default `1000`). Set them if your user id is different.
