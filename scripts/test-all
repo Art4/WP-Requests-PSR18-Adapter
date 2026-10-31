@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Runs a composer script (default: phpunit) on all PHP versions in Docker.
 #
-#   bin/test-all              # composer phpunit on every PHP version
-#   bin/test-all test         # composer test on every PHP version
-#   PHP_VERSIONS="php72 php85" bin/test-all
+#   scripts/test-all              # composer phpunit on every PHP version
+#   scripts/test-all test         # composer test on every PHP version
+#   PHP_VERSIONS="php72 php85" scripts/test-all
 set -u
 
 cd "$(dirname "$0")/.."
