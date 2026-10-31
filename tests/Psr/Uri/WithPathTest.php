@@ -23,7 +23,7 @@ final class WithPathTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        self::assertInstanceOf(UriInterface::class, $uri->withPath('/path'));
+        self::assertInstanceOf(Uri::class, $uri->withPath('/path'));
     }
 
     /**

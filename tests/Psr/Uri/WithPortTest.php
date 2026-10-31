@@ -23,7 +23,7 @@ final class WithPortTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        self::assertInstanceOf(UriInterface::class, $uri->withPort(5000));
+        self::assertInstanceOf(Uri::class, $uri->withPort(5000));
     }
 
     /**

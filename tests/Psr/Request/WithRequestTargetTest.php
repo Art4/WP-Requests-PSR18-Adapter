@@ -23,7 +23,7 @@ final class WithRequestTargetTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        self::assertInstanceOf(RequestInterface::class, $request->withRequestTarget('/'));
+        self::assertInstanceOf(Request::class, $request->withRequestTarget('/'));
     }
 
     /**

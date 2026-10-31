@@ -12,22 +12,6 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 final class WithMethodAndUriTest extends TestCase
 {
     /**
-     * Tests receiving a Request instance when using withMethodAndUri().
-     *
-     * @covers \Art4\Requests\Psr\Request::withMethodAndUri
-     * @covers \Art4\Requests\Psr\Request::__construct
-     */
-    public function testWithMethodAndUriReturnsRequest(): void
-    {
-        $uri = self::createStub(UriInterface::class);
-
-        self::assertInstanceOf(
-            RequestInterface::class,
-            Request::withMethodAndUri('GET', $uri)
-        );
-    }
-
-    /**
      * Tests throwing an exception when using withMethodAndUri() with empty method.
      *
      * @covers \Art4\Requests\Psr\Request::withMethodAndUri

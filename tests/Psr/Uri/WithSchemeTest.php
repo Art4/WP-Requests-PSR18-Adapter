@@ -23,7 +23,7 @@ final class WithSchemeTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        self::assertInstanceOf(UriInterface::class, $uri->withScheme('http'));
+        self::assertInstanceOf(Uri::class, $uri->withScheme('http'));
     }
 
     /**

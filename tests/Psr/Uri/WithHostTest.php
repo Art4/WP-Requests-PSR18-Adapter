@@ -23,7 +23,7 @@ final class WithHostTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        self::assertInstanceOf(UriInterface::class, $uri->withHost('example.com'));
+        self::assertInstanceOf(Uri::class, $uri->withHost('example.com'));
     }
 
     /**

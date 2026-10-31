@@ -21,7 +21,7 @@ final class WithMethodTest extends TestCase
     {
         $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        self::assertInstanceOf(RequestInterface::class, $request->withMethod('GET'));
+        self::assertInstanceOf(Request::class, $request->withMethod('GET'));
     }
 
     /**

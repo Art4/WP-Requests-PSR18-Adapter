@@ -23,7 +23,7 @@ final class WithQueryTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        self::assertInstanceOf(UriInterface::class, $uri->withQuery('foo=bar'));
+        self::assertInstanceOf(Uri::class, $uri->withQuery('foo=bar'));
     }
 
     /**

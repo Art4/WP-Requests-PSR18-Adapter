@@ -7,6 +7,7 @@ namespace Art4\Requests\Tests\Psr\HttpClient;
 use Art4\Requests\Exception\Psr\NetworkException;
 use Art4\Requests\Exception\Psr\RequestException;
 use Art4\Requests\Psr\HttpClient;
+use Art4\Requests\Psr\Response;
 use Psr\Http\Message\ResponseInterface;
 use WpOrg\Requests\Exception\Transport as ExceptionTransport;
 use WpOrg\Requests\Transport;
@@ -153,7 +154,7 @@ final class SendRequestTest extends TestCase
 
         $response = $httpClient->sendRequest($request);
 
-        self::assertInstanceOf(ResponseInterface::class, $response);
+        self::assertInstanceOf(Response::class, $response);
         self::assertSame(503, $response->getStatusCode());
         self::assertSame('Service Unavailable', $response->getReasonPhrase());
         self::assertSame('1.1', $response->getProtocolVersion());
@@ -168,7 +169,7 @@ final class SendRequestTest extends TestCase
      */
     public function testSendRequestThrowsRequestException(): void
     {
-        $transport = self::createMock(Transport::class);
+        $transport = self::createStub(Transport::class);
 
         $httpClient = new HttpClient([
             'transport' => $transport,
@@ -191,7 +192,7 @@ final class SendRequestTest extends TestCase
     {
         $e = new ExceptionTransport('error message', 'Unknown');
 
-        $transport = self::createMock(Transport::class);
+        $transport = self::createStub(Transport::class);
         $transport->method('request')->willThrowException($e);
 
         $httpClient = new HttpClient([

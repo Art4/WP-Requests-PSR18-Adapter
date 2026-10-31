@@ -21,7 +21,7 @@ final class WithStatusTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        self::assertInstanceOf(ResponseInterface::class, $response->withStatus(200));
+        self::assertInstanceOf(Response::class, $response->withStatus(200));
     }
 
     /**

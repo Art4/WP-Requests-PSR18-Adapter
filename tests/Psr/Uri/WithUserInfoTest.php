@@ -23,7 +23,7 @@ final class WithUserInfoTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri(''));
 
-        self::assertInstanceOf(UriInterface::class, $uri->withUserInfo('user'));
+        self::assertInstanceOf(Uri::class, $uri->withUserInfo('user'));
     }
 
     /**

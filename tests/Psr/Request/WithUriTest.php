@@ -23,7 +23,7 @@ final class WithUriTest extends TestCase
         $uri = self::createStub(UriInterface::class);
         $uri->method('getHost')->willReturn('');
 
-        self::assertInstanceOf(RequestInterface::class, $request->withUri($uri));
+        self::assertInstanceOf(Request::class, $request->withUri($uri));
     }
 
     /**
