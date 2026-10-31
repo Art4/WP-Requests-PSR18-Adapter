@@ -1,0 +1,130 @@
+# All PHP commands run in containers, never on the host. See AGENTS.md.
+#
+#   docker compose run --rm php84 composer update
+#   docker compose run --rm php84 composer test
+
+x-php: &php
+    user: "${DOCKER_UID:-1000}:${DOCKER_GID:-1000}"
+    working_dir: /app
+    depends_on:
+        init-volumes:
+            condition: service_completed_successfully
+
+services:
+    # Creates the vendor directories of the PHP services as the host user.
+    # Every PHP version needs its own vendor directory.
+    init-volumes:
+        image: busybox
+        user: "${DOCKER_UID:-1000}:${DOCKER_GID:-1000}"
+        working_dir: /work
+        command: sh -c "mkdir -p .docker/vendor/php72 .docker/vendor/php73 .docker/vendor/php74 .docker/vendor/php80 .docker/vendor/php81 .docker/vendor/php82 .docker/vendor/php83 .docker/vendor/php84 .docker/vendor/php85"
+        volumes:
+            - ./:/work
+
+    php72:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "7.2"
+        image: wp-requests-psr18-adapter-php72
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php72:/app/vendor
+
+    php73:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "7.3"
+        image: wp-requests-psr18-adapter-php73
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php73:/app/vendor
+
+    php74:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "7.4"
+        image: wp-requests-psr18-adapter-php74
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php74:/app/vendor
+
+    php80:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "8.0"
+        image: wp-requests-psr18-adapter-php80
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php80:/app/vendor
+
+    php81:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "8.1"
+        image: wp-requests-psr18-adapter-php81
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php81:/app/vendor
+
+    php82:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "8.2"
+        image: wp-requests-psr18-adapter-php82
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php82:/app/vendor
+
+    php83:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "8.3"
+        image: wp-requests-psr18-adapter-php83
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php83:/app/vendor
+
+    php84:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "8.4"
+        image: wp-requests-psr18-adapter-php84
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php84:/app/vendor
+
+    php85:
+        <<: *php
+        build:
+            context: .
+            dockerfile: .docker/php.Dockerfile
+            args:
+                PHP_VERSION: "8.5"
+        image: wp-requests-psr18-adapter-php85
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php85:/app/vendor
