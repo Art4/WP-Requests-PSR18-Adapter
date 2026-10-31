@@ -15,26 +15,6 @@ x-php: &php
     working_dir: /app
 
 services:
-    php72:
-        <<: *php
-        build:
-            <<: *php-build
-            args:
-                PHP_VERSION: "7.2"
-        volumes:
-            - ./:/app
-            - ./.docker/vendor/php72:/app/vendor
-
-    php73:
-        <<: *php
-        build:
-            <<: *php-build
-            args:
-                PHP_VERSION: "7.3"
-        volumes:
-            - ./:/app
-            - ./.docker/vendor/php73:/app/vendor
-
     php74:
         <<: *php
         build:
