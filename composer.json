@@ -21,10 +21,11 @@
         "rmccue/requests": "^1.8 || ^2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.4",
-        "phpstan/phpstan": "^1.12 || ^2.1",
-        "phpstan/phpstan-strict-rules": "^1.6 || ^2.0",
-        "phpunit/phpunit": "^8.5 || ^9.6 || ^11.5 || ^12.2",
+        "friendsofphp/php-cs-fixer": "^3.65",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^9.6 || ^10.5 || ^11.5 || ^12.5 || ^13.0",
         "yoast/phpunit-polyfills": "^4.0"
     },
     "autoload": {
