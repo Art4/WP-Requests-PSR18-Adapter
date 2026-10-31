@@ -1,0 +1,5 @@
+.git
+vendor
+.docker/vendor
+.phpunit.cache
+.code-coverage

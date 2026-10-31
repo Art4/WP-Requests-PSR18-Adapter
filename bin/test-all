@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Runs a composer script (default: phpunit) on all PHP versions in Docker.
+#
+#   bin/test-all              # composer phpunit on every PHP version
+#   bin/test-all test         # composer test on every PHP version
+#   PHP_VERSIONS="php72 php85" bin/test-all
+set -u
+
+cd "$(dirname "$0")/.."
+
+script="${1:-phpunit}"
+versions="${PHP_VERSIONS:-php72 php73 php74 php80 php81 php82 php83 php84 php85}"
+failed=()
+
+for service in $versions; do
+    echo "=== ${service}: composer update && composer ${script}"
+    if docker compose run --rm "$service" sh -c "composer update --no-interaction --no-progress --quiet && composer ${script}"; then
+        echo "--- ${service}: OK"
+    else
+        echo "--- ${service}: FAILED"
+        failed+=("$service")
+    fi
+done
+
+if [ "${#failed[@]}" -gt 0 ]; then
+    echo "Failed: ${failed[*]}"
+    exit 1
+fi
+echo "All PHP versions passed."

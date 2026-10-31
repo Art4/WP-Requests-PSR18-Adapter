@@ -53,6 +53,7 @@
         "psr/http-client-implementation": "^1.0"
     },
     "config": {
+        "lock": false,
         "sort-packages": true
     }
 }
