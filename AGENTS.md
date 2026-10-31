@@ -25,9 +25,3 @@ Notes:
 - Containers run as the host user (`DOCKER_UID`/`DOCKER_GID`, default `1000`). Set them if your user id is different.
 - After changing `.docker/php.Dockerfile`, rebuild: `docker compose build`.
 - PHPStan and php-cs-fixer need a recent PHP version; they run in CI on PHP 8.4 and 8.3.
-
-### Conventions
-
-- **No Claude attribution** in commits, issues and pull requests (no `Co-Authored-By:`, no session links).
-- **English on GitHub** – issues, PR titles and descriptions.
-- Commit messages follow Conventional Commits (`feat:`, `fix:`, `chore:`, `test:`, `ci:`, `docs:`).
