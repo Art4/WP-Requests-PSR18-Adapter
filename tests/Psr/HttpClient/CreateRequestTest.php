@@ -23,9 +23,9 @@ final class CreateRequestTest extends TestCase
     {
         $httpClient = new HttpClient([]);
 
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
 
-        TestCase::assertInstanceOf(
+        self::assertInstanceOf(
             RequestInterface::class,
             $httpClient->createRequest('', $uri)
         );
@@ -42,7 +42,7 @@ final class CreateRequestTest extends TestCase
 
         $uri = 'https://example.org';
 
-        TestCase::assertInstanceOf(
+        self::assertInstanceOf(
             RequestInterface::class,
             $httpClient->createRequest('', $uri)
         );

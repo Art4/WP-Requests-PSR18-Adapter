@@ -19,7 +19,7 @@ final class GetHostTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        TestCase::assertSame('example.org', $uri->getHost());
+        self::assertSame('example.org', $uri->getHost());
     }
 
     /**
@@ -31,7 +31,7 @@ final class GetHostTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri(''));
 
-        TestCase::assertSame('', $uri->getHost());
+        self::assertSame('', $uri->getHost());
     }
 
     /**
@@ -43,6 +43,6 @@ final class GetHostTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://EXAMPLE.ORG'));
 
-        TestCase::assertSame('example.org', $uri->getHost());
+        self::assertSame('example.org', $uri->getHost());
     }
 }

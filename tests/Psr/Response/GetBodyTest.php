@@ -23,7 +23,7 @@ final class GetBodyTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertInstanceOf(StreamInterface::class, $response->getBody());
+        self::assertInstanceOf(StreamInterface::class, $response->getBody());
     }
 
     /**
@@ -39,6 +39,6 @@ final class GetBodyTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertSame('response body', $response->getBody()->__toString());
+        self::assertSame('response body', $response->getBody()->__toString());
     }
 }

@@ -17,9 +17,9 @@ final class HasHeaderTest extends TestCase
      */
     public function testHasHeaderReturnsFalse(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertFalse($request->hasHeader('name'));
+        self::assertFalse($request->hasHeader('name'));
     }
 
     /**
@@ -29,10 +29,10 @@ final class HasHeaderTest extends TestCase
      */
     public function testHasHeaderReturnsTrue(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
         $request = $request->withHeader('name', 'value');
 
-        TestCase::assertTrue($request->hasHeader('name'));
+        self::assertTrue($request->hasHeader('name'));
     }
 
     /**
@@ -42,9 +42,9 @@ final class HasHeaderTest extends TestCase
      */
     public function testHasHeaderWithCaseInsensitiveNameReturnsTrue(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
         $request = $request->withHeader('NAME', 'value');
 
-        TestCase::assertTrue($request->hasHeader('name'));
+        self::assertTrue($request->hasHeader('name'));
     }
 }

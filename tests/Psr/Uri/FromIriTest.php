@@ -19,7 +19,7 @@ final class FromIriTest extends TestCase
      */
     public function testFromIriReturnsUri(): void
     {
-        TestCase::assertInstanceOf(
+        self::assertInstanceOf(
             UriInterface::class,
             Uri::fromIri(new Iri('https://example.org'))
         );
@@ -37,6 +37,6 @@ final class FromIriTest extends TestCase
 
         $iri->scheme = 'http';
 
-        TestCase::assertSame('https', $uri->getScheme());
+        self::assertSame('https', $uri->getScheme());
     }
 }

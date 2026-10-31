@@ -22,9 +22,9 @@ final class WithHeaderTest extends TestCase
      */
     public function testWithHeaderReturnsRequest(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertInstanceOf(RequestInterface::class, $request->withHeader('name', 'value'));
+        self::assertInstanceOf(RequestInterface::class, $request->withHeader('name', 'value'));
     }
 
     /**
@@ -34,9 +34,9 @@ final class WithHeaderTest extends TestCase
      */
     public function testWithHeaderReturnsNewInstance(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertNotSame($request, $request->withHeader('name', 'value'));
+        self::assertNotSame($request, $request->withHeader('name', 'value'));
     }
 
     /**
@@ -61,7 +61,7 @@ final class WithHeaderTest extends TestCase
     #[DataProvider('dataInvalidTypeNotStringOrArray')]
     public function testWithHeaderWithoutValueAsStringOrArrayThrowsInvalidArgumentException($input): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withHeader(): Argument #2 ($value) must be of type string|array', Request::class));
@@ -91,7 +91,7 @@ final class WithHeaderTest extends TestCase
     #[DataProvider('dataInvalidTypeNotString')]
     public function testWithHeaderWithoutValueAsStringInArrayThrowsInvalidArgumentException($input): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('%s::withHeader(): Argument #2 ($value) must be of type string|array containing strings', Request::class));
@@ -107,13 +107,13 @@ final class WithHeaderTest extends TestCase
      */
     public function testWithHeaderChangesTheHeaders(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
         $uri->method('getHost')->willReturn('');
         $request = Request::withMethodAndUri('GET', $uri);
 
         $request = $request->withHeader('Name', 'value');
 
-        TestCase::assertSame(['Name' => ['value']], $request->getHeaders());
+        self::assertSame(['Name' => ['value']], $request->getHeaders());
     }
 
     /**
@@ -124,13 +124,13 @@ final class WithHeaderTest extends TestCase
      */
     public function testWithHeaderCaseInsensitiveChangesTheHeaders(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
         $uri->method('getHost')->willReturn('');
         $request = Request::withMethodAndUri('GET', $uri);
 
         $request = $request->withHeader('name', 'value');
         $request = $request->withHeader('NAME', 'value');
 
-        TestCase::assertSame(['NAME' => ['value']], $request->getHeaders());
+        self::assertSame(['NAME' => ['value']], $request->getHeaders());
     }
 }

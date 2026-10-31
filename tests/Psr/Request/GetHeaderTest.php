@@ -17,9 +17,9 @@ final class GetHeaderTest extends TestCase
      */
     public function testGetHeaderWithoutHeaderReturnsEmptyArray(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertSame([], $request->getHeader('name'));
+        self::assertSame([], $request->getHeader('name'));
     }
 
     /**
@@ -29,10 +29,10 @@ final class GetHeaderTest extends TestCase
      */
     public function testGetHeaderReturnsArray(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
         $request = $request->withHeader('name', 'value');
 
-        TestCase::assertSame(['value'], $request->getHeader('name'));
+        self::assertSame(['value'], $request->getHeader('name'));
     }
 
     /**
@@ -42,9 +42,9 @@ final class GetHeaderTest extends TestCase
      */
     public function testGetHeaderWithCaseInsensitiveNameReturnsArray(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
         $request = $request->withHeader('name', 'value');
 
-        TestCase::assertSame(['value'], $request->getHeader('NAME'));
+        self::assertSame(['value'], $request->getHeader('NAME'));
     }
 }

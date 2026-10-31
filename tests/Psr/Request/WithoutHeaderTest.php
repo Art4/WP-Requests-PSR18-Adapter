@@ -18,9 +18,9 @@ final class WithoutHeaderTest extends TestCase
      */
     public function testWithoutHeaderReturnsRequest(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertInstanceOf(RequestInterface::class, $request->withoutHeader('name'));
+        self::assertInstanceOf(RequestInterface::class, $request->withoutHeader('name'));
     }
 
     /**
@@ -30,9 +30,9 @@ final class WithoutHeaderTest extends TestCase
      */
     public function testWithoutHeaderReturnsNewInstance(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertNotSame($request, $request->withoutHeader('name'));
+        self::assertNotSame($request, $request->withoutHeader('name'));
     }
 
     /**
@@ -43,14 +43,14 @@ final class WithoutHeaderTest extends TestCase
      */
     public function testWithoutHeaderChangesTheHeaders(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
         $uri->method('getHost')->willReturn('');
         $request = Request::withMethodAndUri('GET', $uri);
 
         $request = $request->withHeader('Name', 'value');
         $request = $request->withoutHeader('Name');
 
-        TestCase::assertSame([], $request->getHeaders());
+        self::assertSame([], $request->getHeaders());
     }
 
     /**
@@ -61,7 +61,7 @@ final class WithoutHeaderTest extends TestCase
      */
     public function testWithoutHeaderCaseInsensitiveChangesTheHeaders(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
         $uri->method('getHost')->willReturn('');
         $request = Request::withMethodAndUri('GET', $uri);
 
@@ -69,6 +69,6 @@ final class WithoutHeaderTest extends TestCase
         $request = $request->withHeader('NAME2', 'value2');
         $request = $request->withoutHeader('name1');
 
-        TestCase::assertSame(['NAME2' => ['value2']], $request->getHeaders());
+        self::assertSame(['NAME2' => ['value2']], $request->getHeaders());
     }
 }

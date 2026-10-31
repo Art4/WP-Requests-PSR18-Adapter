@@ -23,6 +23,6 @@ final class RewindTest extends TestCase
 
         $stream->rewind();
 
-        TestCase::assertSame(0, $stream->tell());
+        self::assertSame(0, $stream->tell());
     }
 }

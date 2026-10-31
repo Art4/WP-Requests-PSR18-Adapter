@@ -23,7 +23,7 @@ final class WithHeaderTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        TestCase::assertInstanceOf(ResponseInterface::class, $response->withHeader('name', 'value'));
+        self::assertInstanceOf(ResponseInterface::class, $response->withHeader('name', 'value'));
     }
 
     /**
@@ -35,7 +35,7 @@ final class WithHeaderTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        TestCase::assertNotSame($response, $response->withHeader('name', 'value'));
+        self::assertNotSame($response, $response->withHeader('name', 'value'));
     }
 
     /**
@@ -109,7 +109,7 @@ final class WithHeaderTest extends TestCase
 
         $response = $response->withHeader('Name', 'value');
 
-        TestCase::assertSame(['Name' => ['value']], $response->getHeaders());
+        self::assertSame(['Name' => ['value']], $response->getHeaders());
     }
 
     /**
@@ -124,6 +124,6 @@ final class WithHeaderTest extends TestCase
         $response = $response->withHeader('name', 'value');
         $response = $response->withHeader('NAME', 'value');
 
-        TestCase::assertSame(['NAME' => ['value']], $response->getHeaders());
+        self::assertSame(['NAME' => ['value']], $response->getHeaders());
     }
 }

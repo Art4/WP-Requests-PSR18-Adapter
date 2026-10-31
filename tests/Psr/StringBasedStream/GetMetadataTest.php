@@ -18,7 +18,7 @@ final class GetMetadataTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        TestCase::assertSame(
+        self::assertSame(
             [
                 'seekable' => true,
                 'readable' => true,
@@ -37,9 +37,9 @@ final class GetMetadataTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        TestCase::assertTrue($stream->getMetadata('seekable'));
-        TestCase::assertTrue($stream->getMetadata('readable'));
-        TestCase::assertFalse($stream->getMetadata('writable'));
+        self::assertTrue($stream->getMetadata('seekable'));
+        self::assertTrue($stream->getMetadata('readable'));
+        self::assertFalse($stream->getMetadata('writable'));
     }
 
     /**
@@ -52,7 +52,7 @@ final class GetMetadataTest extends TestCase
         $stream = StringBasedStream::createFromString('');
         $stream->close();
 
-        TestCase::assertFalse($stream->getMetadata('seekable'));
+        self::assertFalse($stream->getMetadata('seekable'));
     }
 
     /**
@@ -64,6 +64,6 @@ final class GetMetadataTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        TestCase::assertNull($stream->getMetadata('key'));
+        self::assertNull($stream->getMetadata('key'));
     }
 }

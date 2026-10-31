@@ -22,7 +22,7 @@ final class FromResponseTest extends TestCase
         $requestsResponse = new RequestsResponse();
         $requestsResponse->headers['name'] = 'value';
 
-        TestCase::assertInstanceOf(
+        self::assertInstanceOf(
             ResponseInterface::class,
             Response::fromResponse($requestsResponse)
         );

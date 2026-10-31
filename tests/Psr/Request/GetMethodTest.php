@@ -17,8 +17,8 @@ final class GetMethodTest extends TestCase
      */
     public function testGetMethodReturnsString(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertSame('GET', $request->getMethod());
+        self::assertSame('GET', $request->getMethod());
     }
 }

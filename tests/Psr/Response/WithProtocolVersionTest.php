@@ -21,7 +21,7 @@ final class WithProtocolVersionTest extends TestCase
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertInstanceOf(ResponseInterface::class, $response->withProtocolVersion('1.0'));
+        self::assertInstanceOf(ResponseInterface::class, $response->withProtocolVersion('1.0'));
     }
 
     /**
@@ -34,7 +34,7 @@ final class WithProtocolVersionTest extends TestCase
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertNotSame($response, $response->withProtocolVersion('1.0'));
+        self::assertNotSame($response, $response->withProtocolVersion('1.0'));
     }
 
     /**
@@ -49,6 +49,6 @@ final class WithProtocolVersionTest extends TestCase
 
         $response = $response->withProtocolVersion('1.0');
 
-        TestCase::assertSame('1.0', $response->getProtocolVersion());
+        self::assertSame('1.0', $response->getProtocolVersion());
     }
 }

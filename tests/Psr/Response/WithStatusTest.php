@@ -21,7 +21,7 @@ final class WithStatusTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        TestCase::assertInstanceOf(ResponseInterface::class, $response->withStatus(200));
+        self::assertInstanceOf(ResponseInterface::class, $response->withStatus(200));
     }
 
     /**
@@ -33,7 +33,7 @@ final class WithStatusTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        TestCase::assertNotSame($response, $response->withStatus(200));
+        self::assertNotSame($response, $response->withStatus(200));
     }
 
     /**
@@ -45,8 +45,8 @@ final class WithStatusTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        TestCase::expectException(\InvalidArgumentException::class);
-        TestCase::expectExceptionMessage('Invalid status code `0`');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid status code `0`');
 
         $response->withStatus(0);
     }
@@ -79,7 +79,7 @@ final class WithStatusTest extends TestCase
 
         $response = $response->withStatus($code, $phrase);
 
-        TestCase::assertSame($code, $response->getStatusCode());
-        TestCase::assertSame($expected, $response->getReasonPhrase());
+        self::assertSame($code, $response->getStatusCode());
+        self::assertSame($expected, $response->getReasonPhrase());
     }
 }

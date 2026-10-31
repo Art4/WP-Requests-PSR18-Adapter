@@ -19,7 +19,7 @@ final class GetSchemeTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        TestCase::assertSame('https', $uri->getScheme());
+        self::assertSame('https', $uri->getScheme());
     }
 
     /**
@@ -31,6 +31,6 @@ final class GetSchemeTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('example.org'));
 
-        TestCase::assertSame('', $uri->getScheme());
+        self::assertSame('', $uri->getScheme());
     }
 }

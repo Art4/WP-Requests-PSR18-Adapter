@@ -17,11 +17,11 @@ final class GetHeadersTest extends TestCase
      */
     public function testGetHeadersReturnsArray(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
         $uri->method('getHost')->willReturn('');
         $request = Request::withMethodAndUri('GET', $uri);
 
-        TestCase::assertSame([], $request->getHeaders());
+        self::assertSame([], $request->getHeaders());
     }
 
     /**
@@ -31,10 +31,10 @@ final class GetHeadersTest extends TestCase
      */
     public function testGetHeadersReturnsArrayWithHostHeader(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
         $uri->method('getHost')->willReturn('example.org');
         $request = Request::withMethodAndUri('GET', $uri);
 
-        TestCase::assertSame(['Host' => ['example.org']], $request->getHeaders());
+        self::assertSame(['Host' => ['example.org']], $request->getHeaders());
     }
 }

@@ -19,11 +19,11 @@ final class WithBodyTest extends TestCase
      */
     public function testWithBodyReturnsRequest(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        $body = $this->createMock(StreamInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
-        TestCase::assertInstanceOf(RequestInterface::class, $request->withBody($body));
+        self::assertInstanceOf(RequestInterface::class, $request->withBody($body));
     }
 
     /**
@@ -33,10 +33,10 @@ final class WithBodyTest extends TestCase
      */
     public function testWithBodyReturnsNewInstance(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        $body = $this->createMock(StreamInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
-        TestCase::assertNotSame($request, $request->withBody($body));
+        self::assertNotSame($request, $request->withBody($body));
     }
 }

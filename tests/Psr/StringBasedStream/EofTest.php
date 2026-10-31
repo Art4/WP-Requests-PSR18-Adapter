@@ -18,7 +18,7 @@ final class EofTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        TestCase::assertTrue($stream->eof());
+        self::assertTrue($stream->eof());
     }
 
     /**
@@ -30,7 +30,7 @@ final class EofTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('0123456789');
 
-        TestCase::assertFalse($stream->eof());
+        self::assertFalse($stream->eof());
     }
 
     /**
@@ -43,7 +43,7 @@ final class EofTest extends TestCase
         $stream = StringBasedStream::createFromString('0123456789');
         $stream->seek(0, SEEK_END);
 
-        TestCase::assertTrue($stream->eof());
+        self::assertTrue($stream->eof());
     }
 
     /**
@@ -56,6 +56,6 @@ final class EofTest extends TestCase
         $stream = StringBasedStream::createFromString('0123456789');
         $stream->close();
 
-        TestCase::assertTrue($stream->eof());
+        self::assertTrue($stream->eof());
     }
 }

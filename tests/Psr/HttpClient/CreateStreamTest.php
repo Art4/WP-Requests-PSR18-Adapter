@@ -19,7 +19,7 @@ final class CreateStreamTest extends TestCase
     {
         $httpClient = new HttpClient();
 
-        TestCase::assertInstanceOf(
+        self::assertInstanceOf(
             StreamInterface::class,
             $httpClient->createStream('')
         );

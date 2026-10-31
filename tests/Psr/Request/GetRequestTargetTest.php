@@ -21,13 +21,13 @@ final class GetRequestTargetTest extends TestCase
     #[DataProvider('dataGetRequestTarget')]
     public function testGetRequestTargetReturnsString(string $path, string $query, string $expected): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
         $uri->method('getPath')->willReturn($path);
         $uri->method('getQuery')->willReturn($query);
 
         $request = Request::withMethodAndUri('GET', $uri);
 
-        TestCase::assertSame($expected, $request->getRequestTarget());
+        self::assertSame($expected, $request->getRequestTarget());
     }
 
     /**

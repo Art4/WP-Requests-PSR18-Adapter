@@ -17,8 +17,8 @@ final class GetProtocolVersionTest extends TestCase
      */
     public function testGetProtocolVersionReturnsString(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertSame('1.1', $request->getProtocolVersion());
+        self::assertSame('1.1', $request->getProtocolVersion());
     }
 }

@@ -19,9 +19,9 @@ final class WithMethodAndUriTest extends TestCase
      */
     public function testWithMethodAndUriReturnsRequest(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
 
-        TestCase::assertInstanceOf(
+        self::assertInstanceOf(
             RequestInterface::class,
             Request::withMethodAndUri('GET', $uri)
         );
@@ -35,10 +35,10 @@ final class WithMethodAndUriTest extends TestCase
      */
     public function testWithMethodAndUriWithEmptyMethodThrowsException(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
 
-        TestCase::expectException(\InvalidArgumentException::class);
-        TestCase::expectExceptionMessage('Method must be a non-empty string');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Method must be a non-empty string');
 
         Request::withMethodAndUri('', $uri);
     }
@@ -50,10 +50,10 @@ final class WithMethodAndUriTest extends TestCase
      */
     public function testWithMethodAndUriChangesTheHostHeader(): void
     {
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
         $uri->method('getHost')->willReturn('example.org');
         $request = Request::withMethodAndUri('GET', $uri);
 
-        TestCase::assertSame(['Host' => ['example.org']], $request->getHeaders());
+        self::assertSame(['Host' => ['example.org']], $request->getHeaders());
     }
 }
