@@ -14,6 +14,7 @@
 | PHPUnit | `docker compose run --rm php84 composer phpunit` |
 | PHPStan | `docker compose run --rm php84 composer phpstan` |
 | Code style | `docker compose run --rm php84 composer codestyle -- --dry-run --diff` |
+| Behat (real HTTP requests, curl and fsockopen) | `docker compose run --rm php84 composer behat` |
 | Everything (PHPStan, PHPUnit, code style) | `docker compose run --rm php84 composer test` |
 | PHPUnit on all PHP versions | `scripts/test-all` |
 | Any script on all PHP versions | `scripts/test-all test` |
@@ -26,3 +27,5 @@ Notes:
 - Containers run as the host user (`DOCKER_UID`/`DOCKER_GID`, default `1000`). Set them if your user id is different.
 - After changing `.docker/php.Dockerfile`, rebuild: `docker compose build`.
 - PHPStan and php-cs-fixer need a recent PHP version; they run in CI on PHP 8.4 and 8.3.
+- **Behat runs on PHP 8.4 only** and is not part of `composer test`. `tests/Behat/` starts `features/server/index.php` (vendored from Symfony, keep it unchanged except for the `/echo` route) on `127.0.0.1:8057`.
+- **Scenarios describe the desired behavior.** A failing scenario gets `@known-issue` (or `@known-issue-curl`, `@known-issue-fsockopen`) and an `@issue-<number>` tag, and the filter in `behat.php` skips it. A fix removes the tag. Run `vendor/bin/behat --profile=curl --tags=@known-issue` to see them. Prefix the command with `timeout 60` on the `fsockopen` profile, because an endless response never ends there.
