@@ -11,6 +11,7 @@ Feature: Response bodies
     Given the request has the header "Accept-Encoding" with the value "gzip"
     When I send a "GET" request to "/"
     Then the response status is 200
+    And the response header "Content-Encoding" is "gzip"
     And the server received the path "/"
 
   Scenario Outline: A broken response neither crashes nor hangs the client

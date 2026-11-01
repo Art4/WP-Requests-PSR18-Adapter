@@ -31,6 +31,7 @@ Feature: Redirects
     When I send a "POST" request to "/307"
     Then the response status is 200
     And the server received the method "POST"
+    And the server received the field "foo" with the value "bar"
 
   Scenario: A relative redirect is resolved against the request URL
     When I send a "GET" request to "/302/relative"

@@ -24,7 +24,7 @@ parameters:
 
     # PHPUnit 9.6 (PHP 8.0 and 8.1) does not know the attribute classes. The tests
     # use attributes and doc-comments side by side to support all PHPUnit versions.
-    # Behat 3.15 (PHP 8.0) has no hook attributes, but Behat only runs on PHP 8.4.
+    # Behat 3.15 (PHP 7.4 and 8.0) has no hook attributes, but Behat only runs on PHP 8.4.
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         -

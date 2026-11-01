@@ -142,7 +142,7 @@ final class HttpClientContext implements Context
         $client = new HttpClient($this->options);
         $url = strpos($target, '/') === 0 ? TestServer::BASE_URL . $target : $target;
 
-        $this->send($client, $client->createRequest($method, $url));
+        $this->recordOutcome($client, $this->buildRequest($client, $method, $url));
     }
 
     #[Then('the response status is :status')]
@@ -160,55 +160,55 @@ final class HttpClientContext implements Context
     #[Then('the response body is :body')]
     public function theResponseBodyIs(string $body): void
     {
-        self::expectSame($body, $this->response()->getBody()->__toString());
+        self::expectSame($body, $this->responseBody());
     }
 
     #[Then('the response has no body')]
     public function theResponseHasNoBody(): void
     {
-        self::expectSame('', $this->response()->getBody()->__toString());
+        self::expectSame('', $this->responseBody());
     }
 
     #[Then('the server received the method :method')]
     public function theServerReceivedTheMethod(string $method): void
     {
-        self::expectSame($method, $this->responseJson()['REQUEST_METHOD'] ?? null);
+        self::expectSame($method, $this->serverReceived('REQUEST_METHOD'));
     }
 
     #[Then('the server received the path :path')]
     public function theServerReceivedThePath(string $path): void
     {
-        self::expectSame($path, $this->responseJson()['REQUEST_URI'] ?? null);
+        self::expectSame($path, $this->serverReceived('REQUEST_URI'));
     }
 
     #[Then('the server received the body :body')]
     public function theServerReceivedTheBody(string $body): void
     {
-        self::expectSame($body, $this->responseJson()['BODY'] ?? null);
+        self::expectSame($body, $this->serverReceived('BODY'));
     }
 
     #[Then('the server received the body:')]
     public function theServerReceivedTheMultilineBody(PyStringNode $body): void
     {
-        self::expectSame($body->getRaw(), $this->responseJson()['BODY'] ?? null);
+        self::expectSame($body->getRaw(), $this->serverReceived('BODY'));
+    }
+
+    #[Then('the server received the field :name with the value :value')]
+    public function theServerReceivedTheField(string $name, string $value): void
+    {
+        self::expectSame($value, $this->serverReceived($name));
     }
 
     #[Then('the server received no body')]
     public function theServerReceivedNoBody(): void
     {
-        self::expectSame('', $this->responseJson()['BODY'] ?? null);
+        self::expectSame('', $this->serverReceived('BODY'));
     }
 
     #[Then('the server received the header :name with the value :value')]
     public function theServerReceivedTheHeader(string $name, string $value): void
     {
-        self::expectSame($value, $this->responseJson()[$this->serverVariable($name)] ?? null);
-    }
-
-    #[Then('the server did not receive the header :name')]
-    public function theServerDidNotReceiveTheHeader(string $name): void
-    {
-        self::expectSame(false, array_key_exists($this->serverVariable($name), $this->responseJson()));
+        self::expectSame($value, $this->serverReceived($this->serverVariable($name)));
     }
 
     #[Then('the response header :name reports the method :method')]
@@ -245,8 +245,10 @@ final class HttpClientContext implements Context
         }
     }
 
-    private function send(HttpClient $client, RequestInterface $request): void
+    private function buildRequest(HttpClient $client, string $method, string $url): RequestInterface
     {
+        $request = $client->createRequest($method, $url);
+
         foreach ($this->requestHeaders as $name => $value) {
             $request = $request->withHeader($name, $value);
         }
@@ -255,6 +257,11 @@ final class HttpClientContext implements Context
             $request = $request->withBody($client->createStream($this->requestBody));
         }
 
+        return $request;
+    }
+
+    private function recordOutcome(HttpClient $client, RequestInterface $request): void
+    {
         $start = microtime(true);
 
         try {
@@ -280,7 +287,20 @@ final class HttpClientContext implements Context
      */
     private function responseJson(): array
     {
-        return self::decodeJson($this->response()->getBody()->__toString());
+        return self::decodeJson($this->responseBody());
+    }
+
+    /**
+     * @return mixed
+     */
+    private function serverReceived(string $key)
+    {
+        return $this->responseJson()[$key] ?? null;
+    }
+
+    private function responseBody(): string
+    {
+        return $this->response()->getBody()->__toString();
     }
 
     /**

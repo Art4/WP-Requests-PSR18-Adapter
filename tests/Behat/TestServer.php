@@ -13,7 +13,11 @@ use RuntimeException;
  */
 final class TestServer
 {
-    public const BASE_URL = 'http://127.0.0.1:8057';
+    private const HOST = '127.0.0.1';
+
+    private const PORT = 8057;
+
+    public const BASE_URL = 'http://' . self::HOST . ':' . self::PORT;
 
     private const START_TIMEOUT_SECONDS = 5.0;
 
@@ -25,7 +29,7 @@ final class TestServer
     public function start(): void
     {
         $process = proc_open(
-            [PHP_BINARY, '-dvariables_order=EGPCS', '-S', '127.0.0.1:8057', '-t', __DIR__ . '/features/server'],
+            [PHP_BINARY, '-dvariables_order=EGPCS', '-S', self::HOST . ':' . self::PORT, '-t', __DIR__ . '/features/server'],
             [0 => ['file', '/dev/null', 'r'], 1 => ['file', '/dev/null', 'w'], 2 => ['file', '/dev/null', 'w']],
             $pipes,
             null,
@@ -57,7 +61,7 @@ final class TestServer
         $deadline = microtime(true) + self::START_TIMEOUT_SECONDS;
 
         while (microtime(true) < $deadline) {
-            $socket = @fsockopen('127.0.0.1', 8057, $errorCode, $errorMessage, 0.2);
+            $socket = @fsockopen(self::HOST, self::PORT, $errorCode, $errorMessage, 0.2);
 
             if (is_resource($socket)) {
                 fclose($socket);
@@ -70,6 +74,6 @@ final class TestServer
 
         $this->stop();
 
-        throw new RuntimeException('The test server did not start listening on 127.0.0.1:8057.');
+        throw new RuntimeException('The test server did not start listening on ' . self::BASE_URL . '.');
     }
 }
