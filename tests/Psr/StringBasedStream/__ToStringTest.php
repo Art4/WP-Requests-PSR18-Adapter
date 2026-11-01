@@ -18,7 +18,7 @@ final class __ToStringTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('full content');
 
-        TestCase::assertSame('full content', $stream->__toString());
+        self::assertSame('full content', $stream->__toString());
     }
 
     /**
@@ -31,6 +31,6 @@ final class __ToStringTest extends TestCase
         $stream = StringBasedStream::createFromString('full content');
         $stream->close();
 
-        TestCase::assertSame('', $stream->__toString());
+        self::assertSame('', $stream->__toString());
     }
 }

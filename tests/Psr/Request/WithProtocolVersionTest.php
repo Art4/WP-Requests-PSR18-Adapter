@@ -18,9 +18,9 @@ final class WithProtocolVersionTest extends TestCase
      */
     public function testWithProtocolVersionReturnsRequest(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertInstanceOf(RequestInterface::class, $request->withProtocolVersion('1.0'));
+        self::assertInstanceOf(RequestInterface::class, $request->withProtocolVersion('1.0'));
     }
 
     /**
@@ -30,9 +30,9 @@ final class WithProtocolVersionTest extends TestCase
      */
     public function testWithProtocolVersionReturnsNewInstance(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertNotSame($request, $request->withProtocolVersion('1.0'));
+        self::assertNotSame($request, $request->withProtocolVersion('1.0'));
     }
 
     /**
@@ -42,10 +42,10 @@ final class WithProtocolVersionTest extends TestCase
      */
     public function testWithProtocolVersionChangesTheProtocolVersion(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
         $request = $request->withProtocolVersion('1.0');
 
-        TestCase::assertSame('1.0', $request->getProtocolVersion());
+        self::assertSame('1.0', $request->getProtocolVersion());
     }
 }

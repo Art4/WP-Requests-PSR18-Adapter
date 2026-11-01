@@ -23,7 +23,7 @@ final class WithUserInfoTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri(''));
 
-        TestCase::assertInstanceOf(UriInterface::class, $uri->withUserInfo('user'));
+        self::assertInstanceOf(Uri::class, $uri->withUserInfo('user'));
     }
 
     /**
@@ -35,7 +35,7 @@ final class WithUserInfoTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri(''));
 
-        TestCase::assertNotSame($uri, $uri->withUserInfo('http'));
+        self::assertNotSame($uri, $uri->withUserInfo('http'));
     }
 
     /**
@@ -116,7 +116,7 @@ final class WithUserInfoTest extends TestCase
 
         $uri = $uri->withUserInfo($user, $password);
 
-        TestCase::assertSame($expected, $uri->getUserInfo());
+        self::assertSame($expected, $uri->getUserInfo());
     }
 
     /**

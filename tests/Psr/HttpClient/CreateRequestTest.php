@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Art4\Requests\Tests\Psr\HttpClient;
 
 use Art4\Requests\Psr\HttpClient;
+use Art4\Requests\Psr\Request;
 use Art4\Requests\Tests\TypeProviderHelper;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\RequestInterface;
@@ -23,10 +24,10 @@ final class CreateRequestTest extends TestCase
     {
         $httpClient = new HttpClient([]);
 
-        $uri = $this->createMock(UriInterface::class);
+        $uri = self::createStub(UriInterface::class);
 
-        TestCase::assertInstanceOf(
-            RequestInterface::class,
+        self::assertInstanceOf(
+            Request::class,
             $httpClient->createRequest('', $uri)
         );
     }
@@ -42,8 +43,8 @@ final class CreateRequestTest extends TestCase
 
         $uri = 'https://example.org';
 
-        TestCase::assertInstanceOf(
-            RequestInterface::class,
+        self::assertInstanceOf(
+            Request::class,
             $httpClient->createRequest('', $uri)
         );
     }

@@ -23,7 +23,7 @@ final class WithQueryTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        TestCase::assertInstanceOf(UriInterface::class, $uri->withQuery('foo=bar'));
+        self::assertInstanceOf(Uri::class, $uri->withQuery('foo=bar'));
     }
 
     /**
@@ -35,7 +35,7 @@ final class WithQueryTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri('https://example.org'));
 
-        TestCase::assertNotSame($uri, $uri->withQuery('foo=bar'));
+        self::assertNotSame($uri, $uri->withQuery('foo=bar'));
     }
 
     /**
@@ -85,7 +85,7 @@ final class WithQueryTest extends TestCase
 
         $uri = $uri->withQuery($input);
 
-        TestCase::assertSame($expected, $uri->getQuery());
+        self::assertSame($expected, $uri->getQuery());
     }
 
     /**

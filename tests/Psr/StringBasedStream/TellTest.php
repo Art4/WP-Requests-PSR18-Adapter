@@ -19,7 +19,7 @@ final class TellTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('0123456789');
 
-        TestCase::assertSame(0, $stream->tell());
+        self::assertSame(0, $stream->tell());
     }
 
     /**
@@ -33,7 +33,7 @@ final class TellTest extends TestCase
 
         $stream->seek(3, SEEK_SET);
 
-        TestCase::assertSame(3, $stream->tell());
+        self::assertSame(3, $stream->tell());
     }
 
     /**
@@ -48,7 +48,7 @@ final class TellTest extends TestCase
         $stream->seek(5, SEEK_SET);
         $stream->seek(3, SEEK_CUR);
 
-        TestCase::assertSame(8, $stream->tell());
+        self::assertSame(8, $stream->tell());
     }
 
     /**
@@ -63,7 +63,7 @@ final class TellTest extends TestCase
         $stream->seek(5, SEEK_SET);
         $stream->seek(0, SEEK_END);
 
-        TestCase::assertSame(10, $stream->tell());
+        self::assertSame(10, $stream->tell());
     }
 
     /**

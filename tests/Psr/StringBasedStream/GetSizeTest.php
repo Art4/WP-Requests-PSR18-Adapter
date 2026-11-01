@@ -18,7 +18,7 @@ final class GetSizeTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('full content');
 
-        TestCase::assertSame(12, $stream->getSize());
+        self::assertSame(12, $stream->getSize());
     }
 
     /**
@@ -31,6 +31,6 @@ final class GetSizeTest extends TestCase
         $stream = StringBasedStream::createFromString('full content');
         $stream->close();
 
-        TestCase::assertSame(0, $stream->getSize());
+        self::assertSame(0, $stream->getSize());
     }
 }

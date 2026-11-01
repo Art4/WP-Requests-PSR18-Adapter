@@ -4,4 +4,5 @@
 /.phpunit.result.cache
 /composer.lock
 /vendor/
-/.docker/vendor/
+/.docker/vendor/*/*
+!/.docker/vendor/*/.gitkeep

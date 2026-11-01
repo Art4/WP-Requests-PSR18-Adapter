@@ -1,8 +1,8 @@
 ARG PHP_VERSION=8.4
 FROM php:${PHP_VERSION}-cli
 
-# git and unzip are needed by composer to install packages.
 # The official PHP image already ships dom, mbstring, xml, xmlwriter, tokenizer, json and curl.
+# Composer and the zip extension (to unpack dist archives) are added here.
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN install-php-extensions @composer zip

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Art4\Requests\Tests\Psr\Response;
 
 use Art4\Requests\Psr\Response;
+use Art4\Requests\Psr\StringBasedStream;
 use Psr\Http\Message\StreamInterface;
 use WpOrg\Requests\Response as RequestsResponse;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
@@ -23,7 +24,7 @@ final class GetBodyTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertInstanceOf(StreamInterface::class, $response->getBody());
+        self::assertInstanceOf(StringBasedStream::class, $response->getBody());
     }
 
     /**
@@ -39,6 +40,6 @@ final class GetBodyTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertSame('response body', $response->getBody()->__toString());
+        self::assertSame('response body', $response->getBody()->__toString());
     }
 }

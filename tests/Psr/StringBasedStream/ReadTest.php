@@ -35,7 +35,7 @@ final class ReadTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('');
 
-        TestCase::assertSame('', $stream->read(0));
+        self::assertSame('', $stream->read(0));
     }
 
     /**
@@ -47,7 +47,7 @@ final class ReadTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('0123456789');
 
-        TestCase::assertSame('01234', $stream->read(5));
+        self::assertSame('01234', $stream->read(5));
     }
 
     /**
@@ -59,9 +59,9 @@ final class ReadTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('0123456789');
 
-        TestCase::assertSame('0123', $stream->read(4));
-        TestCase::assertSame('4567', $stream->read(4));
-        TestCase::assertSame('89', $stream->read(4));
+        self::assertSame('0123', $stream->read(4));
+        self::assertSame('4567', $stream->read(4));
+        self::assertSame('89', $stream->read(4));
     }
 
     /**
@@ -73,7 +73,7 @@ final class ReadTest extends TestCase
     {
         $stream = StringBasedStream::createFromString('0123456789');
 
-        TestCase::assertSame('0123456789', $stream->read(500000));
+        self::assertSame('0123456789', $stream->read(500000));
     }
 
     /**
@@ -86,6 +86,6 @@ final class ReadTest extends TestCase
         $stream = StringBasedStream::createFromString('0123456789');
         $stream->close();
 
-        TestCase::assertSame('', $stream->read(100));
+        self::assertSame('', $stream->read(100));
     }
 }

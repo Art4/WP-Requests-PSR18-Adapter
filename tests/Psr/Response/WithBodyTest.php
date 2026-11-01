@@ -22,9 +22,9 @@ final class WithBodyTest extends TestCase
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertInstanceOf(
+        self::assertInstanceOf(
             ResponseInterface::class,
-            $response->withBody($this->createMock(StreamInterface::class))
+            $response->withBody(self::createStub(StreamInterface::class))
         );
     }
 
@@ -38,9 +38,9 @@ final class WithBodyTest extends TestCase
         $requestsResponse = new RequestsResponse();
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertNotSame(
+        self::assertNotSame(
             $response,
-            $response->withBody($this->createMock(StreamInterface::class))
+            $response->withBody(self::createStub(StreamInterface::class))
         );
     }
 }

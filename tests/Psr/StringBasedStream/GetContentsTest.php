@@ -21,7 +21,7 @@ final class GetContentsTest extends TestCase
 
         $stream = StringBasedStream::createFromString($content);
 
-        TestCase::assertSame($content, $stream->getContents());
+        self::assertSame($content, $stream->getContents());
     }
 
     /**
@@ -35,7 +35,7 @@ final class GetContentsTest extends TestCase
 
         $stream = StringBasedStream::createFromString($content);
 
-        TestCase::assertSame($content, $stream->getContents());
+        self::assertSame($content, $stream->getContents());
     }
 
     /**
@@ -50,7 +50,7 @@ final class GetContentsTest extends TestCase
         $stream = StringBasedStream::createFromString($content);
         $stream->seek(5, SEEK_SET);
 
-        TestCase::assertSame('56789', $stream->getContents());
+        self::assertSame('56789', $stream->getContents());
     }
 
     /**
@@ -65,6 +65,6 @@ final class GetContentsTest extends TestCase
         $stream = StringBasedStream::createFromString($content);
         $stream->close();
 
-        TestCase::assertSame('', $stream->getContents());
+        self::assertSame('', $stream->getContents());
     }
 }

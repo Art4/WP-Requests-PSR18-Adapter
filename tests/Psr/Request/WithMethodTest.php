@@ -19,9 +19,9 @@ final class WithMethodTest extends TestCase
      */
     public function testWithMethodReturnsRequest(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertInstanceOf(RequestInterface::class, $request->withMethod('GET'));
+        self::assertInstanceOf(Request::class, $request->withMethod('GET'));
     }
 
     /**
@@ -31,9 +31,9 @@ final class WithMethodTest extends TestCase
      */
     public function testWithMethodReturnsNewInstance(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertNotSame($request, $request->withMethod('GET'));
+        self::assertNotSame($request, $request->withMethod('GET'));
     }
 
     /**
@@ -43,10 +43,10 @@ final class WithMethodTest extends TestCase
      */
     public function testWithMethodWithEmptyStringThrowsException(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::expectException(\InvalidArgumentException::class);
-        TestCase::expectExceptionMessage('Method must be a non-empty string');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Method must be a non-empty string');
 
         $request->withMethod('');
     }
@@ -63,11 +63,11 @@ final class WithMethodTest extends TestCase
     #[DataProvider('dataValidMethod')]
     public function testWithMethodChangesTheMethod(string $input, $expected): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
         $request = $request->withMethod($input);
 
-        TestCase::assertSame($expected, $request->getMethod());
+        self::assertSame($expected, $request->getMethod());
     }
 
     /**

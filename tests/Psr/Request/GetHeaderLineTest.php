@@ -17,9 +17,9 @@ final class GetHeaderLineTest extends TestCase
      */
     public function testGetHeaderLineWithoutHeaderReturnsEmptyString(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
 
-        TestCase::assertSame('', $request->getHeaderLine('name'));
+        self::assertSame('', $request->getHeaderLine('name'));
     }
 
     /**
@@ -29,10 +29,10 @@ final class GetHeaderLineTest extends TestCase
      */
     public function testGetHeaderLineReturnsString(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
         $request = $request->withHeader('name', ['value1', 'value2']);
 
-        TestCase::assertSame('value1,value2', $request->getHeaderLine('name'));
+        self::assertSame('value1,value2', $request->getHeaderLine('name'));
     }
 
     /**
@@ -42,9 +42,9 @@ final class GetHeaderLineTest extends TestCase
      */
     public function testGetHeaderLineWithCaseInsensitiveNameReturnsString(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $request = Request::withMethodAndUri('GET', self::createStub(UriInterface::class));
         $request = $request->withHeader('name', 'value');
 
-        TestCase::assertSame('value', $request->getHeaderLine('NAME'));
+        self::assertSame('value', $request->getHeaderLine('NAME'));
     }
 }

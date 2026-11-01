@@ -23,7 +23,7 @@ final class GetQueryTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri($input));
 
-        TestCase::assertSame($expected, $uri->getQuery());
+        self::assertSame($expected, $uri->getQuery());
     }
 
     /**

@@ -23,7 +23,7 @@ final class GetAuthorityTest extends TestCase
     {
         $uri = Uri::fromIri(new Iri($input));
 
-        TestCase::assertSame($expected, $uri->getAuthority());
+        self::assertSame($expected, $uri->getAuthority());
     }
 
     /**

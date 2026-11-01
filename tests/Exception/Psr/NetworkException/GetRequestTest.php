@@ -19,11 +19,11 @@ final class GetRequestTest extends TestCase
      */
     public function testGetRequestReturnsRequest(): void
     {
-        $request = $this->createMock(RequestInterface::class);
-        $previous = $this->createMock(Transport::class);
+        $request = self::createStub(RequestInterface::class);
+        $previous = self::createStub(Transport::class);
 
         $exception = new NetworkException($request, $previous);
 
-        TestCase::assertSame($request, $exception->getRequest());
+        self::assertSame($request, $exception->getRequest());
     }
 }

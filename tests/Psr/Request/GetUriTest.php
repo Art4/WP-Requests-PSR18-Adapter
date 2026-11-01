@@ -17,8 +17,10 @@ final class GetUriTest extends TestCase
      */
     public function testGetUriReturnsUriInterface(): void
     {
-        $request = Request::withMethodAndUri('GET', $this->createMock(UriInterface::class));
+        $uri = self::createStub(UriInterface::class);
 
-        TestCase::assertInstanceOf(UriInterface::class, $request->getUri());
+        $request = Request::withMethodAndUri('GET', $uri);
+
+        self::assertSame($uri, $request->getUri());
     }
 }

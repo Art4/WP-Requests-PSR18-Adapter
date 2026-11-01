@@ -1,4 +1,6 @@
 includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
@@ -14,3 +16,12 @@ parameters:
         - vendor
 
     treatPhpDocTypesAsCertain: false
+
+    # PHPUnit 9.6 (PHP 8.0 and 8.1) does not know the attribute classes. The tests
+    # use attributes and doc-comments side by side to support all PHPUnit versions.
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        -
+            identifier: attribute.notFound
+            message: '#^Attribute class PHPUnit\\Framework\\Attributes\\DataProvider does not exist\.$#'
+            path: tests/

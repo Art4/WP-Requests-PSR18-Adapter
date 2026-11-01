@@ -22,7 +22,7 @@ final class GetStatusCodeTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertSame(200, $response->getStatusCode());
+        self::assertSame(200, $response->getStatusCode());
     }
 
     /**
@@ -37,6 +37,6 @@ final class GetStatusCodeTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertSame(200, $response->getStatusCode());
+        self::assertSame(200, $response->getStatusCode());
     }
 }

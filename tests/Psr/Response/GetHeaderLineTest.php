@@ -19,7 +19,7 @@ final class GetHeaderLineTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        TestCase::assertSame('', $response->getHeaderLine('name'));
+        self::assertSame('', $response->getHeaderLine('name'));
     }
 
     /**
@@ -32,7 +32,7 @@ final class GetHeaderLineTest extends TestCase
         $response = Response::fromResponse(new RequestsResponse());
         $response = $response->withHeader('name', ['value1', 'value2']);
 
-        TestCase::assertSame('value1,value2', $response->getHeaderLine('name'));
+        self::assertSame('value1,value2', $response->getHeaderLine('name'));
     }
 
     /**
@@ -45,6 +45,6 @@ final class GetHeaderLineTest extends TestCase
         $response = Response::fromResponse(new RequestsResponse());
         $response = $response->withHeader('name', 'value');
 
-        TestCase::assertSame('value', $response->getHeaderLine('NAME'));
+        self::assertSame('value', $response->getHeaderLine('NAME'));
     }
 }

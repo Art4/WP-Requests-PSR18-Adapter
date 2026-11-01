@@ -20,7 +20,7 @@ final class GetHeadersTest extends TestCase
     {
         $response = Response::fromResponse(new RequestsResponse());
 
-        TestCase::assertSame([], $response->getHeaders());
+        self::assertSame([], $response->getHeaders());
     }
 
     /**
@@ -36,6 +36,6 @@ final class GetHeadersTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertSame(['name' => ['value']], $response->getHeaders());
+        self::assertSame(['name' => ['value']], $response->getHeaders());
     }
 }

@@ -21,7 +21,7 @@ final class SeekTest extends TestCase
 
         $stream->seek(3);
 
-        TestCase::assertSame(3, $stream->tell());
+        self::assertSame(3, $stream->tell());
     }
 
     /**
@@ -50,7 +50,7 @@ final class SeekTest extends TestCase
 
         $stream->seek(3, SEEK_SET);
 
-        TestCase::assertSame(3, $stream->tell());
+        self::assertSame(3, $stream->tell());
     }
 
     /**
@@ -94,7 +94,7 @@ final class SeekTest extends TestCase
 
         $stream->seek(3, SEEK_CUR);
 
-        TestCase::assertSame(3, $stream->tell());
+        self::assertSame(3, $stream->tell());
     }
 
     /**
@@ -109,7 +109,7 @@ final class SeekTest extends TestCase
         $stream->seek(10, SEEK_CUR);
         $stream->seek(-3, SEEK_CUR);
 
-        TestCase::assertSame(7, $stream->tell());
+        self::assertSame(7, $stream->tell());
     }
 
     /**
@@ -187,7 +187,7 @@ final class SeekTest extends TestCase
 
         $stream->seek(0, SEEK_END);
 
-        TestCase::assertSame(10, $stream->tell());
+        self::assertSame(10, $stream->tell());
     }
 
     /**
@@ -201,7 +201,7 @@ final class SeekTest extends TestCase
 
         $stream->seek(-3, SEEK_END);
 
-        TestCase::assertSame(7, $stream->tell());
+        self::assertSame(7, $stream->tell());
     }
 
     /**

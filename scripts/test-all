@@ -3,13 +3,13 @@
 #
 #   scripts/test-all              # composer phpunit on every PHP version
 #   scripts/test-all test         # composer test on every PHP version
-#   PHP_VERSIONS="php72 php85" scripts/test-all
+#   PHP_VERSIONS="php74 php85" scripts/test-all
 set -u
 
 cd "$(dirname "$0")/.."
 
 script="${1:-phpunit}"
-versions="${PHP_VERSIONS:-php72 php73 php74 php80 php81 php82 php83 php84 php85}"
+versions="${PHP_VERSIONS:-$(docker compose config --services | sort)}"
 failed=()
 
 for service in $versions; do

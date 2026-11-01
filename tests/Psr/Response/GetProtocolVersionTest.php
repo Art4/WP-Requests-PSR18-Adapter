@@ -24,7 +24,7 @@ final class GetProtocolVersionTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertSame('1.0', $response->getProtocolVersion());
+        self::assertSame('1.0', $response->getProtocolVersion());
     }
 
     /**
@@ -40,6 +40,6 @@ final class GetProtocolVersionTest extends TestCase
 
         $response = Response::fromResponse($requestsResponse);
 
-        TestCase::assertSame('1.1', $response->getProtocolVersion());
+        self::assertSame('1.1', $response->getProtocolVersion());
     }
 }
