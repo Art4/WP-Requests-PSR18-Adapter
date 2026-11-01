@@ -3,6 +3,7 @@
 $finder = (new PhpCsFixer\Finder())
     ->in('src')
     ->in('tests')
+    ->exclude('Behat/features')
 ;
 
 return (new PhpCsFixer\Config())

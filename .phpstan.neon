@@ -12,6 +12,11 @@ parameters:
         - tests/
         - v1-compat/
 
+    # The Behat configuration needs Behat 4, the test server is vendored.
+    excludePaths:
+        - tests/Behat/behat.php
+        - tests/Behat/features/
+
     scanDirectories:
         - vendor
 
