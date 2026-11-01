@@ -86,11 +86,12 @@ Feature: Request bodies
       | PUT    |
       | PATCH  |
 
-  Scenario Outline: An empty JSON array on a method without body semantics is no body
+  # Regression test for #28, which failed with a TypeError in http_build_query().
+  # Whether the body [] reaches the server is decided in #42.
+  Scenario Outline: A JSON array on a method without body semantics does not fail
     Given the request has the body "[]"
     When I send a "<method>" request to "/echo"
     Then the response status is 200
-    And the server received no body
 
     Examples:
       | method |
