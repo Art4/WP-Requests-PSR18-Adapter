@@ -64,6 +64,36 @@ jobs:
       - name: Run phpunit tests
         run: composer run phpunit
 
+  behat:
+    name: Behat (${{ matrix.transport }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        transport: ['curl', 'fsockopen']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        with:
+          php-version: '8.4'
+          tools: none
+
+      # Install composer dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: "Install Composer dependencies"
+        uses: "ramsey/composer-install@v2"
+
+      - name: Run Behat
+        timeout-minutes: 5
+        run: composer run behat:${{ matrix.transport }}
+
   static-code-analysis:
     name: PHPStan (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest

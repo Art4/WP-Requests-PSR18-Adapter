@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.4.1...HEAD)
 
+### Added
+
+- Behat scenarios that test the PSR-18 behavior with real HTTP requests on curl and fsockopen. The test server is based on work by Nicolas Lemoine (nlemoine) in #34.
+
 ### Changed
 
 - Raise the minimum required PHP version to 7.4. Composer installs version 1.4.1 on PHP 7.2 and 7.3, so existing installations are not affected.

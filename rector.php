@@ -32,5 +32,7 @@ return RectorConfig::configure()
         PostIncDecToPreIncDecRector::class,
         SymplifyQuoteEscapeRector::class,
         YieldDataProviderRector::class,
+        __DIR__ . '/tests/Behat/behat.php',
+        __DIR__ . '/tests/Behat/features',
     ])
 ;

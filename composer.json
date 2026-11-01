@@ -21,6 +21,7 @@
         "rmccue/requests": "^1.8 || ^2.0"
     },
     "require-dev": {
+        "behat/behat": "^3.15 || ^4.0",
         "friendsofphp/php-cs-fixer": "^3.65",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
@@ -40,6 +41,12 @@
         }
     },
     "scripts": {
+        "behat": [
+            "@behat:curl",
+            "@behat:fsockopen"
+        ],
+        "behat:curl": "behat --config=tests/Behat/behat.php --profile=curl --strict --no-interaction",
+        "behat:fsockopen": "behat --config=tests/Behat/behat.php --profile=fsockopen --strict --no-interaction",
         "codestyle": "php-cs-fixer fix",
         "coverage": "@phpunit --coverage-html=.code-coverage",
         "phpstan": "phpstan analyze --memory-limit 512M --configuration .phpstan.neon",
