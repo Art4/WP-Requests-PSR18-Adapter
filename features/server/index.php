@@ -9,8 +9,9 @@
  *
  * Taken over from pull request #34 by Nicolas Lemoine (nlemoine).
  *
- * Local modifications: none. This file is the entry point for the PHP
- * built-in server used by the Behat features.
+ * Local modifications: added the /echo route, which returns the raw request
+ * body. This file is the entry point for the PHP built-in server used by the
+ * Behat features.
  */
 
 if ('cli-server' !== \PHP_SAPI) {
@@ -150,6 +151,11 @@ switch (parse_url($vars['REQUEST_URI'], \PHP_URL_PATH)) {
         header('Content-Type: application/json', true);
         header('Content-Length: '.strlen($output));
         echo $output;
+        exit;
+
+    case '/echo':
+        header('Content-Type: application/json', true);
+        echo json_encode($vars + ['BODY' => file_get_contents('php://input')], \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE);
         exit;
 
     case '/timeout-header':
