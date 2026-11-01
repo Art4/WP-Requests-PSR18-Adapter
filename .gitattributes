@@ -7,7 +7,9 @@
 /.php-cs-fixer.dist.php  export-ignore
 /.phpstan.neon           export-ignore
 /AGENTS.md               export-ignore
+/behat.php               export-ignore
 /docker-compose.yml      export-ignore
+/features                export-ignore
 /phpunit.legacy.xml     export-ignore
 /phpunit.xml            export-ignore
 /rector.php              export-ignore
