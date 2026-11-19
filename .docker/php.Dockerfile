@@ -1,11 +1,12 @@
 ARG PHP_VERSION=8.4
 FROM php:${PHP_VERSION}-cli
 
-# The official PHP image already ships dom, mbstring, xml, xmlwriter, tokenizer, json and curl.
-# Composer and the zip extension (to unpack dist archives) are added here.
+# The official PHP image already ships dom, xml, xmlwriter, tokenizer, json and curl.
+# Composer, the zip extension (to unpack dist archives) and mbstring (needed by PHPUnit,
+# missing in the PHP 8.6 image) are added here.
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-RUN install-php-extensions @composer zip
+RUN install-php-extensions @composer zip mbstring
 
 COPY .docker/custom.ini /usr/local/etc/php/conf.d/custom.ini
 

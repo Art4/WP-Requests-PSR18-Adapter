@@ -84,3 +84,13 @@ services:
         volumes:
             - ./:/app
             - ./.docker/vendor/php85:/app/vendor
+
+    php86:
+        <<: *php
+        build:
+            <<: *php-build
+            args:
+                PHP_VERSION: "8.6"
+        volumes:
+            - ./:/app
+            - ./.docker/vendor/php86:/app/vendor
