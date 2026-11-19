@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add support for PHP 8.6.
 - Behat scenarios that test the PSR-18 behavior with real HTTP requests on curl and fsockopen. The test server is based on work by Nicolas Lemoine (nlemoine) in #34.
 
 ### Changed
