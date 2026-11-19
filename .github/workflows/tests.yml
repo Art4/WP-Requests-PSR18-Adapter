@@ -10,13 +10,16 @@ jobs:
   unit-tests:
     name: PHPUnit (PHP ${{ matrix.php }} with ${{ matrix.prefer-versions }} lib versions)
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.php == '8.5' }}
+    # PHP 8.7 is a nightly build, so its failures do not block a merge.
+    continue-on-error: ${{ matrix.php == '8.7' }}
 
     strategy:
       fail-fast: false
       matrix:
         operating-system: ['ubuntu-latest']
         php:
+          - '8.7'
+          - '8.6'
           - '8.5'
           - '8.4'
           - '8.3'
@@ -51,12 +54,13 @@ jobs:
         with:
           composer-options: --prefer-lowest
 
-      - name: "Install Composer dependencies (PHP <= 8.4)"
-        if: ${{ matrix.prefer-versions == 'latest' && matrix.php <= '8.4' }}
+      - name: "Install Composer dependencies"
+        if: ${{ matrix.prefer-versions == 'latest' && matrix.php != '8.7' }}
         uses: "ramsey/composer-install@v2"
 
-      - name: "Install Composer dependencies (PHP 8.5)"
-        if: ${{ matrix.php == '8.5' }}
+      # composer.json does not allow PHP 8.7 yet.
+      - name: "Install Composer dependencies (PHP 8.7)"
+        if: ${{ matrix.php == '8.7' }}
         uses: "ramsey/composer-install@v2"
         with:
           composer-options: --ignore-platform-reqs
