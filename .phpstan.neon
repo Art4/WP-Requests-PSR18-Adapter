@@ -13,9 +13,11 @@ parameters:
         - v1-compat/
 
     # The Behat configuration needs Behat 4, the test server is vendored.
+    # Rector ships a stub of PHPUnit's TestCase that would replace the real class.
     excludePaths:
         - tests/Behat/behat.php
         - tests/Behat/features/
+        - vendor/rector/
 
     scanDirectories:
         - vendor

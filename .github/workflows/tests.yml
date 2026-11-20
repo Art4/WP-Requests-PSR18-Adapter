@@ -27,7 +27,7 @@ jobs:
           - '8.1'
           - '8.0'
           - '7.4'
-        prefer-versions: ['latest']
+        prefer-versions: ['highest']
         include:
           - php: '7.4'
             prefer-versions: 'lowest'
@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
 
@@ -47,26 +47,17 @@ jobs:
           tools: phpunit
 
       # Install dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
-      - name: "Install lowest Composer dependencies (PHP 7.4)"
-        if: ${{ matrix.prefer-versions == 'lowest' }}
-        uses: "ramsey/composer-install@v2"
-        with:
-          composer-options: --prefer-lowest
-
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
+      # composer.json does not allow PHP 8.7 yet, so its platform check is ignored.
       - name: "Install Composer dependencies"
-        if: ${{ matrix.prefer-versions == 'latest' && matrix.php != '8.7' }}
-        uses: "ramsey/composer-install@v2"
-
-      # composer.json does not allow PHP 8.7 yet.
-      - name: "Install Composer dependencies (PHP 8.7)"
-        if: ${{ matrix.php == '8.7' }}
         uses: "ramsey/composer-install@v2"
         with:
-          composer-options: --ignore-platform-reqs
+          dependency-versions: ${{ matrix.prefer-versions }}
+          composer-options: ${{ matrix.php == '8.7' && '--ignore-platform-reqs' || '' }}
 
+      # PHPUnit 9.6 (PHP 8.1 and older) does not know --display-all-issues.
       - name: Run phpunit tests
-        run: composer run phpunit
+        run: composer run phpunit -- ${{ matrix.php >= '8.2' && '--display-all-issues' || '' }}
 
   behat:
     name: Behat (${{ matrix.transport }})
@@ -79,18 +70,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
 
       - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2 # @link https://github.com/marketplace/actions/setup-php-action
         with:
           php-version: '8.4'
           tools: none
 
       # Install composer dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install Composer dependencies"
         uses: "ramsey/composer-install@v2"
 
@@ -110,19 +101,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
 
       - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2 # @link https://github.com/marketplace/actions/setup-php-action
         with:
           php-version: ${{ matrix.php }}
           tools: phpunit
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
 
       # Install composer dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install Composer dependencies"
         uses: "ramsey/composer-install@v2"
 
@@ -141,12 +132,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
 
       - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2 # @link https://github.com/marketplace/actions/setup-php-action
         with:
           php-version: ${{ matrix.php }}
           tools: phpunit
@@ -154,12 +145,12 @@ jobs:
           coverage: xdebug
 
       # Install composer dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install Composer dependencies"
         uses: "ramsey/composer-install@v2"
 
       - name: Run phpunit tests
-        run: composer run phpunit -- --coverage-clover ./.code-coverage/clover.xml
+        run: composer run phpunit -- --display-all-issues --coverage-clover ./.code-coverage/clover.xml
 
       - name: Send coverage report to Codecov
         if: ${{ success() }}
@@ -182,19 +173,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
 
       - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2 # @link https://github.com/marketplace/actions/setup-php-action
         with:
           php-version: ${{ matrix.php }}
           tools: none
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
 
       # Install composer dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: "Install Composer dependencies"
         uses: "ramsey/composer-install@v2"
 
