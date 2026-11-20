@@ -27,7 +27,7 @@ jobs:
           - '8.1'
           - '8.0'
           - '7.4'
-        prefer-versions: ['latest']
+        prefer-versions: ['highest']
         include:
           - php: '7.4'
             prefer-versions: 'lowest'
@@ -48,22 +48,12 @@ jobs:
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
-      - name: "Install lowest Composer dependencies (PHP 7.4)"
-        if: ${{ matrix.prefer-versions == 'lowest' }}
-        uses: "ramsey/composer-install@v2"
-        with:
-          composer-options: --prefer-lowest
-
+      # composer.json does not allow PHP 8.7 yet, so its platform check is ignored.
       - name: "Install Composer dependencies"
-        if: ${{ matrix.prefer-versions == 'latest' && matrix.php != '8.7' }}
-        uses: "ramsey/composer-install@v2"
-
-      # composer.json does not allow PHP 8.7 yet.
-      - name: "Install Composer dependencies (PHP 8.7)"
-        if: ${{ matrix.php == '8.7' }}
         uses: "ramsey/composer-install@v2"
         with:
-          composer-options: --ignore-platform-reqs
+          dependency-versions: ${{ matrix.prefer-versions }}
+          composer-options: ${{ matrix.php == '8.7' && '--ignore-platform-reqs' || '' }}
 
       - name: Run phpunit tests
         run: composer run phpunit
