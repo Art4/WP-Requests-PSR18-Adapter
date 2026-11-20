@@ -27,6 +27,7 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^9.6 || ^10.5 || ^11.5 || ^12.5 || ^13.0",
+        "rector/rector": "^2.3",
         "yoast/phpunit-polyfills": "^4.0"
     },
     "autoload": {
@@ -51,6 +52,11 @@
         "coverage": "@phpunit --coverage-html=.code-coverage",
         "phpstan": "phpstan analyze --memory-limit 512M --configuration .phpstan.neon",
         "phpunit": "@php scripts/phpunit.php",
+        "rector": "rector process --config=.rector.dist.php",
+        "rectify": [
+            "@rector",
+            "@codestyle"
+        ],
         "test": [
             "@phpstan",
             "@phpunit",

@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Rename `rector.php` to `.rector.dist.php`, add Rector as dev dependency and the `composer rector` and `composer rectify` scripts.
 - Raise the minimum required PHP version to 7.4. Composer installs version 1.4.1 on PHP 7.2 and 7.3, so existing installations are not affected.
 
 ## [1.4.1 - 2026-05-09](https://github.com/Art4/WP-Requests-PSR18-Adapter/compare/1.4.0...1.4.1)

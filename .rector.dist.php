@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
-use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
-use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
+use Rector\CodingStyle\Rector\String_\SimplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\YieldDataProviderRector;
 
 return RectorConfig::configure()
@@ -23,14 +23,14 @@ return RectorConfig::configure()
         privatization: true,
         instanceOf: true,
         earlyReturn: true,
-        strictBooleans: true,
         rectorPreset: true,
         phpunitCodeQuality: true,
     )
     ->withSkip([
         CatchExceptionNameMatchingTypeRector::class,
-        PostIncDecToPreIncDecRector::class,
-        SymplifyQuoteEscapeRector::class,
+        SimplifyQuoteEscapeRector::class,
+        // The tests call the PHPUnit assertions with self::.
+        PreferPHPUnitThisCallRector::class,
         YieldDataProviderRector::class,
         __DIR__ . '/tests/Behat/behat.php',
         __DIR__ . '/tests/Behat/features',

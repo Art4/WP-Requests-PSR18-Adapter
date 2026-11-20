@@ -14,6 +14,7 @@
 | PHPUnit | `docker compose run --rm php84 composer phpunit` |
 | PHPStan | `docker compose run --rm php84 composer phpstan` |
 | Code style | `docker compose run --rm php84 composer codestyle -- --dry-run --diff` |
+| Rector (proposes refactorings, not part of `composer test`) | `docker compose run --rm php84 composer rector -- --dry-run` |
 | Behat (real HTTP requests, curl and fsockopen) | `docker compose run --rm php84 composer behat` |
 | Everything (PHPStan, PHPUnit, code style) | `docker compose run --rm php84 composer test` |
 | PHPUnit on all PHP versions | `scripts/test-all` |
