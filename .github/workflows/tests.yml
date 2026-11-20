@@ -55,8 +55,9 @@ jobs:
           dependency-versions: ${{ matrix.prefer-versions }}
           composer-options: ${{ matrix.php == '8.7' && '--ignore-platform-reqs' || '' }}
 
+      # PHPUnit 9.6 (PHP 8.1 and older) does not know --display-all-issues.
       - name: Run phpunit tests
-        run: composer run phpunit
+        run: composer run phpunit -- ${{ matrix.php >= '8.2' && '--display-all-issues' || '' }}
 
   behat:
     name: Behat (${{ matrix.transport }})
@@ -149,7 +150,7 @@ jobs:
         uses: "ramsey/composer-install@v2"
 
       - name: Run phpunit tests
-        run: composer run phpunit -- --coverage-clover ./.code-coverage/clover.xml
+        run: composer run phpunit -- --display-all-issues --coverage-clover ./.code-coverage/clover.xml
 
       - name: Send coverage report to Codecov
         if: ${{ success() }}
